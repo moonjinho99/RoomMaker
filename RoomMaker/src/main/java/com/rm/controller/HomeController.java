@@ -36,14 +36,10 @@ public class HomeController {
 		return "home";
 	}
 	@RequestMapping(value = "/23", method = RequestMethod.GET)
-	public void home23() {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public void home2355() {
+		logger.info("Welcome home! The client locale is {}.123123");
 			
 	}
 	
-	@RequestMapping(value = "/23", method = RequestMethod.GET)
-	public void home233() {
-		logger.info("Welcome home! The client locale is {}.", locale);
-			
-	}
+
 }
