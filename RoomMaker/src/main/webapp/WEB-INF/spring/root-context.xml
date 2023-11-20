@@ -26,5 +26,5 @@
  
    <mybatis-spring:scan base-package="com.rm.mapper"/>
     <context:component-scan base-package="com.rm.model"></context:component-scan>
-    <context:component-scan base-package="com.varm.service"></context:component-scan>
+    <context:component-scan base-package="com.rm.service"></context:component-scan>
 </beans>

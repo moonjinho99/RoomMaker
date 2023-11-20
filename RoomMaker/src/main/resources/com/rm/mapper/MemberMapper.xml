@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.rm.mapper.MemberMapper">
+  	<insert id="memberJoin">
+  	
+  		insert into member values(#{id}, #{pw}, #{name}, #{email}, #{phonenum}, 1, 0)
+  		
+  	</insert>
+
+
+  
+  <!-- <insert id="memberJoin">
+  		insert into book_member values(#{memberId}, #{memberPw}, #{memberName}, #{memberMail}, #{memberAddr1}, #{memberAddr2}, #{memberAddr3}, 0, sysdate, 100000, 5000 )
+
+  	</insert> -->
+  	<!-- 유저 로그인 -->
+  	<select id="MemberLogin" resultType="com.rm.model.MemberVO">
+  		select id, pw, name, email, phonenum, gender, memberlevel from Member where id = #{id} and pw = #{pw}
+  	</select>
+	
+  </mapper>
