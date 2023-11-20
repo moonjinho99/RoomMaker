@@ -4,7 +4,10 @@ import com.rm.model.MemberVO;
 
 public interface MemberMapper {
 
-	//È¸¿ø°¡ÀÔ
+	//íšŒì›ê°€ì…
 	public void memberJoin(MemberVO member);
 	
+	//ë¡œê·¸ì¸ (ê°€ì—°)
+	public MemberVO MemberLogin(MemberVO member);
+
 }
