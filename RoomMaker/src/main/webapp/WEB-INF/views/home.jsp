@@ -10,7 +10,5 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-
-<H1>하이</H1>
 </body>
 </html>
