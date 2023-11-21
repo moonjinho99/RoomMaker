@@ -15,7 +15,7 @@ import com.rm.model.MemberVO;
 import com.rm.service.MemberService;
 
 @Controller
-@RequestMapping(value="/member/*")
+@RequestMapping(value="/member")
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
@@ -47,7 +47,7 @@ public class MemberController {
 	
 	//로그인 페이지 이동
 		@RequestMapping(value = "/login", method = RequestMethod.GET)
-		public void loginGET() {
+		public void joinGET() {
 			
 			logger.info("로그인 GET 진입");
 			
@@ -73,6 +73,6 @@ public class MemberController {
 	        
 	        return "redirect:/main";
 	    }
-	    
+
 	
 }
