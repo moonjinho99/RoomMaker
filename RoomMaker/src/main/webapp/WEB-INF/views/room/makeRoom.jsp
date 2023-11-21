@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../resources/css/room/header.css" />
+<link rel="stylesheet" href="../resources/css/room/makeRoom.css" />
+<link rel="stylesheet" href="../resources/css/room/footer.css" />
 </head>
 
 <script
@@ -15,11 +18,13 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <body>
-
+<%@ include file="../room/header.jsp" %>
+<section>
+<div class="create_room">
 <h1>방 생성</h1>
 
 <form action="/room/makeRoom" method="post">
-<table>
+<table style="height: 540px; text-align: center; margin: 0 auto;">
 	<tr>
 		<td>방 제목</td>
 		<td><input type="text" name="title"></td>
@@ -33,6 +38,7 @@
 		<td><input type="text" name="member_cnt"></td>
 	<tr>
 	<tr>
+		<td>대표 이미지 :</td>
 		<td><input type="file" id="fileItem" name="uploadFile" style="height: 30px;"></td>
 		<td><img></td>
 	<tr>
@@ -43,7 +49,7 @@
 	
 	<tr>
 		<td>방 종류</td>
-		<td><input type="radio" name="type" value=0>교육기관
+		<td><input type="radio" name="type" value=0 style="padding-right: 10px;">교육기관
 			<input type="radio" name="type" value=1>프로젝트
 		</td>
 	</tr>
@@ -52,10 +58,8 @@
 <input type="submit" value="방생성">
 
 </form>
-
-
-
-
+</div>
+</section>
 
 <script>
 /* 이미지 업로드 */
@@ -102,5 +106,6 @@ function fileCheck(fileName, fileSize){
 	
 }
 </script>
-</body>
-</html>
+
+<%@ include file="../room/footer.jsp" %>
+
