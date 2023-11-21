@@ -32,11 +32,7 @@ public class MemberController {
 	private JavaMailSender mailSender;
 	
 	//회원가입 페이지 이동
-<<<<<<< Updated upstream
 	@RequestMapping(value = "/join", method=RequestMethod.GET)
-=======
-	@RequestMapping(value = "join", method=RequestMethod.GET)
->>>>>>> Stashed changes
 	public void joinGET() {
 		
 		logger.info("회원가입 페이지 진입");
