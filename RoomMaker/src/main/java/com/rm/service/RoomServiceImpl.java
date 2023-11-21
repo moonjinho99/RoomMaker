@@ -7,9 +7,8 @@ import com.rm.mapper.RoomMapper;
 import com.rm.model.RoomVO;
 
 @Service
-public class BoardServiceImpl implements RoomService{
+public class RoomServiceImpl implements RoomService{
 
-	
 	@Autowired
 	private RoomMapper mapper;
 	

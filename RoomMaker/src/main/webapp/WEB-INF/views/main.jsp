@@ -7,10 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< Updated upstream
+
 <h1>메인페이지</h1>
-=======
-<h1>메인 화면</h1>
->>>>>>> Stashed changes
+
+
 </body>
 </html>

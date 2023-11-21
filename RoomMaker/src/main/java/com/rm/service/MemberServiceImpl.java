@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.rm.mapper.MemberMapper;
 import com.rm.model.MemberVO;
 
+@Service
 public class MemberServiceImpl implements MemberService{
 	
 	@Autowired
