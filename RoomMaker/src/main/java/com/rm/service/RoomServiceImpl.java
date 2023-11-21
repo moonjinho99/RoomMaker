@@ -23,4 +23,9 @@ public class RoomServiceImpl implements RoomService{
 		mapper.makeRoomDetail(room);
 	}
 
+	@Override
+	public int findRoomCode() {
+		return mapper.findRoomCode();
+	}
+
 }

@@ -22,31 +22,32 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-	//로그인 페이지 이동
+	//인코딩 확인
+	//濡쒓렇�씤 �럹�씠吏� �씠�룞
 		@RequestMapping(value = "/login", method = RequestMethod.GET)
 		public void joinGET() {
 			
-			logger.info("로그인 GET 진입");
+			logger.info("濡쒓렇�씤 GET 吏꾩엯");
 			
 		}
 		
-	//로그인 기능 구현
+	//濡쒓렇�씤 湲곕뒫 援ы쁽
 	    @RequestMapping(value="login", method=RequestMethod.POST)
 	    public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
 	        
-	        logger.info("로그인 POST 진입");
+	        logger.info("濡쒓렇�씤 POST 吏꾩엯");
 	        
 	        HttpSession session = request.getSession();
 	        MemberVO memberVO = memberService.MemberLogin(member);
 	        
-	        if(memberVO == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
-	            System.out.println("로그인 실패");
+	        if(memberVO == null) {                                // �씪移섑븯吏� �븡�뒗 �븘�씠�뵒, 鍮꾨�踰덊샇 �엯�젰 寃쎌슦
+	            System.out.println("濡쒓렇�씤 �떎�뙣");
 	        	int result = 0;
 	            rttr.addFlashAttribute("result", result);
 	            return "redirect:/member/login";
 	        }
 	        
-	        session.setAttribute("member", memberVO);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
+	        session.setAttribute("member", memberVO);             // �씪移섑븯�뒗 �븘�씠�뵒, 鍮꾨�踰덊샇 寃쎌슦 (濡쒓렇�씤 �꽦怨�)
 	        
 	        return "redirect:/main";
 	    }

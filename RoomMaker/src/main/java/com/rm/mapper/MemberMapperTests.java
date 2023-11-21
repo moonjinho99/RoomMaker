@@ -27,6 +27,8 @@ public class MemberMapperTests {
 		
 		membermapper.memberJoin(member);
 		
+		
+		
 	}
 	
 }

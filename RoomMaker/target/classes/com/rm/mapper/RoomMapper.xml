@@ -13,8 +13,12 @@
 	insert into room(type,id) values(#{type},#{id})
 </insert>
 
+<select id="findRoomCode" resultType="int">
+	select max(roomcode) from room
+</select>
+
 <insert id="makeRoomDetail">
-	insert into roomdetail(title,roompw,member_cnt,img,explanation) values(#{title}, #{roompw}, #{member_cnt}, #{main_img}, #{explanation}) 
+	insert into roomdetail values(#{roomcode},#{title}, #{roompw}, #{member_cnt}, #{main_img}, #{explanation}) 
 </insert>
 
 </mapper>

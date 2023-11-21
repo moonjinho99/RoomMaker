@@ -25,17 +25,19 @@ public class RoomMapperTest {
 	{
 		RoomVO vo = new RoomVO();
 		
-		vo.setTitle("테스트제목");
-		vo.setId("테스트방장");
-		vo.setMain_img("123");
-		vo.setMember_cnt(3);
-		vo.setExplanation("333");
+//		vo.setTitle("테스트제목");
+//		vo.setId("테스트방장");
+//		vo.setMain_img("123");
+//		vo.setMember_cnt(3);
+//		vo.setExplanation("333");
+//		
+//		vo.setRoomcode(4);
+//		vo.setRoompw("테스트암호");
+//		vo.setType(1);
+//		
+//		mapper.makeRoom(vo);
+		//mapper.makeRoomDetail(vo);
 		
-		vo.setRoomcode(4);
-		vo.setRoompw("테스트암호");
-		vo.setType(1);
-		
-		mapper.makeRoom(vo);
-		mapper.makeRoomDetail(vo);
+		System.out.println(mapper.findRoomCode());
 	}
 }
