@@ -29,7 +29,7 @@ public class MemberController {
 			logger.info("로그인 GET 진입");
 			
 		}
-		
+		//hjugiugguy
 	//로그인 기능 구현
 	    @RequestMapping(value="login", method=RequestMethod.POST)
 	    public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
