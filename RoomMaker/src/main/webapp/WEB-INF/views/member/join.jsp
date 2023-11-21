@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>RoomMaker join</title>
-<link rel="stylesheet" href="../resources/css/member/join.css">
+<link rel="stylesheet" href="../resources/css/member/login.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous"></script>
@@ -26,22 +26,15 @@
 				<input type="text" id="joinName" name="name" placeholder="이름">
 				<input type="text" id="joinPhone" name="phonenum" placeholder="전화번호">
 				<input type="text" id="joinEmail" name="email" placeholder="이메일">
-				<div class="gender_radio">
-					<input class="gender" name="gender" value="0">남
-					<input class="gender" name="gender" value="1">여
-				</div>
+				<select name="gender">
+				<option value="0">남</option>
+				<option value="0">여</option>
+				</select>
 				<input type="hidden" name="memberlevel" value="0">
 				</div>
 				<input type="button" class="join_button" value="JOIN">
 			</form>
 		</div>
 	</div>
-	<script>
-		$(".join_button").click(function() {
-			alert("회원가입 버튼 작동");
-			//$("#join_form").attr("action", "/member/join");
-			//$("#join_form").submit();
-		});
-	</script>
 </body>
 </html>
