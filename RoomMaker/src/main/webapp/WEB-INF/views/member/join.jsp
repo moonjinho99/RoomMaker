@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>RoomMaker join</title>
-<link rel="stylesheet" href="../resources/css/member/login.css">
+<link rel="stylesheet" href="../resources/css/member/join.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous"></script>
@@ -18,23 +18,35 @@
 		<div class="join_content">
 			<form id="join_form" method="post">
 				<div class="join_div">
-				<input type="text" id="joinId" name="id" placeholder="아이디">
-				<input type="password" id="joinPw" name="pw" placeholder="패스워드">
-				<input type="password" id="joinPwCheck" placeholder="패스워드 확인">
+				<input type="text" class="joinId" name="id" placeholder="아이디">
+				<input type="button" class="joinIdChk" value="CHECK">
+				<input type="password" class="joinPw" name="pw" placeholder="패스워드">
+				<input type="password" class="joinPwCheck" placeholder="패스워드 확인">
 				</div>
 				<div class="private_div">
-				<input type="text" id="joinName" name="name" placeholder="이름">
-				<input type="text" id="joinPhone" name="phonenum" placeholder="전화번호">
-				<input type="text" id="joinEmail" name="email" placeholder="이메일">
-				<select name="gender">
-				<option value="0">남</option>
-				<option value="0">여</option>
-				</select>
+				<input type="text" class="joinName" name="name" placeholder="이름">
+				<input type="text" class="joinPhone" name="phonenum" placeholder="전화번호">
+				<div class="gender_button">
+				<input type="radio" class="joinGender" name="gender" value="0">
+				<span class="joinGenderSpan">남</span>
+				<input type="radio" class="joinGender" name="gender" value="1">
+				<span class="joinGenderSpan">여</span>
+				</div>
+				<input type="text" class="joinEmail" name="email" placeholder="이메일">
+				<input type="text" class="joinEmail" placeholder="인증번호">
 				<input type="hidden" name="memberlevel" value="0">
 				</div>
 				<input type="button" class="join_button" value="JOIN">
 			</form>
 		</div>
 	</div>
+	<script>
+		$(".join_button").click(function() {
+			alert("회원가입 버튼 작동");
+			//$("#join_form").attr("action", "/member/join");
+			//$("#join_form").submit();
+		});
+	</script>
+	
 </body>
 </html>

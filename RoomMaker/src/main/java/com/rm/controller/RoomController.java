@@ -16,62 +16,79 @@ import org.springframework.web.multipart.MultipartFile;
 import com.rm.model.RoomVO;
 import com.rm.service.MemberService;
 import com.rm.service.RoomService;
-	
+   
 @Controller
 @RequestMapping("/room/*")
 public class RoomController {
-	private static final Logger log = LoggerFactory.getLogger(RoomController.class);
-	
-	@Autowired
-	private RoomService roomService;
-	
-	@GetMapping("/makeRoom")
-	public void makeRoomGET()
-	{
-		log.info("¹æ»ı¼º ÆäÀÌÁö");
-		
-	}
-	
-	@PostMapping("/makeRoom")
-	public String makerRoomPOST(RoomVO room)
-	{
-		log.info("RoomVO : "+room);
-		roomService.makeRoom(room);
-		room.setRoomcode(roomService.findRoomCode());
-		roomService.makerRoomDetail(room);
-		
-		return "redirect:/main";
-	}
+   private static final Logger log = LoggerFactory.getLogger(RoomController.class);
+   
+   @Autowired
+   private RoomService roomService;
+   
+   @GetMapping("/makeRoom")
+   public void makeRoomGET()
+   {
+      log.info("ë°©ìƒì„± í˜ì´ì§€");
+      
+   }
+   
+   @PostMapping("/makeRoom")
+   public String makerRoomPOST(RoomVO room)
+   {
+      log.info("RoomVO : "+room);
+      roomService.makeRoom(room);
+      room.setRoomcode(roomService.findRoomCode());
+      roomService.makerRoomDetail(room);
+      
+      return "redirect:/main";
+   }
 
-	/* Ã·ºÎ ÆÄÀÏ ¾÷·Îµå */
-	@PostMapping("/uploadAjaxAction")
-	public void uploadAjaxActionPOST(MultipartFile[] uploadFile) {
-		
-		log.info("uploadAjaxActionPOST..........");
-		
-		String uploadFolder = "C:\\upload";
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		Date date = new Date();
-		
-		String str = sdf.format(date);
-		
-		String datePath = str.replace("-", File.separator);
-		
-		
-		/* Æú´õ »ı¼º */
-		File uploadPath = new File(uploadFolder, datePath);
-		
-		if(uploadPath.exists() == false) {
-			uploadPath.mkdirs();
-		}
-		
-		for(MultipartFile multipartFile : uploadFile)
-		{
-			
-		}
-	}
-	
-	
+   /* ì²¨ë¶€ íŒŒì¼ ì—…ë¡œë“œ */
+   @PostMapping("/uploadAjaxAction")
+   public void uploadAjaxActionPOST(MultipartFile[] uploadFile) {
+      
+      log.info("uploadAjaxActionPOST..........");
+      
+      String uploadFolder = "C:\\upload";
+      
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      
+      Date date = new Date();
+      
+      String str = sdf.format(date);
+      
+      String datePath = str.replace("-", File.separator);
+      
+      
+      /* í´ë” ìƒì„± */
+      File uploadPath = new File(uploadFolder, datePath);
+      
+      if(uploadPath.exists() == false) {
+         uploadPath.mkdirs();
+      }
+      
+      for(MultipartFile multipartFile : uploadFile)
+      {
+         /* íŒŒì¼ ì´ë¦„ */
+         String uploadFileName = multipartFile.getOriginalFilename();         
+         
+         /* uuid ì ìš© íŒŒì¼ ì´ë¦„ */
+         String uuid = UUID.randomUUID().toString();
+         
+         uploadFileName = uuid + "_" + uploadFileName;
+         
+         /* íŒŒì¼ ìœ„ì¹˜, íŒŒì¼ ì´ë¦„ì„ í•©ì¹œ File ê°ì²´ */
+         File saveFile = new File(uploadPath, uploadFileName);
+         
+         /* íŒŒì¼ ì €ì¥ */
+         try {
+            multipartFile.transferTo(saveFile);
+         } catch (Exception e) {
+            e.printStackTrace();
+         } 
+      
+      }
+   }
+   
+   
 }

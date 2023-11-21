@@ -18,12 +18,12 @@ a{
 	position: absolute;
 	width: 90%;
 	height: 100%;
-	left: 30%;
+	left: 25%;
 }
 
 .join_logo{
 	margin-top: 100px; 
-	margin-left: 225px;
+	margin-left: 210px;
 	width: 400px;
 	height: 100px;
 }
@@ -59,16 +59,6 @@ a{
 	outline: none;
 }
 
-.private_div{
-	border: 1px solid #ccc;
-	border-radius: 15px;
-	margin-top: 50px;
-	margin-left: 50px;
-	width: 600px;
-	height: 240px;
-	display: block;
-}
-
 .private_div input{
 	margin-left: 50px;
 	width: 500px;
@@ -78,9 +68,36 @@ a{
 	outline: none;
 }
 
-.gender_radio .gender{
-	width: 100px;
+.gender_button{
+	width: 400px;
 	height: 60px;
+	margin-left: 50px;
+}
+
+.gender_button .joinGender{
+	margin: 0;
+	width: 30px;
+	margin-right: 10px;
+}
+
+.gender_button .joinGenderSpan{
+	width: 30px;
+	height: 60px;
+	margin-left: 10px;
+}
+
+.joinId .joinEmail{
+	width: 450px;
+}
+
+.private_div{
+	border: 1px solid #ccc;
+	border-radius: 15px;
+	margin-top: 50px;
+	margin-left: 50px;
+	width: 600px;
+	height: 300px;
+	display: block;
 }
 
 .join_button{
