@@ -20,7 +20,30 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@Autowired
-	MemberService memberService;
+	private MemberService memberService;
+	
+	//회원가입 페이지 이동
+	@RequestMapping(value = "join", method=RequestMethod.GET)
+	public void loginGET() {
+		
+		logger.info("회원가입 페이지 진입");
+		
+	}
+	
+	//회원가입
+	@RequestMapping(value="/join", method=RequestMethod.POST)
+	public String joinPOST(MemberVO member) throws Exception{
+		
+		logger.info("join 진입");
+		
+		//회원가입 서비스 실행
+		memberService.memberJoin(member);
+		
+		logger.info("join Service 성공");
+		
+		return "redirect:/main";
+	}
+	
 	
 	//로그인 페이지 이동
 		@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -29,7 +52,7 @@ public class MemberController {
 			logger.info("로그인 GET 진입");
 			
 		}
-		//hjugiugguy
+		
 	//로그인 기능 구현
 	    @RequestMapping(value="login", method=RequestMethod.POST)
 	    public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
