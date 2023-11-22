@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>room메인</title>
-<link rel="stylesheet" href="./resources/css/main.css" />
-<link rel="stylesheet" href="./resources/css/header.css" />
-<link rel="stylesheet" href="./resources/css/footer.css" />
+<link rel="stylesheet" href="./resources/css/main.css?v=1" />
+<link rel="stylesheet" href="./resources/css/header.css?v=1" />
+<link rel="stylesheet" href="./resources/css/footer.css?v=1" />
 </head>
 
 	<%@ include file="header.jsp" %>
@@ -20,6 +20,7 @@
             </div>
             <div class="main_room_section">
                 <div class="many_room">
+                	<a href="#" >
                     <div class="room_info">
                         <div class="room_icon">
 
@@ -47,6 +48,7 @@
                         </div>
                         
                     </div>
+                    </a>
                 </div>
                 <div class="many_room">
                     <div class="room_info">

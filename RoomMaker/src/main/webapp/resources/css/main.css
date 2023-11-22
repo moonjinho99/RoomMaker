@@ -46,7 +46,7 @@ button{
 
   #main_room .main_room_section .many_room{
     margin-top: 10px;
-    width: 46%;
+    width: 45%;
     margin-left: 25px;
     margin-right: 20px;
     height: 30%;
@@ -55,6 +55,11 @@ button{
     margin-bottom: 5px;
     border-radius: 10px;
   }
+  
+/* .many_room >a{
+  background-color: black;
+  } */
+  
   #main_room .main_room_section .many_room .room_info{
     width: 100%;
     height: 100%;

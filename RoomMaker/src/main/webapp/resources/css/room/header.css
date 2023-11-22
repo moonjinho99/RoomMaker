@@ -42,7 +42,7 @@ header{
     width: 100%;
 }
 
-  a{
+  .mypage{
     position: absolute;
     transform: translate(-50%,-50%);
     top: 70px;
@@ -58,7 +58,7 @@ header{
     background: #ccc;
     border-radius: 10px;
   }
-  a:before{
+  .mypage:before{
     content: attr(data-text);
     position: absolute;
     top: 0;
@@ -74,14 +74,14 @@ header{
     border-radius: 10px;
     border: 2px solid white;
   }
-  a:hover:before
+  .mypage:hover:before
   {
     transform: translatey(0) rotatex(0deg);
     border-radius: 10px;
     border: 2px solid white;
   }
   
-  a:after{
+  .mypage:after{
     content: attr(data-text);
     position: absolute;
     top: 0;
@@ -97,7 +97,7 @@ header{
     border-radius: 10px;
     border: 2px solid white;
   }
-  a:hover:after
+  .mypage:hover:after
   {
     transform: translatey(100%) rotatex(90deg);
     border-radius: 10px;
