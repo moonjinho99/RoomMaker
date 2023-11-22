@@ -42,15 +42,14 @@ public class MemberController {
 	//회원가입
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String joinPOST(MemberVO member) throws Exception{
-		
+		logger.info("memberVO : "+member);
 		logger.info("join 진입");
 		
 		//회원가입 서비스 실행
 		memberService.memberJoin(member);
-		
 		logger.info("join Service 성공");
 		
-		return "redirect:/main";
+		return "redirect:/member/login";
 	}
 	
 	
@@ -69,7 +68,7 @@ public class MemberController {
 	        logger.info("로그인 POST 진입");
 	        
 	        HttpSession session = request.getSession();
-	        MemberVO memberVO = memberService.MemberLogin(member);
+	        MemberVO memberVO = memberService.memberLogin(member);
 	        
 	        if(memberVO == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
 	            System.out.println("로그인 실패");
@@ -128,6 +127,25 @@ public class MemberController {
 	    	
 	    }
 	    
+
+	    //아이디 중복 검사 확인
+	    @RequestMapping(value="/joinIdCheck", method=RequestMethod.POST)
+	    @ResponseBody
+	    public String joinIdCheckPOST(String id) throws Exception{
+	    	logger.info("joinIdCheck 진입");
+	    	
+			
+			int result = memberService.joinIdCheck(id);
+			
+			logger.info("결과값 = " + result);
+			
+			if(result != 0) {
+				return "fail";	// 중복 아이디가 존재
+			} else {
+				return "success";	// 중복 아이디 비존재
+			}	
+	    
+	    }
 
 	
 }

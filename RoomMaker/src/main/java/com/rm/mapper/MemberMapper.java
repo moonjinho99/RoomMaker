@@ -8,6 +8,8 @@ public interface MemberMapper {
 	public void memberJoin(MemberVO member);
 	
 	//로그인 (가연)
-	public MemberVO MemberLogin(MemberVO member);
-
+	public MemberVO memberLogin(MemberVO member);
+	
+	//아이디 중복 검사(가연)
+	public int joinIdCheck(String id);
 }
