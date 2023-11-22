@@ -40,8 +40,17 @@ public class RoomServiceTest {
 //		service.makerRoomDetail(vo);
 //	}
 	
+//	@Test
+//	public void testGetList() {
+//		service.getRoomList().forEach(room -> log.info(""+room));
+//	}
+	
+	
 	@Test
-	public void testGetList() {
-		service.getRoomList().forEach(room -> log.info(""+room));
+	public void testGET()
+	{
+		int roomcode = 44;
+		
+		log.info(""+service.getRoomDetail(roomcode));
 	}
 }

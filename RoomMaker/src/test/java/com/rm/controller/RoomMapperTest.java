@@ -43,16 +43,24 @@ public class RoomMapperTest {
 //		System.out.println(mapper.findRoomCode());
 //	}
 	
+//	@Test
+//	public void testGetList()
+//	{
+//		
+//		List list = mapper.getRoomList();
+//		
+//		for(int i=0; i<list.size(); i++)
+//		{
+//			log.info(""+list.get(i));
+//		}
+//	}
+	
 	@Test
-	public void testGetList()
-	{
+	public void testGetPage() {
 		
-		List list = mapper.getRoomList();
+		int roomcode =44;
 		
-		for(int i=0; i<list.size(); i++)
-		{
-			log.info(""+list.get(i));
-		}
+		log.info(""+mapper.getRoomDetail(roomcode));
 	}
 	
 }

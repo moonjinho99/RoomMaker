@@ -51,4 +51,14 @@ public class RoomServiceImpl implements RoomService{
 		return mapper.getRoomList();
 	}
 
+
+	//πÊ¡∂»∏
+	@Override
+	public RoomVO getRoomDetail(int roomcode) {
+		
+		return mapper.getRoomDetail(roomcode);
+	}
+	
+	
+
 }

@@ -21,4 +21,7 @@ public interface RoomMapper {
 	
 	//방 목록
 	public List<RoomVO> getRoomList();
+	
+	//방 조회
+	public RoomVO getRoomDetail(int roomcode);
 }

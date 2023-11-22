@@ -19,9 +19,12 @@
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <style>
 <style type="text/css">
+
+	
+
 	#result_card img{
-		max-width: 100%;
-	    height: auto;
+		max-width: 200px;
+	    height: 80px;
 	    display: block;
 	    padding: 5px;
 	    margin-top: 10px;
@@ -71,13 +74,7 @@
 	<tr>
 	<tr>
 		<td>대표 이미지 :</td>
-		<td><input type="file" id="fileItem" name="uploadFile" style="height: 30px;"></td>
-		<td>
-		<!-- <div id="result_card">
-		<div class="imgDeleteBtn">x</div>
-		<img src="/room/display?fileName=test.png">
-		</div> -->
-		
+		<td><input type="file" id="fileItem" name="uploadFile" style="height: 30px;">
 		<div id="uploadResult">
 		
 		</div>

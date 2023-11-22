@@ -30,8 +30,30 @@
 	
 	</insert>
 	
-	<!-- 게시판 목록 -->
+	<!-- 방 목록 -->
 	<select id="getRoomList" resultType="com.rm.model.RoomVO">
 		select r1.roomcode,type,id,title,roompw,member_cnt,join_member_cnt,explanation,fileName,uploadPath,uuid from (room r1 join roomdetail r2 on r1.roomcode = r2.roomcode) join room_image r3 on r1.roomcode = r3.roomcode order by roomcode desc
+	</select>
+	
+	<!-- 방 조회  -->
+	<select id="getRoomDetail" resultType="com.rm.model.RoomVO">
+				select r1.roomcode,type,id,title,roompw,member_cnt,join_member_cnt,explanation,fileName,uploadPath,uuid from (room r1 join roomdetail r2 on r1.roomcode = r2.roomcode) join room_image r3 on r1.roomcode = r3.roomcode where r1.roomcode = #{roomcode} 
+	</select>
+	
+	<!-- 방 갯수 출력 -->
+	<select id="countRoom" resultType="int">
+		select count(*) from room
+	</select>
+	
+	<!-- 페이징 처리 후 방 조회 -->
+	<select id="selectRoom" resultType = "com.rm.model.RoomVO">
+		select * from (
+			select rownum rn, a.* from(
+							select r1.roomcode,type,id,title,roompw,member_cnt,join_member_cnt,explanation,fileName,uploadPath,uuid from (room r1 join roomdetail r2 on r1.roomcode = r2.roomcode) join room_image r3 on r1.roomcode = r3.roomcode order by roomcode desc
+
+			) a
+		)
+		
+		where rn between #{start} and #{end}
 	</select>
 </mapper>

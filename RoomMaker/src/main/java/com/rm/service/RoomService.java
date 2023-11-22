@@ -17,5 +17,8 @@ public interface RoomService {
 	
 	//방목록
 	public List<RoomVO> getRoomList();
+	
+	//방조회
+	public RoomVO getRoomDetail(int roomcode);
 
 }

@@ -42,7 +42,7 @@
             <c:forEach items="${roomList}" var="roomList">
             	
                 <div class="many_room">
-                	<a href="#" >
+                	<a href='/room/roomDetail?roomcode=<c:out value="${roomList.roomcode}"/>'>
 
                     <div class="room_info">
                     

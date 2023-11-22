@@ -22,20 +22,20 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class DateController {
 
-	@Autowired
-	public SqlSession sqlSession;
-
-	private static final Logger logger =
-  LoggerFactory.getLogger(DateController.class);
-
-	@RequestMapping(value="calendar.do",method=RequestMethod.GET)
-  public String calendar(Model model,HttpServletRequest request,DateData dateData) {
-		
-		Calendar cal = Calendar.getInstance();
-		DateData calendar;
-		//검색 날짜
-		if(dateData.get)
-		
-	}
+//	@Autowired
+//	public SqlSession sqlSession;
+//
+//	private static final Logger logger =
+//  LoggerFactory.getLogger(DateController.class);
+//
+//	@RequestMapping(value="calendar.do",method=RequestMethod.GET)
+//  public String calendar(Model model,HttpServletRequest request,DateData dateData) {
+//		
+//		Calendar cal = Calendar.getInstance();
+//		DateData calendar;
+//		//검색 날짜
+//		if(dateData.get)
+//		
+//	}
   
   }
