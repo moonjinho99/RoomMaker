@@ -34,14 +34,14 @@ a{
 
 .join_content{
 	position: relative;
-	border: 1px solid #ccc;
+	border: 2px solid #ccc;
 	border-radius: 15px;
 	width: 700px;
 	height: 800px;
 }
 
 .join_div{
-	border: 1px solid #ccc;
+	border: 2px solid #ccc;
 	border-radius: 15px;
 	margin-top: 50px;
 	margin-left: 50px;
@@ -50,7 +50,7 @@ a{
 	display: block;
 }
 
-.join_div input{
+.input{
 	margin-left: 50px;
 	width: 500px;
 	height: 60px;
@@ -59,39 +59,83 @@ a{
 	outline: none;
 }
 
-.private_div input{
+.joinId{
 	margin-left: 50px;
-	width: 500px;
+	width: 400px;
 	height: 60px;
 	font-size: 1.3em;
 	border: none;
 	outline: none;
+}
+
+.joinIdChk{
+	margin-left: 30px;
+	width: 90px;
+	height: 60px;
+	} 
+
+
+.joinEmail{
+	margin-left: 50px;
+	width: 400px;
+	height: 60px;
+	font-size: 1.3em;
+	border: none;
+	outline: none;
+}
+
+.emailNum{
+	margin-left: 10px;
+	margin-bottom: 5px;
+	width: 90px;
+	height: 40px;
+	border: 2px solid skyblue;
+	border-radius: 10px;
+	outline: none;
+	font-weight: bold;
+	color: skyblue;
+	background-color: white;
+}
+
+.emailNum:hover{
+	margin-left: 10px;
+	margin-bottom: 5px;
+	width: 90px;
+	height: 40px;
+	border: none;
+	border-radius: 10px;
+	outline: none;
+	font-weight: bold;
+	color: white;
+	background-color: skyblue;
 }
 
 .gender_button{
 	width: 400px;
-	height: 60px;
+	height: 40px;
 	margin-left: 50px;
+	margin-top: 20px;
 }
 
 .gender_button .joinGender{
 	margin: 0;
 	width: 30px;
-	margin-right: 10px;
+}
+
+.gender_button .sec{
+	margin-left: 30px;
 }
 
 .gender_button .joinGenderSpan{
 	width: 30px;
 	height: 60px;
 	margin-left: 10px;
-}
-
-.joinId .joinEmail{
-	width: 450px;
+	font-size: 1.3em;
+	text-align: center;
 }
 
 .private_div{
-	border: 1px solid #ccc;
+	border: 2px solid #ccc;
 	border-radius: 15px;
 	margin-top: 50px;
 	margin-left: 50px;
@@ -112,7 +156,3 @@ a{
 	font-weight: bold;
 	color: white;
 }
-
-
-
-
