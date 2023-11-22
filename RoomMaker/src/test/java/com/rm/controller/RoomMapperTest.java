@@ -1,5 +1,7 @@
 package com.rm.controller;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,24 +22,37 @@ public class RoomMapperTest {
 	@Autowired
 	private RoomMapper mapper;
 	
+//	@Test
+//	public void testRoom()
+//	{
+//		RoomVO vo = new RoomVO();
+//		
+////		vo.setTitle("테스트제목");
+////		vo.setId("테스트방장");
+////		vo.setMain_img("123");
+////		vo.setMember_cnt(3);
+////		vo.setExplanation("333");
+////		
+////		vo.setRoomcode(4);
+////		vo.setRoompw("테스트암호");
+////		vo.setType(1);
+////		
+////		mapper.makeRoom(vo);
+//		//mapper.makeRoomDetail(vo);
+//		
+//		System.out.println(mapper.findRoomCode());
+//	}
+	
 	@Test
-	public void testRoom()
+	public void testGetList()
 	{
-		RoomVO vo = new RoomVO();
 		
-//		vo.setTitle("테스트제목");
-//		vo.setId("테스트방장");
-//		vo.setMain_img("123");
-//		vo.setMember_cnt(3);
-//		vo.setExplanation("333");
-//		
-//		vo.setRoomcode(4);
-//		vo.setRoompw("테스트암호");
-//		vo.setType(1);
-//		
-//		mapper.makeRoom(vo);
-		//mapper.makeRoomDetail(vo);
+		List list = mapper.getRoomList();
 		
-		System.out.println(mapper.findRoomCode());
+		for(int i=0; i<list.size(); i++)
+		{
+			log.info(""+list.get(i));
+		}
 	}
+	
 }

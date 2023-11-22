@@ -12,7 +12,7 @@ public class AttachImageVO {
 	private String fileName;
 	
 	/* ªÛ«∞ id */
-	private int bookId;
+	private int roomcode;
 
 	public String getUploadPath() {
 		return uploadPath;
@@ -38,19 +38,14 @@ public class AttachImageVO {
 		this.fileName = fileName;
 	}
 
-	public int getBookId() {
-		return bookId;
+	public int getRoomcode() {
+		return roomcode;
 	}
 
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
+	public void setRoomcode(int roomcode) {
+		this.roomcode = roomcode;
 	}
 
-	@Override
-	public String toString() {
-		return "AttachImageVO [uploadPath=" + uploadPath + ", uuid=" + uuid + ", fileName=" + fileName + ", bookId="
-				+ bookId + "]";
-	}
-
+	
 	
 }

@@ -1,5 +1,7 @@
 package com.rm.model;
 
+import java.util.List;
+
 public class RoomVO {
 	//제목
 	private String title;
@@ -10,8 +12,8 @@ public class RoomVO {
 	//멤버수
 	private int member_cnt;
 	
-	//메인 이미지
-	private String main_img;
+	//참여 회원 수 
+	private int join_member_cnt;
 	
 	//설명
 	private String explanation;
@@ -24,6 +26,9 @@ public class RoomVO {
 	
 	//방장 아이디
 	private String id;
+	
+	/* 이미지 정보 */
+	private List<AttachImageVO> imageList;
 
 	public String getTitle() {
 		return title;
@@ -49,12 +54,13 @@ public class RoomVO {
 		this.member_cnt = member_cnt;
 	}
 
-	public String getMain_img() {
-		return main_img;
+	
+	public int getJoin_member_cnt() {
+		return join_member_cnt;
 	}
 
-	public void setMain_img(String main_img) {
-		this.main_img = main_img;
+	public void setJoin_member_cnt(int join_member_cnt) {
+		this.join_member_cnt = join_member_cnt;
 	}
 
 	public String getExplanation() {
@@ -73,9 +79,6 @@ public class RoomVO {
 		this.roomcode = roomcode;
 	}
 
-
-	
-
 	public int getType() {
 		return type;
 	}
@@ -93,12 +96,24 @@ public class RoomVO {
 		this.id = id;
 	}
 
-	@Override
-	public String toString() {
-		return "RoomVO [title=" + title + ", roompw=" + roompw + ", member_cnt=" + member_cnt + ", main_img=" + main_img
-				+ ", explanation=" + explanation + ", roomcode=" + roomcode + ", type=" + type + ", id=" + id + "]";
+	
+	public List<AttachImageVO> getImageList() {
+		return imageList;
 	}
 
+	public void setImageList(List<AttachImageVO> imageList) {
+		this.imageList = imageList;
+	}
+
+	@Override
+	public String toString() {
+		return "RoomVO [title=" + title + ", roompw=" + roompw + ", member_cnt=" + member_cnt + ", join_member_cnt="
+				+ join_member_cnt + ", explanation=" + explanation + ", roomcode=" + roomcode + ", type=" + type
+				+ ", id=" + id + ", imageList=" + imageList + "]";
+	}
+
+	
+	
 		
 
 }

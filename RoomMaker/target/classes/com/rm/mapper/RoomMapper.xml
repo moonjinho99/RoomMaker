@@ -10,6 +10,7 @@
 
 
 <insert id="makeRoom">
+
 	insert into room(type,id) values(#{type},#{id})
 </insert>
 
@@ -18,7 +19,19 @@
 </select>
 
 <insert id="makeRoomDetail">
-	insert into roomdetail values(#{roomcode},#{title}, #{roompw}, #{member_cnt}, #{main_img}, #{explanation}) 
+	insert into roomdetail values(#{roomcode},#{title}, #{roompw}, #{member_cnt}, #{explanation}, #{join_member_cnt}) 
 </insert>
 
+
+<!-- 이미지 등록 -->
+	<insert id="imageEnroll">
+	
+		insert into room_image(roomcode, fileName, uploadPath, uuid) values (#{roomcode}, #{fileName}, #{uploadPath}, #{uuid})
+	
+	</insert>
+	
+	<!-- 게시판 목록 -->
+	<select id="getRoomList" resultType="com.rm.model.RoomVO">
+		select r1.roomcode,type,id,title,roompw,member_cnt,join_member_cnt,explanation,fileName,uploadPath,uuid from (room r1 join roomdetail r2 on r1.roomcode = r2.roomcode) join room_image r3 on r1.roomcode = r3.roomcode order by roomcode desc
+	</select>
 </mapper>

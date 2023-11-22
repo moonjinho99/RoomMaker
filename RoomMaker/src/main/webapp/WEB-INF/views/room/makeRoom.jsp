@@ -20,7 +20,7 @@
 <style>
 <style type="text/css">
 	#result_card img{
-		max-width: 50%;
+		max-width: 100%;
 	    height: auto;
 	    display: block;
 	    padding: 5px;
@@ -55,7 +55,7 @@
 <div class="create_room">
 <h1>방 생성</h1>
 
-<form action="/room/makeRoom" method="post">
+<form action="/room/makeRoom" method="post" name="frm" onsubmit="return makeCheck()">
 <table style="height: 540px; text-align: center; margin: 0 auto;">
 	<tr>
 		<td>방 제목</td>
@@ -90,7 +90,7 @@
 	
 	<tr>
 		<td>방 종류</td>
-		<td><input type="radio" name="type" value=0 style="padding-right: 10px;">교육기관
+		<td><input type="radio" name="type" value=0 style="padding-right: 10px;" checked="checked">교육기관
 			<input type="radio" name="type" value=1>프로젝트
 		</td>
 	</tr>
@@ -103,8 +103,54 @@
 </section>
 
 <script>
+
+function makeCheck()
+{
+	let result = true;
+	
+	if(document.frm.title.value.length == 0)
+	{
+		result = false;
+		alert("방 제목을 입력해주세요");
+		makeRoomForm.title.focus();
+	 	return result;
+	}
+	
+	if(document.frm.roompw.value.length == 0)
+	{
+		result = false;
+		alert("방 암호를 입력해주세요");
+		makeRoomForm.title.focus();
+		return result;
+	}
+	
+	if(document.frm.member_cnt.value.length == 0)
+	{
+		result = false;
+		alert("방 인원수를 입력해주세요");
+		makeRoomForm.title.focus();
+		return result;
+	}
+	
+	if(document.frm.explanation.value.length == 0)
+	{
+		result = false;
+		alert("설명을 입력해주세요");
+		makeRoomForm.title.focus();
+		return result;
+	}
+	
+	return result;
+	
+}
+
 /* 이미지 업로드 */
 $("input[type='file']").on("change", function(e){
+	
+	/* 이미지 존재시 삭제 */
+	if($(".imgDeleteBtn").length > 0){
+		deleteFile();
+	}
 	
 	let formData = new FormData();
 	let fileInput = $('input[name="uploadFile"]');
@@ -171,12 +217,54 @@ function showUploadImage(uploadResultArr){
 	
 	str += "<div id='result_card'>";
 	str += "<img src='/room/display?fileName=" + fileCallPath +"'>";
-	str += "<div class='imgDeleteBtn'>x</div>";
+	str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";
+	str += "<input type='hidden' name='imageList[0].fileName' value='"+ obj.fileName +"'>";
+	str += "<input type='hidden' name='imageList[0].uuid' value='"+ obj.uuid +"'>";
+	str += "<input type='hidden' name='imageList[0].uploadPath' value='"+ obj.uploadPath +"'>";
 	str += "</div>";		
 	
 		uploadResult.append(str);     
     
 }	
+
+/* 이미지 삭제 버튼 동작 */
+$("#uploadResult").on("click", ".imgDeleteBtn", function(e){
+	
+	deleteFile();
+	
+});
+
+/* 파일 삭제 메서드 */
+function deleteFile(){
+	
+	let targetFile = $(".imgDeleteBtn").data("file");
+	
+	let targetDiv = $("#result_card");
+	
+	$.ajax({
+		url: '/room/deleteFile',
+		data : {fileName : targetFile},
+		dataType : 'text',
+		type : 'POST',
+		success : function(result){
+			console.log(result);
+			
+			targetDiv.remove();
+			$("input[type='file']").val("");
+			
+		},
+		error : function(result){
+			console.log(result);
+			
+			alert("파일을 삭제하지 못하였습니다.")
+		}
+	});
+}
+
+
+
+
+
 </script>
 
 <%@ include file="../room/footer.jsp" %>

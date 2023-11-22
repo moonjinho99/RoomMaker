@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.rm.mapper.AttachMapper;
 import com.rm.model.AttachImageVO;
 import com.rm.model.RoomVO;
 import com.rm.service.MemberService;
@@ -39,16 +41,21 @@ import net.coobird.thumbnailator.Thumbnails;
 public class RoomController {
    private static final Logger log = LoggerFactory.getLogger(RoomController.class);
    
+   
+   @Autowired
+   private AttachMapper attachMapper;
+   
    @Autowired
    private RoomService roomService;
    
    @GetMapping("/makeRoom")
    public void makeRoomGET()
    {
-      log.info("諛⑹깮�꽦 �럹�씠吏�");
+      log.info("방생성(room)");
       
    }
    
+   //방생성 메소드
    @PostMapping("/makeRoom")
    public String makerRoomPOST(RoomVO room)
    {
@@ -182,6 +189,53 @@ public class RoomController {
 		return result;
 	}
 	
+	/* 이미지 파일 삭제 */
+	@PostMapping("/deleteFile")
+	public ResponseEntity<String> deleteFile(String fileName){
+		
+		log.info("deleteFile........" + fileName);
+		
+		
+		File file = null;
+		
+		try {
+			//썸네일 파일 삭제
+			file = new File("c:\\upload\\"+URLDecoder.decode(fileName,"UTF-8"));
+			
+			file.delete();
+			
+			//원본 파일 삭제
+			String originFileName = file.getAbsolutePath().replace("s_", "");
+			
+			log.info("originFileName : " + originFileName);
+			
+			file = new File(originFileName);
+			
+			file.delete();
+			
+		} catch(Exception e)
+		{
+			e.printStackTrace();
+			
+			return new ResponseEntity<String>("fail",HttpStatus.NOT_IMPLEMENTED);
+			
+		}
+		
+		return new ResponseEntity<String>("success",HttpStatus.OK);
+	}
+	
+	
+	/* 이미지 정보 반환 */
+	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<AttachImageVO>> getAttachList(int roomcode){
+		
+		log.info("getAttachList.........." + roomcode);
+	
+		//System.out.println("코드 : "+roomcode);
+		
+		return new ResponseEntity<List<AttachImageVO>>(attachMapper.getAttachList(roomcode), HttpStatus.OK);
+		
+	}
 	
 }
 

@@ -1,5 +1,8 @@
 package com.rm.mapper;
 
+import java.util.List;
+
+import com.rm.model.AttachImageVO;
 import com.rm.model.RoomVO;
 
 public interface RoomMapper {
@@ -12,4 +15,10 @@ public interface RoomMapper {
 	
 	//방생성(roomdetail에 대입)
 	public void makeRoomDetail(RoomVO room);
+	
+	/* 이미지 등록 */
+	public void imageEnroll(AttachImageVO vo);
+	
+	//방 목록
+	public List<RoomVO> getRoomList();
 }

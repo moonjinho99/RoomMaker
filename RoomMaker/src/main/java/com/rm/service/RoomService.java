@@ -1,5 +1,7 @@
 package com.rm.service;
 
+import java.util.List;
+
 import com.rm.model.RoomVO;
 
 public interface RoomService {
@@ -12,5 +14,8 @@ public interface RoomService {
 	
 	//规积己(roomdetail措涝)
 	public void makerRoomDetail(RoomVO room);
+	
+	//规格废
+	public List<RoomVO> getRoomList();
 
 }
