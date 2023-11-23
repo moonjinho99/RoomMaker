@@ -119,7 +119,7 @@ a{
 					<a href="/member/join">회원가입</a>
 				</div>
 				<c:if test = "${result == 0 }">
-                <div class = "login_warn">ID 또는 비밀번호를 잘못 입력하셨습니다.</div>
+                <script type="text/javascript">alert("아이디 또는 비밀번호가 옳지 않습니다.");</script>
             	</c:if>
 			</form>
 		</div>

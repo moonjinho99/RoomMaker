@@ -97,7 +97,7 @@ public class MemberController {
 	    	logger.info("인증번호 " + checkNum);
 	    	
 	    	/* 이메일 보내기 */
-	    	String setFrom = "cjycocoho@naver.com"; // root-context.xml에 기입한 본인의 이메일 계정
+	    	String setFrom = ""; // root-context.xml에 기입한 본인의 이메일 계정
 	    	String toMail = email;	// 수신받을 이메일입니다.뷰로부터 받은 이메일 주소인 변수 email을 사용.
 	    	String title = "회원가입 인증 이메일 입니다.";	// 자신이 보낼 이메일 제목을 작성
 	    	String content = 	// 자신이 보낼 이메일 내용
