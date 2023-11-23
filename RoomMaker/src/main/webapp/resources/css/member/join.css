@@ -34,14 +34,14 @@ a{
 
 .join_content{
 	position: relative;
-	border: 2px solid #ccc;
+	border: 2px solid black;
 	border-radius: 15px;
 	width: 700px;
 	height: 800px;
 }
 
 .join_div{
-	border: 2px solid #ccc;
+	border: 2px solid black;
 	border-radius: 15px;
 	margin-top: 50px;
 	margin-left: 50px;
@@ -135,7 +135,7 @@ a{
 }
 
 .private_div{
-	border: 2px solid #ccc;
+	border: 2px solid black;
 	border-radius: 15px;
 	margin-top: 50px;
 	margin-left: 50px;
@@ -155,4 +155,10 @@ a{
 	font-size: 1.3em;
 	font-weight: bold;
 	color: white;
+}
+
+.join_button:hover{
+	border: 2px solid skyblue;
+	background-color: white;
+	color: skyblue;
 }

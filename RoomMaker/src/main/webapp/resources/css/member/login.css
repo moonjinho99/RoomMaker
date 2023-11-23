@@ -32,14 +32,14 @@ a{
 }
 
 .login_content{
-	border: 1px solid #ccc;
+	border: 2px solid black;
 	border-radius: 15px;
 	width: 500px;
 	height: 400px;
 }
 
 .login_div{
-	border: 1px solid #ccc;
+	border: 2px solid black;
 	border-radius: 15px;
 	margin-top: 50px;
 	margin-left: 50px;
@@ -62,12 +62,17 @@ a{
 	margin-left: 50px;
 	width: 400px;
 	height: 60px;
-	border: none;
 	border-radius: 13px;
 	background-color: skyblue;
 	font-size: 1.3em;
 	font-weight: bold;
 	color: white;
+}
+
+.login_button:hover{
+	border: 2px solid skyblue;
+	background-color: white;
+	color: skyblue;
 }
 
 .a_div{
@@ -84,11 +89,3 @@ a{
 	margin-right: 5px;
 }
 
-.login_warn{
-	color: red;
-	font-weight: bold;
-	width: 400px;
-	margin-top: 30px;
-	margin-left: 50px;
-	text-align: center;
-}
