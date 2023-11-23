@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+aside{
+    width: 30%;
+    height: 500px;
+    float: left;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.aside_function{
+    display: grid;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 60%;
+}
+.room_function{
+    margin-top:40px ;
+}

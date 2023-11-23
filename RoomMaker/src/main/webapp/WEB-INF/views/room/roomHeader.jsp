@@ -1,15 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 <header>
         <div class="study_room">
-            <img src="/images/study.png">
+            <img src="../resources/images/study.png">
         </div>
         <div class="user_study">
                 000님 공부방

@@ -3,7 +3,7 @@
 <body>
 <header style="display: flex;">
         <div class="make_room" style="width: 60%;">
-        	<img class="logo" src="./resources/images/logo.png">
+        	<img class="logo" src="../resources/images/logo.png">
             <input type="text" class="find_room" placeholder="방 번호를 입력해주세요">
             <button class="find_room_click"><img src="./resources/images/clickicon.jpg"></button>
             <a href="#" class="mypage" data-text="마이페이지" style="margin-left: 750px;">마이페이지</a>       
