@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +28,13 @@
 	}
 </style>
 
+<script>
+	function selChange() {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="boardList?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	}
+</script>
+
 </head>
 
 	<%@ include file="header.jsp" %>
@@ -39,27 +47,21 @@
             </div>
             <div class="main_room_section">
             
-            <c:forEach items="${roomList}" var="roomList">
+            <c:forEach items="${roomList}" var="roomList" varStatus="status">
             	
                 <div class="many_room">
-                	<a href='/room/roomDetail?roomcode=<c:out value="${roomList.roomcode}"/>'>
-
+                	<%-- <a href='/room/roomDetail?roomcode=<c:out value="${roomList.roomcode}"/>' onclick="inRoomDetail('${roomList.roomcode}')"> --%>
+					<a href="#" onclick="inRoomDetail('${roomList.roomcode}')">
                     <div class="room_info">
                     
                         <div class="room_icon">
-                        
-                        <div class="form_section">
-                    			<div class="form_section_title">
-                    				<label>상품 이미지</label>
-                    			</div>
-                    			<div class="form_section_content">
-
-									<div id="uploadReslut">
-																		
-									</div>
-                    			</div>
-                    		</div>
-
+             
+							
+								<div class="image_wrap" style="width:100%; height:100%;" data-bookid="${roomList.imageList[0].roomcode}" data-path="${roomList.imageList[0].uploadPath}" data-uuid="${roomList.imageList[0].uuid}" data-filename="${roomList.imageList[0].fileName}">
+									<img style="width:100%; height:100%; object-fit:cover; border-radius: 10px">
+								</div>						
+						
+           
                         </div>
                         
                         <div class="room_title">
@@ -94,14 +96,48 @@
             </div>
         </div>
                 
-
-        <div class = "section_footer">
-			<input type="button" class = "btn1" value="◀이전" onclick = "back()"/>
-			-
-			<span id = "page_number">1</span>
-			-
-			<input type="button" class = "btn2" value="다음▶"/>
-		</div>
+		 <div style="display: block; text-align: center; margin-top:20px" class="pagemove">		
+		<c:if test="${paging.startPage != 1 }">
+			<a href="/main?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}" class="before">◀이전</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b style="color:skyblue;">${p }</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<a href="/main?nowPage=${p }&cntPerPage=${paging.cntPerPage}">다음▶</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage}">
+			<a href="/main?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}"  class="next">다음▶</a>
+		</c:if>
+	</div> 
     </section>
-   
+    
+    <script>
+    	$(document).ready(function(){
+    		/* 이미지 삽입 */
+    		$(".image_wrap").each(function(i, obj){
+    			const bobj = $(obj);
+    			
+    			const uploadPath = bobj.data("path");
+    			const uuid = bobj.data("uuid");
+    			const fileName = bobj.data("filename");
+    			
+    			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+    			
+    			$(this).find("img").attr('src', '/room/display?fileName=' + fileCallPath);
+    		});
+    	});
+    	
+    	
+    	function inRoomDetail(roomcode)
+    	{
+    		var url = '/room/roomPwCheck?roomcode='+roomcode;
+    		window.open(url,"_blank_1","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=450,height=300");
+    	}
+    </script>
+
 <%@ include file="footer.jsp" %>

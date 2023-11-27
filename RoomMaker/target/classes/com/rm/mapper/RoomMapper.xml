@@ -47,13 +47,28 @@
 	
 	<!-- 페이징 처리 후 방 조회 -->
 	<select id="selectRoom" resultType = "com.rm.model.RoomVO">
-		select * from (
-			select rownum rn, a.* from(
-							select r1.roomcode,type,id,title,roompw,member_cnt,join_member_cnt,explanation,fileName,uploadPath,uuid from (room r1 join roomdetail r2 on r1.roomcode = r2.roomcode) join room_image r3 on r1.roomcode = r3.roomcode order by roomcode desc
-
-			) a
-		)
 		
-		where rn between #{start} and #{end}
+		SELECT *
+		FROM (
+		    SELECT 
+		        ROW_NUMBER() OVER (ORDER BY roomcode DESC) AS rn,
+		        r1.roomcode,
+		        type,
+		        id,
+		        title,
+		        roompw,
+		        member_cnt,
+		        join_member_cnt,
+		        explanation,
+		        fileName,
+		        uploadPath,
+		        uuid
+		    FROM room r1
+		    JOIN roomdetail r2 ON r1.roomcode = r2.roomcode
+		    JOIN room_image r3 ON r1.roomcode = r3.roomcode
+		    ORDER BY roomcode DESC
+		) AS b
+		WHERE rn BETWEEN #{start} AND #{end};
+		
 	</select>
 </mapper>

@@ -4,7 +4,7 @@ public class PagingVO {
 	
 	//현재페이지, 시작페이지, 끝페이지, 게시글 총 갯수, 페이지당 글 갯수, 마지막페이지, SQL쿼리에 쓸 start, end
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage,start,end;
-	private int cntPage = 6;
+	private int cntPage = 1;
 	
 	public PagingVO() {
 		
@@ -15,6 +15,9 @@ public class PagingVO {
 		setNowPage(nowPage);
 		setCntPerPage(cntPerPage);
 		setTotal(total);
+		calcLastPage(getTotal(), getCntPerPage());
+		calcStartEndPage(getNowPage(), cntPage);
+		calcStartEnd(getNowPage(), getCntPerPage());
 	}
 	
 	//제일 마지막 페이지 계산
@@ -25,7 +28,8 @@ public class PagingVO {
 	}
 	
 	//시작, 끝 페이지 계산
-	public void clacStartEndPage(int nowPage, int cntPage) {
+	public void calcStartEndPage(int nowPage, int cntPage) {
+		System.out.println("현재 페이지 : "+nowPage+"/"+"게시물 개수 : "+cntPage);
 		setEndPage(((int)Math.ceil((double)nowPage / (double)cntPage)) * cntPage);
 		if(getLastPage() < getEndPage()) {
 			setEndPage(getLastPage());

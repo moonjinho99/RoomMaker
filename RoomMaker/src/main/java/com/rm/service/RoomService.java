@@ -2,6 +2,7 @@ package com.rm.service;
 
 import java.util.List;
 
+import com.rm.model.PagingVO;
 import com.rm.model.RoomVO;
 
 public interface RoomService {
@@ -20,5 +21,11 @@ public interface RoomService {
 	
 	//방조회
 	public RoomVO getRoomDetail(int roomcode);
+	
+	//방 갯수
+	public int countRoom();
+		
+	//페이징 처리 방 조회
+	public List<RoomVO> selectRoom(PagingVO vo);
 
 }

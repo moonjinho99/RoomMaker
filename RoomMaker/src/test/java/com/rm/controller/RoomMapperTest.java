@@ -55,12 +55,19 @@ public class RoomMapperTest {
 //		}
 //	}
 	
+//	@Test
+//	public void testGetPage() {
+//		
+//		int roomcode =44;
+//		
+//		log.info(""+mapper.getRoomDetail(roomcode));
+//	}
+	
 	@Test
-	public void testGetPage() {
-		
-		int roomcode =44;
-		
-		log.info(""+mapper.getRoomDetail(roomcode));
+	public void testPaging()
+	{
+		System.out.println("게시물 개수 : "+mapper.countRoom());
+		//System.out.println("게시물 페이징 처리 : "+mapper.selectRoom(null));
 	}
 	
 }

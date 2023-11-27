@@ -92,7 +92,7 @@
 		</td>
 	</tr>
 </table>
-<input type="hidden" name="id" value="aa">
+<input type="hidden" name="id" value="${member.id}">
 <input type="submit" value="방생성">
 
 </form>

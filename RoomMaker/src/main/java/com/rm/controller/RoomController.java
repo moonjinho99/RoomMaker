@@ -21,16 +21,22 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.rm.mapper.AttachMapper;
 import com.rm.model.AttachImageVO;
+import com.rm.model.MemberVO;
 import com.rm.model.RoomVO;
 import com.rm.service.MemberService;
 import com.rm.service.RoomService;
@@ -39,8 +45,9 @@ import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 @RequestMapping("/room/*")
-public class RoomController {
+public class RoomController{
    private static final Logger log = LoggerFactory.getLogger(RoomController.class);
+   
    
    
    @Autowired
@@ -170,7 +177,6 @@ public class RoomController {
 	
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getImage(String fileName){
-		
 		File file = new File("c:\\upload\\" + fileName);
 		
 		ResponseEntity<byte[]> result = null;
@@ -224,21 +230,7 @@ public class RoomController {
 		
 		return new ResponseEntity<String>("success",HttpStatus.OK);
 	}
-	
-	
-	/* 이미지 정보 반환 */
-	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<List<AttachImageVO>> getAttachList(int roomcode){
 		
-		log.info("getAttachList.........." + roomcode);
-	
-		//System.out.println("코드 : "+roomcode);
-		
-		return new ResponseEntity<List<AttachImageVO>>(attachMapper.getAttachList(roomcode), HttpStatus.OK);
-		
-	}
-	
-	
 		//방 상세 페이지
 	   @GetMapping("/roomDetail")
 	   public void roomDetailGET(int roomcode, Model model)
@@ -248,7 +240,57 @@ public class RoomController {
 	      model.addAttribute("roomDetail",roomService.getRoomDetail(roomcode));
 	      
 	   }
-	
+	   
+	   //방 암호 체크
+	   @GetMapping("/roomPwCheck")
+	   public void roomPwCheck(int roomcode,Model model)
+	   {
+		   log.info("방 암호 체크");
+		   
+		   model.addAttribute("roomDetail",roomService.getRoomDetail(roomcode));
+	   }
+	   
+	   
+	   @GetMapping("/loadDynamicJSP")
+	    public String loadDynamicJSP(@RequestParam String buttonValue, Model model) {
+	        // Your logic to determine which JSP to include based on buttonValue
+	        String jspToInclude = determineJSP(buttonValue);
+	        
+	        // Add any model attributes if needed
+	        model.addAttribute("someAttribute", "someValue");
+	        
+
+	        // Return the name of the JSP file to include (without .jsp extension)
+	        return jspToInclude;
+	    }
+
+	    // Your method to determine which JSP to include based on the buttonValue
+	    private String determineJSP(String buttonValue) {
+	        
+	    	 	String jspToInclude = "";
+
+	    	    // 버튼에 따라 로드할 JSP 결정
+	    	    if ("일정보기".equals(buttonValue)) {
+	    	        jspToInclude = "/room/roomSchedule";
+	    	    } else if ("자료공유".equals(buttonValue)) {
+	    	        jspToInclude = "/room/fileList";
+	    	    } else if ("채팅하기".equals(buttonValue)) {
+	    	        jspToInclude = "/room/roomChatting";
+	    	    } else if ("질문확인".equals(buttonValue)) {
+	    	        jspToInclude = "/room/question";
+	    	    } else if ("공지보기".equals(buttonValue)) {
+	    	        jspToInclude = "/room/roomNotice";
+	    	    } 
+
+	        return jspToInclude; 
+	    }
+	   
+	   @GetMapping("/roomAIQuestion")
+	   private void questionAI()
+	   {
+		   log.info("AI 질문 페이지");
+	   }
+
 	
 }
 

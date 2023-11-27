@@ -29,6 +29,7 @@ public class RoomVO {
 	
 	/* 이미지 정보 */
 	private List<AttachImageVO> imageList;
+	
 
 	public String getTitle() {
 		return title;
@@ -96,7 +97,6 @@ public class RoomVO {
 		this.id = id;
 	}
 
-	
 	public List<AttachImageVO> getImageList() {
 		return imageList;
 	}
@@ -113,7 +113,4 @@ public class RoomVO {
 	}
 
 	
-	
-		
-
 }

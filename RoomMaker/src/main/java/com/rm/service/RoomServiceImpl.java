@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rm.mapper.RoomMapper;
+import com.rm.model.PagingVO;
 import com.rm.model.RoomVO;
 
 @Service
@@ -49,6 +50,7 @@ public class RoomServiceImpl implements RoomService{
 	public List<RoomVO> getRoomList() {
 		
 		return mapper.getRoomList();
+		
 	}
 
 
@@ -58,7 +60,23 @@ public class RoomServiceImpl implements RoomService{
 		
 		return mapper.getRoomDetail(roomcode);
 	}
+
+
+	//전체 방 수
+	@Override
+	public int countRoom() {
+		
+		return mapper.countRoom();
+	}
+
+
+	//페이징 처리 방목록
+	@Override
+	public List<RoomVO> selectRoom(PagingVO vo) {
+		System.out.println("페이징 : "+vo);
+		return mapper.selectRoom(vo);
+	}
 	
-	
+
 
 }

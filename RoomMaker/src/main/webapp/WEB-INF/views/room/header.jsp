@@ -10,10 +10,14 @@
            
         </div>
 		<div class="make_room_right" style="margin-left:300px;margin-top:80px; width: 5%;">
-			<span style="font-size: 24px;">000님</span>
+			<span style="font-size: 24px;">${member.name}님</span>
 		</div>
 		<div class="make_room_logout" style="width: 10%">
-			<button class="logout">logout</button>
+			<button class="logout" onclick="logout()">logout</button>
 		</div>
+		
+		<script>
+			location.href="/room/roomLogout";
+		</script>
 		
 </header>

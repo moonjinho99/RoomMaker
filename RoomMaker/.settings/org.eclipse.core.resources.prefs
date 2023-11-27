@@ -3,3 +3,4 @@ encoding//src/main/java/com/rm/controller/MemberController.java=UTF-8
 encoding//src/main/java/com/rm/controller/RoomController.java=UTF-8
 encoding//src/main/java/com/rm/service/MemberService.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/room/roomAIQuestion.jsp=UTF-8

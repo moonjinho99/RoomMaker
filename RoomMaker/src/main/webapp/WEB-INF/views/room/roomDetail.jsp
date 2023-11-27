@@ -10,21 +10,54 @@
 <link rel="stylesheet" href="../resources/css/room/roomHeader.css" />
 <link rel="stylesheet" href="../resources/css/room/roomAside.css" />
 <link rel="stylesheet" href="../resources/css/room/roomFooter.css" />
+<link rel="stylesheet" href="../resources/css/room/roomChatting.css" /> 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <style>
-section{
-    width: 100%;
-    height: 500px;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-}
+    section {
+    	display: flex;
+        width: 60%;
+        height: 500px;
+        border-bottom: 1px solid black;
+       
+    }
 </style>
+
 </head>
 <body>
 <%@ include file="roomHeader.jsp" %>
 <%@ include file="roomAside.jsp" %>
-	<section>
-        <div class="clear"></div>
-        
-    </section>
+
+<section id="dynamicContent">
+    <div class="clear" style="float:left;"></div>
+    <!-- 채팅화면 -->
+     <div th:include="${'defaultJSP'} :: content"></div>
+</section>
+	
+	
+	
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script>
+        $(document).ready(function () {
+            $(".room_function").click(function () {
+                var buttonValue = $(this).text().trim();
+                $.ajax({
+                    type: 'GET',
+                    url: '/room/loadDynamicJSP',
+                    data: {buttonValue: buttonValue},
+                    success: function (data) {
+                        $('#dynamicContent').html(data);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("에러 발생:", error);
+                    }
+                });
+            });
+            
+            
+            
+        });
+    </script>
 <%@ include file="roomFooter.jsp" %>
 

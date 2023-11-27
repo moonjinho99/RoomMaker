@@ -3,6 +3,7 @@ package com.rm.mapper;
 import java.util.List;
 
 import com.rm.model.AttachImageVO;
+import com.rm.model.PagingVO;
 import com.rm.model.RoomVO;
 
 public interface RoomMapper {
@@ -24,4 +25,11 @@ public interface RoomMapper {
 	
 	//방 조회
 	public RoomVO getRoomDetail(int roomcode);
+	
+	//방 갯수
+	public int countRoom();
+	
+	//페이징 처리 방 조회
+	public List<RoomVO> selectRoom(PagingVO vo);
+	
 }

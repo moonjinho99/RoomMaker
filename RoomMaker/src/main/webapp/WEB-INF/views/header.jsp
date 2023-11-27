@@ -8,8 +8,8 @@
             <button class="find_room_click"><img src="./resources/images/clickicon.jpg"></button>
             <a href="#" class="mypage" data-text="마이페이지" style="margin-left: 750px;">마이페이지</a>       
         </div>
-		<div class="make_room_right" style="margin-left:300px;margin-top:80px; width: 5%;">
-			<span style="font-size: 24px;">000님</span>
+		<div class="make_room_right" style="margin-left:300px;margin-top:80px; width: 10%;">
+			<span style="font-size: 24px;">${member.name}님</span>
 		</div>
 		<div class="make_room_logout" style="width: 10%">
 			<button class="logout">logout</button>
