@@ -71,4 +71,29 @@
 		WHERE rn BETWEEN #{start} AND #{end};
 		
 	</select>
+	
+	<!-- 자료리스트에 뿌릴 정보 올리기 -->
+	<insert id="uploadFile">
+		insert into file(roomcode, filetitle, fileuploaddate, filemember) values(#{roomcode},#{filetitle}, sysdate() ,#{filemember})
+	</insert>
+	
+	<!-- filecode 가져오기 -->
+	<select id="selectFileCode" resultType="int">
+		select filecode from file where roomcode = #{roomcode} and filetitle = #{filetitle} and filemember = #{filemember}
+	</select>
+	
+	<!-- 자료디테일 업로드-->
+	<insert id="uploadFileDetail">
+		insert into filedetail values(#{filecode},#{content},#{fileName},#{uploadPath})
+	</insert>
+	
+	<!-- 자료 리스트 정보 가져오기 -->
+	<select id="getFileList" resultType="com.rm.model.FileVO">
+		select * from file where roomcode = #{roomcode} order by fileuploaddate desc
+	</select>
+	
+	<!-- 자료 디테일 가져오기-->
+	<select id="getFileDetail" resultType="com.rm.model.FileVO">
+		select f1.filecode,roomcode,filetitle,fileuploaddate,filemember,content,fileName,uploadPath from file f1 join filedetail f2 on f1.filecode = f2.filecode where roomcode= #{roomcode} and filecode = #{filecode}
+	</select>
 </mapper>

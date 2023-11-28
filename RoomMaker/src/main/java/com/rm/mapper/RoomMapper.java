@@ -4,32 +4,47 @@ import java.util.List;
 
 import com.rm.model.AttachImageVO;
 import com.rm.model.PagingVO;
+import com.rm.model.FileVO;
 import com.rm.model.RoomVO;
 
 public interface RoomMapper {
 	
-	//¹æ»ý¼º(roomÅ×ÀÌºí¿¡ ´ëÀÔ)
+	//ï¿½ï¿½ï¿½ï¿½ï¿½(roomï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½)
 	public void makeRoom(RoomVO room);
 	
-	//¹æ»ý¼º_roomcode°¡Á®¿À±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½_roomcodeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int findRoomCode();
 	
-	//¹æ»ý¼º(roomdetail¿¡ ´ëÀÔ)
+	//ï¿½ï¿½ï¿½ï¿½ï¿½(roomdetailï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	public void makeRoomDetail(RoomVO room);
 	
-	/* ÀÌ¹ÌÁö µî·Ï */
+	/* ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
 	public void imageEnroll(AttachImageVO vo);
 	
-	//¹æ ¸ñ·Ï
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public List<RoomVO> getRoomList();
 	
-	//¹æ Á¶È¸
+	//ï¿½ï¿½ ï¿½ï¿½È¸
 	public RoomVO getRoomDetail(int roomcode);
 	
-	//¹æ °¹¼ö
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int countRoom();
 	
-	//ÆäÀÌÂ¡ Ã³¸® ¹æ Á¶È¸
+	//ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¸
 	public List<RoomVO> selectRoom(PagingVO vo);
 	
+	//file insert
+	public void uploadFile(FileVO file);
+	
+	//file code ê°€ì ¸ì˜¤ê¸°
+	public int selectFileCode(FileVO file);
+	
+	//filedetail insert
+	public void uploadFileDetail(FileVO file);
+	
+	//fileList ê°€ì ¸ì˜¤ê¸°
+	public List<FileVO> getFileList(int roomcode);
+	
+	//fileDetail ê°€ì ¸ì˜¤ê¸°
+	public FileVO getFileDetail(int roomcode, int filecode);
 }

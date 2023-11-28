@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
@@ -33,10 +34,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.rm.mapper.AttachMapper;
 import com.rm.model.AttachImageVO;
 import com.rm.model.MemberVO;
+import com.rm.model.FileVO;
 import com.rm.model.RoomVO;
 import com.rm.service.MemberService;
 import com.rm.service.RoomService;
@@ -252,38 +253,51 @@ public class RoomController{
 	   
 	   
 	   @GetMapping("/loadDynamicJSP")
-	    public String loadDynamicJSP(@RequestParam String buttonValue, Model model) {
-	        // Your logic to determine which JSP to include based on buttonValue
-	        String jspToInclude = determineJSP(buttonValue);
-	        
-	        // Add any model attributes if needed
-	        model.addAttribute("someAttribute", "someValue");
-	        
+       public String loadDynamicJSP(@RequestParam String buttonValue,int roomcode, Model model) {
+           // Your logic to determine which JSP to include based on buttonValue
+           String jspToInclude = determineJSP(buttonValue,roomcode,model);
+           
+           System.out.println("넘어온 코드 : "+roomcode);
+           
+           // Add any model attributes if needed
+           model.addAttribute("someAttribute", "someValue");
+           
 
-	        // Return the name of the JSP file to include (without .jsp extension)
-	        return jspToInclude;
-	    }
+           // Return the name of the JSP file to include (without .jsp extension)
+           return jspToInclude;
+       }
 
-	    // Your method to determine which JSP to include based on the buttonValue
-	    private String determineJSP(String buttonValue) {
-	        
-	    	 	String jspToInclude = "";
+       // Your method to determine which JSP to include based on the buttonValue
+       private String determineJSP(String buttonValue,int roomcode,Model model) {
+           
+              String jspToInclude = "";
+              
+              
+              // 버튼에 따라 로드할 JSP 결정
+              if ("일정보기".equals(buttonValue)) {
+                  jspToInclude = "/room/roomSchedule";
+              } else if ("자료공유".equals(buttonValue)) {
+                  jspToInclude = "/room/fileList";
+                  
+               List<FileVO> fileList = new ArrayList<FileVO>();
+       		   fileList = roomService.getFileList(roomcode);
+       		   System.out.println("fileList : "+fileList);
+       		   
+       			model.addAttribute("list",fileList);
+                  
+                  
+              } else if ("채팅하기".equals(buttonValue)) {
+                  jspToInclude = "/room/roomChatting";
+              } else if ("질문확인".equals(buttonValue)) {
+                  jspToInclude = "/room/question";
+              } else if ("공지보기".equals(buttonValue)) {
+                  jspToInclude = "/room/roomNotice";
+              } else if("자료 등록".equals(buttonValue)) {
+            	  jspToInclude = "/room/fileUpload";
+              }
 
-	    	    // 버튼에 따라 로드할 JSP 결정
-	    	    if ("일정보기".equals(buttonValue)) {
-	    	        jspToInclude = "/room/roomSchedule";
-	    	    } else if ("자료공유".equals(buttonValue)) {
-	    	        jspToInclude = "/room/fileList";
-	    	    } else if ("채팅하기".equals(buttonValue)) {
-	    	        jspToInclude = "/room/roomChatting";
-	    	    } else if ("질문확인".equals(buttonValue)) {
-	    	        jspToInclude = "/room/question";
-	    	    } else if ("공지보기".equals(buttonValue)) {
-	    	        jspToInclude = "/room/roomNotice";
-	    	    } 
-
-	        return jspToInclude; 
-	    }
+           return jspToInclude; 
+       }
 	   
 	   @GetMapping("/roomAIQuestion")
 	   private void questionAI()
@@ -291,6 +305,143 @@ public class RoomController{
 		   log.info("AI 질문 페이지");
 	   }
 
+	   //자료 공유방 리스트 GET
+	   /*@GetMapping("/fileList")
+	   public void fileListGET(int roomcode, Model model){
+		   
+		   //임시
+		   roomcode=2;
+		   
+		   log.info("fileList 진입");
+		   
+		   List<FileVO> fileList = new ArrayList<FileVO>();
+		   fileList = roomService.getFileList(roomcode);
+		   System.out.println("fileList : "+fileList);
+		   
+			model.addAttribute("list",fileList);	   
+	   }*/
+	   
+	   //자료 공유방 등록 GET
+	   @GetMapping("/fileUpload")
+	   public void fileUploadGET(){
+		   
+		   log.info("fileUpload 진입");
+		   
+	   }
+	   
+	   //등록 버튼 누르고 자료 공유방 파일 등록/VO 올리기
+	   //자료 공유방 등록 POST
+	   @PostMapping("/fileUpload")
+	   public void fileUploadPOST(MultipartFile[] uploadFile,int roomcode, String filetitle, String filemember, String content, String uploadPath) throws Exception{
+		   
+		   //파일 등록
+		   log.info("파일 등록 중..................");
+		   //오늘 날짜로 등록
+		   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = new Date();
+			String Date = sdf.format(date);
+			System.out.println("Date : "+Date);
+			
+			String uploadFileName = null;
+			
+			//폴더 생성
+			File CreateDateFolder = new File(uploadPath, Date);
+			
+			//해당 폴더가 이미 있지 않다면 폴더 생성
+			if(CreateDateFolder.exists() == false) {
+				CreateDateFolder.mkdirs();
+			}	
+			
+			uploadPath += "/"+Date;
+	
+			
+			//기본 for
+			for(int i = 0; i < uploadFile.length; i++) {
+				log.info("-----------------------------------------------");
+				log.info("파일 이름 : " + uploadFile[i].getOriginalFilename());
+				log.info("파일 타입 : " + uploadFile[i].getContentType());
+				log.info("파일 크기 : " + uploadFile[i].getSize());	
+				
+				//파일 이름 저장
+				uploadFileName = uploadFile[i].getOriginalFilename();
+				
+				// uuid 적용 파일 이름 
+				String uuid = UUID.randomUUID().toString();
+				uploadFileName = uuid + "_" + uploadFileName;
+				
+				//파일 위치, 파일 이름을 합친 File 객체
+				File saveFile = new File(uploadPath, uploadFileName);
+				
+				//파일 저장 
+				try {
+					uploadFile[i].transferTo(saveFile);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		   
+		   //DB에 저장
+		   log.info("file 등록 완료 VO 등록.................");
+		   System.out.println("roomcode : "+roomcode);
+		   System.out.println("filetitle : "+filetitle);
+		   System.out.println("filemember : "+filemember);
+		   System.out.println("content : "+content);
+		   System.out.println("uploadPath : "+uploadPath);
+		   System.out.println("FileName : "+uploadFileName);
+		   
+		   FileVO file = new FileVO();
+		   file.setContent(content);
+		   file.setFilemember(filemember);
+		   file.setFileName(uploadFileName);
+		   file.setFiletitle(filetitle);
+		   file.setRoomcode(roomcode);
+		   file.setUploadPath(uploadPath);
+		   
+		   roomService.uploadFile(file);
+		   int filecode = roomService.selectFileCode(file);
+		   file.setFilecode(filecode);
+		   roomService.uploadFileDetail(file);
+		  
+	   }
+	   
+	 //자료 공유방 등록 GET
+	   @GetMapping("/fileDetail")
+	   public void fileDetailGET(int roomcode, int filecode, Model model){
+		   
+		   log.info("fileDetail 진입");
+		   System.out.println("roomcode :"+roomcode);
+		   FileVO fileDetail = roomService.getFileDetail(roomcode, filecode);
+		   model.addAttribute("file",fileDetail);
+		 System.out.println(fileDetail);
+	   }
+	   
+	   //파일 삭제
+		@PostMapping("/deleteUploadedFile")
+		public ResponseEntity<String> deleteUploadedFile(String fileName){
+			
+			log.info("deleteFile........" + fileName);
+			File file = null;
+			
+			try {
+				file = new File("/Users/hangayeon/RoomMaker/RoomMaker/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapp/upload" 
+			+ URLDecoder.decode(fileName, "UTF-8"));
+				//원본파일삭제
+				String FileName = file.getAbsolutePath();
+				log.info("FileName : " + FileName);
+				file = new File(FileName);
+				file.delete();
+			} catch(Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<String>("fail", HttpStatus.NOT_IMPLEMENTED);
+			}
+			
+			return new ResponseEntity<String>("success", HttpStatus.OK);
+			
+		}
+	   
+	   
+	   
+	
 	
 }
 

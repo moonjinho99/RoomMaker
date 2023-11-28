@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rm.mapper.RoomMapper;
 import com.rm.model.PagingVO;
+import com.rm.model.FileVO;
 import com.rm.model.RoomVO;
 
 @Service
@@ -45,7 +46,7 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 
-	//¹æ¸ñ·Ï
+	//ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public List<RoomVO> getRoomList() {
 		
@@ -54,7 +55,7 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 
-	//¹æÁ¶È¸
+	//ï¿½ï¿½ï¿½ï¿½È¸
 	@Override
 	public RoomVO getRoomDetail(int roomcode) {
 		
@@ -62,7 +63,7 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 
-	//ÀüÃ¼ ¹æ ¼ö
+	//ï¿½ï¿½Ã¼ ï¿½ï¿½ ï¿½ï¿½
 	@Override
 	public int countRoom() {
 		
@@ -70,12 +71,44 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 
-	//ÆäÀÌÂ¡ Ã³¸® ¹æ¸ñ·Ï
+	//ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public List<RoomVO> selectRoom(PagingVO vo) {
-		System.out.println("ÆäÀÌÂ¡ : "+vo);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½Â¡ : "+vo);
 		return mapper.selectRoom(vo);
 	}
+	
+	//file insert
+	@Override
+	public void uploadFile(FileVO file) {
+		mapper.uploadFile(file);
+	}
+		
+	//file code ê°€ì ¸ì˜¤ê¸°
+	@Override
+	public int selectFileCode(FileVO file) {
+		return mapper.selectFileCode(file);
+	}
+		
+	//filedetail insert
+	@Override
+	public void uploadFileDetail(FileVO file) {
+		mapper.uploadFileDetail(file);
+	}
+	
+	//fileList ê°€ì ¸ì˜¤ê¸°
+	@Override
+	public List<FileVO> getFileList(int roomcode){
+		return mapper.getFileList(roomcode);
+	}
+	
+	//fileDetail ê°€ì ¸ì˜¤ê¸°
+	@Override
+	public FileVO getFileDetail(int roomcode, int filecode) {
+		   System.out.println("serviceroomcode :"+roomcode);
+		return mapper.getFileDetail(roomcode, filecode);
+	}
+	
 	
 
 

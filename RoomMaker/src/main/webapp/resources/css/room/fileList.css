@@ -1,0 +1,83 @@
+@charset "UTF-8";
+  
+ a{
+ text-decoration: none;
+ color: black;
+ }
+  
+#fileUpload_form{
+	width: 1000px;
+    height: 740px;
+    padding: 0;
+    display: block;
+}
+  
+.fileUploadTitle{
+	margin-top: 25px;
+	width: 870px;
+	height: 50px;
+}
+
+.fileUploadTitle img{
+	width: 50px;
+	height: 50px;
+	float: left;
+}
+
+.fileUploadTitle span{
+	margin: 0;
+	margin-left: 150px;
+	width: 400px;
+	height: 50px;
+	font-size: 2em;
+	line-height: 50px;
+	font-weight: bold;
+	display: block;
+}
+
+.fileUploadGo_div{
+	width: 100%;
+	height: 50px;
+	text-align: right;
+}
+
+.fileUploadGo{
+	border: 1px solid black;
+	
+}
+
+.fileUploadGo:hover{
+	background-color: white;
+	color: skyblue;
+	border: 2px solid skyblue;
+}
+
+table{
+	margin: 0;
+	margin-top: 30px;
+	border-collapse: collapse;
+}
+
+th{
+	margin: 0;
+	border: 2px solid black;
+	background-color: skyblue; 
+	height: 35px;
+}
+
+td{
+	margin: 0;
+	border: 2px solid black;
+	background-color: white; 
+	height: 35px;
+	text-align: center;
+}
+
+.fileDetailGo:hover+td{
+	background-color: #FAF082;
+	font-weight: bold;
+}
+
+
+
+

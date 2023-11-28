@@ -101,15 +101,37 @@
 			
 			var email = $(".joinEmail").val(); // 입력한 이메일
 			
-			
-			$.ajax({
-				
-				type:"GET",
-				url:"mailCheck?email=" + email,
-				success:function(data){
-					
-					
-				}
+		 	if(email == ""){				//이메일 공란 검사
+	        	alert("이메일을 입력해주세요.");
+	        	join_form.email.focus();
+	        	return false;
+	        }else{
+	        	var cor = CheckEmail(email);
+				console.log(cor);
+				function CheckEmail(email)	//이메일 형식 검사
+				{                                                 
+				     var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+				     if(!reg_email.test(email)) {                            
+				          return false;         
+				     }                            
+				     else {return true;}                            
+				}  
+				if(cor){ //형식이 맞을 때
+					$.ajax({  //인증번호 발송
+						
+						type:"GET",
+						url:"mailCheck?email=" + email,
+						success:function(data){
+							$('.joinEmailNum').attr("disabled",false);
+							console.log(data);
+							code = data;
+						}
+						
+					})
+				}else if(cor==false){	//형식이 맞지 않을 때
+					alert("이메일 형식이 올바르지 않습니다.");
+				}  
+	        }        
 				
 			});
 		});

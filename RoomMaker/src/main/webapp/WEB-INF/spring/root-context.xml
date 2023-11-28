@@ -13,7 +13,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-   <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/roommaker?serverTimezone=Asia/Seoul"></property>
+   <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/roommaker?serverTimezone=Asia/Seoul&amp;allowMultiQueries=true"></property>
    <property name="username" value="root"></property>
    <property name="password" value="password"></property>
    </bean>   
@@ -56,6 +56,8 @@
 <tx:annotation-driven />
 
 </beans>
+
+
 
 
 
