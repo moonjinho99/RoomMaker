@@ -1,7 +1,38 @@
 
 var roomcode = document.getElementsByName("roomcode")[0].value;
-        $(document).ready(function () {
-         $(".filebutton").click(function(){
+
+$(document).ready(function () {
+	
+    $(".room_function").click(function () {
+        var buttonValue = $(this).text().trim();
+        $.ajax({
+            type: 'GET',
+            url: '/room/loadDynamicJSP',
+            data: {buttonValue: buttonValue , roomcode:roomcode},
+            success: function (data) {
+                $('#dynamicContent').html(data);
+            },
+            error: function (xhr, status, error) {
+                console.error("에러 발생:", error);
+            }
+        });
+    });
+    
+    $(".fileUploadGo").click(function(){
+    	$.ajax({
+            type: 'GET',
+            url: '/room/loadDynamicJSP',
+            data: {buttonValue: buttonValue , roomcode:roomcode},
+            success: function (data) {
+                $('#dynamicContent').html(data);
+            },
+            error: function (xhr, status, error) {
+                console.error("에러 발생:", error);
+            }
+        });
+    });
+    
+    $(".filebutton").click(function(){
         var roomcode = $('.roomcode').val();
         var filetitle = $('.filetitle').val();
         var filemember = $('.filemember').val();
@@ -33,38 +64,22 @@ var roomcode = document.getElementsByName("roomcode")[0].value;
     	window.location.href="/room/fileList";
     });
     
-        
-            $(".room_function").click(function () {
-                var buttonValue = $(this).text().trim();
-                $.ajax({
-                    type: 'GET',
-                    url: '/room/loadDynamicJSP',
-                    data: {buttonValue: buttonValue, roomcode: roomcode },
-                    success: function (data) {
-                        $('#dynamicContent').html(data);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("에러 발생:", error);
-                    }
-                });
-            });
-            
-        });
-        
-        function Go(){
-        	var buttonValue= document.getElementById("fileUploadGo").getAttribute('data-value');
-        	//var buttonValue = $(this).val().trim();
-        	alert(buttonValue);
-        	$.ajax({
-                type: 'GET',
-                url: '/room/loadDynamicJSP',
-                data: {buttonValue: buttonValue , roomcode:roomcode},
-                success: function (data) {
-                    $('#dynamicContent').html(data);
-                },
-                error: function (xhr, status, error) {
-                    console.error("에러 발생:", error);
-                }
-            });
+    
+});
+
+function Go(){
+	var buttonValue= document.getElementById("fileUploadGo").getAttribute('data-value');
+	//var buttonValue = $(this).val().trim();
+	alert(buttonValue);
+	$.ajax({
+        type: 'GET',
+        url: '/room/loadDynamicJSP',
+        data: {buttonValue: buttonValue , roomcode:roomcode},
+        success: function (data) {
+            $('#dynamicContent').html(data);
+        },
+        error: function (xhr, status, error) {
+            console.error("에러 발생:", error);
         }
-        
+    });
+}

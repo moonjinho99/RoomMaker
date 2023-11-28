@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.rm.mapper.RoomMapper;
+import com.rm.model.RoomMemberVO;
 import com.rm.model.RoomVO;
 
 import org.slf4j.Logger;
@@ -63,11 +64,36 @@ public class RoomMapperTest {
 //		log.info(""+mapper.getRoomDetail(roomcode));
 //	}
 	
+//	@Test
+//	public void testPaging()
+//	{
+//		System.out.println("게시물 개수 : "+mapper.countRoom());
+//		//System.out.println("게시물 페이징 처리 : "+mapper.selectRoom(null));
+//	}
+	
+//	@Test
+//	public void testMemberIn()
+//	{
+//		RoomMemberVO rmvo = new RoomMemberVO();
+//		
+//		rmvo.setId("oo");
+//		rmvo.setRoomcode(60);
+//		rmvo.setRoomlevel(0);
+//		
+//		mapper.insertRoomMember(rmvo);
+//	}
+	
+//	@Test
+//	public void testSelectMember()
+//	{
+//		System.out.println(mapper.selectRoomMember());
+//	}
+	
 	@Test
-	public void testPaging()
+	public void testMemberCnt()
 	{
-		System.out.println("게시물 개수 : "+mapper.countRoom());
-		//System.out.println("게시물 페이징 처리 : "+mapper.selectRoom(null));
+		
+		mapper.updateMemberCnt(60);
 	}
 	
 }

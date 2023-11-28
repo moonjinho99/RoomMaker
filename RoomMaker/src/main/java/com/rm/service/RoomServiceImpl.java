@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rm.mapper.RoomMapper;
 import com.rm.model.PagingVO;
+import com.rm.model.RoomMemberVO;
 import com.rm.model.FileVO;
 import com.rm.model.RoomVO;
 
@@ -46,7 +47,7 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 
-	//����
+	//占쏙옙占쏙옙
 	@Override
 	public List<RoomVO> getRoomList() {
 		
@@ -55,7 +56,7 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 
-	//����ȸ
+	//占쏙옙占쏙옙회
 	@Override
 	public RoomVO getRoomDetail(int roomcode) {
 		
@@ -63,7 +64,7 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 
-	//��ü �� ��
+	//占쏙옙체 占쏙옙 占쏙옙
 	@Override
 	public int countRoom() {
 		
@@ -71,10 +72,10 @@ public class RoomServiceImpl implements RoomService{
 	}
 
 
-	//����¡ ó�� ����
+	//占쏙옙占쏙옙징 처占쏙옙 占쏙옙占쏙옙
 	@Override
 	public List<RoomVO> selectRoom(PagingVO vo) {
-		System.out.println("����¡ : "+vo);
+		System.out.println("占쏙옙占쏙옙징 : "+vo);
 		return mapper.selectRoom(vo);
 	}
 	
@@ -84,7 +85,7 @@ public class RoomServiceImpl implements RoomService{
 		mapper.uploadFile(file);
 	}
 		
-	//file code 가져오기
+	//file code 媛��졇�삤湲�
 	@Override
 	public int selectFileCode(FileVO file) {
 		return mapper.selectFileCode(file);
@@ -96,20 +97,43 @@ public class RoomServiceImpl implements RoomService{
 		mapper.uploadFileDetail(file);
 	}
 	
-	//fileList 가져오기
+	//fileList 媛��졇�삤湲�
 	@Override
 	public List<FileVO> getFileList(int roomcode){
 		return mapper.getFileList(roomcode);
 	}
 	
-	//fileDetail 가져오기
+	//fileDetail 媛��졇�삤湲�
 	@Override
 	public FileVO getFileDetail(int roomcode, int filecode) {
 		   System.out.println("serviceroomcode :"+roomcode);
 		return mapper.getFileDetail(roomcode, filecode);
 	}
-	
-	
 
+
+	//방 입장시 roommember 삽입
+	@Override
+	public void insertRoomMember(RoomMemberVO roommember) {
+		mapper.insertRoomMember(roommember);;
+	}
+
+
+	//모든 roommember값 가져오기
+	@Override
+	public List<RoomMemberVO> selectRoomMember() {
+		
+		return mapper.selectRoomMember();
+	}
+
+	//join_member_cnt 증가
+	@Override
+	public void updateMemberCnt(int roomcode) {
+		mapper.updateMemberCnt(roomcode);
+	}
+	
+	
+	
+	
+	
 
 }

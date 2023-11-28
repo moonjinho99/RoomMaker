@@ -37,6 +37,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.rm.mapper.AttachMapper;
 import com.rm.model.AttachImageVO;
 import com.rm.model.MemberVO;
+import com.rm.model.RoomMemberVO;
 import com.rm.model.FileVO;
 import com.rm.model.RoomVO;
 import com.rm.service.MemberService;
@@ -240,6 +241,58 @@ public class RoomController{
 	      
 	      model.addAttribute("roomDetail",roomService.getRoomDetail(roomcode));
 	      
+	   }
+	   
+	   //방 입장
+	   @GetMapping("/roomMemberIn")
+	   public String roomMemberIn(String id, int roomcode, Model model)
+	   {
+		   System.out.println("방 입장");
+		   
+		   RoomMemberVO roommembervo = new RoomMemberVO();
+		   
+		   //방장의 아이디
+		   String masterId = roomService.getRoomDetail(roomcode).getId();
+		   
+		   //방안의 참여자 아이디
+		   List<RoomMemberVO> roomMemberList = roomService.selectRoomMember();
+		   
+		   //방안의 참여자 인지 구분
+		   boolean room_in_member = false;
+		   
+		   for(int i=0; i<roomMemberList.size(); i++)
+		   {
+			   if(id.equals(roomMemberList.get(i).getId()))
+			   {
+				   room_in_member = true;
+			   }
+		   }
+		   
+		   
+		   //입장한 참여자가 방장일때 1 
+		   if(masterId.equals(id) && !room_in_member)
+		   {	
+			   roommembervo.setId(id);
+			   roommembervo.setRoomcode(roomcode);
+			   roommembervo.setRoomlevel(1);
+			   
+			   roomService.insertRoomMember(roommembervo);
+			   roomService.updateMemberCnt(roomcode);
+		   }
+		   //일반 참여자는 0
+		   else if(!room_in_member){
+			   
+			   roommembervo.setId(id);
+			   roommembervo.setRoomcode(roomcode);
+			   roommembervo.setRoomlevel(0);
+			   
+			   roomService.insertRoomMember(roommembervo);
+			   roomService.updateMemberCnt(roomcode);
+		   }
+		   
+		   model.addAttribute("roomDetail",roomService.getRoomDetail(roomcode));
+
+		   return "redirect:/room/roomDetail?roomcode="+roomcode;
 	   }
 	   
 	   //방 암호 체크

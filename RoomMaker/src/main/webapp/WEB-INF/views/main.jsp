@@ -80,6 +80,8 @@
                                 <div>
                                     ${roomList.join_member_cnt}/${roomList.member_cnt}
                                 </div>
+                                <input type="hidden" name="join_member_cnt" value="${roomList.join_member_cnt}">
+                                <input type="hidden" name="member_cnt" value="${roomList.member_cnt}">
                                 <div class="people_icon">
                                     
                                 </div>
@@ -132,11 +134,20 @@
     		});
     	});
     	
+    	var join_member_cnt = document.getElementsByName("join_member_cnt")[0].value;
+    	var member_cnt = document.getElementsByName("member_cnt")[0].value;
+    	
     	
     	function inRoomDetail(roomcode)
     	{
-    		var url = '/room/roomPwCheck?roomcode='+roomcode;
-    		window.open(url,"_blank_1","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=450,height=300");
+    		if(join_member_cnt < member_cnt)
+   			{
+    			var url = '/room/roomPwCheck?roomcode='+roomcode;
+        		window.open(url,"_blank_1","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=450,height=300");
+   			}
+    		else{
+    			alert("방 인원이 전부 찼습니다.")
+    		}
     	}
     	
     	

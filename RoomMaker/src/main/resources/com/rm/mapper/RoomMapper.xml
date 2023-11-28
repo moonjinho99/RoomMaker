@@ -96,4 +96,20 @@
 	<select id="getFileDetail" resultType="com.rm.model.FileVO">
 		select f1.filecode,roomcode,filetitle,fileuploaddate,filemember,content,fileName,uploadPath from file f1 join filedetail f2 on f1.filecode = f2.filecode where roomcode= #{roomcode} and filecode = #{filecode}
 	</select>
+	
+	<!-- 방 입장시 roommember에 삽입 -->
+	<insert id="insertRoomMember">
+		insert into roommember values(#{roomcode},#{id},#{roomlevel})
+	</insert>
+	
+	<!-- 신규 참여자인지 아닌지 판단하기 위한 모든 참여자 가져오기 -->
+	<select id="selectRoomMember" resultType="com.rm.model.RoomMemberVO">
+		select * from roommember
+	</select>
+	
+	<!-- 방 입장시 방 인원 수 증가 -->
+	<update id="updateMemberCnt">
+		update roomdetail set join_member_cnt = join_member_cnt + 1 where roomcode = #{roomcode}
+	</update>
+	
 </mapper>
