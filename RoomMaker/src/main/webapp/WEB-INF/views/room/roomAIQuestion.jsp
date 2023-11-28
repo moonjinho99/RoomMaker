@@ -69,7 +69,7 @@
     // 전송 버튼
     const sendButton = document.querySelector('#user-input button');
     // 발급받은 OpenAI API 키를 변수로 저장
-    const apiKey = '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';
+    const apiKey = "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";
     // OpenAI API 엔드포인트 주소를 변수로 저장
     const apiEndpoint = 'https://api.openai.com/v1/chat/completions'
     function addMessage(sender, message) {
@@ -89,7 +89,7 @@
             // API 요청의 헤더를 설정
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer `+apiKey
+                'Authorization': `Bearer `+"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"
             },
             body: JSON.stringify({
                 model: "gpt-3.5-turbo",  // 사용할 AI 모델
@@ -109,6 +109,10 @@
         try {
             const response = await fetch(apiEndpoint, requestOptions);
             const data = await response.json();
+            
+         // 응답 구조를 확인하기 위한 로깅 추가
+            console.log('API 응답:', data);
+            
             const aiResponse = data.choices[0].message.content;
             return aiResponse;
         } catch (error) {

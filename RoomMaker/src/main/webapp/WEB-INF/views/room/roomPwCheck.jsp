@@ -4,13 +4,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>암호 체크</title>
+<style>
+
+</style>
+
+
 </head>
 <body>
-<div style="text-align: center;">
+<div style=" position: absolute;
+  top: 30%;
+  left: 35%;
+  margin: -25px 0 0 -25px; ">
 	<h2 style="text-align: center;">방 암호를 입력해주세요</h2>
-	<input type="text" id="roomPw" name="inputpw">
-	<input type="button" value="확인" onclick="checkPw()">
+	<input type="text" id="roomPw" name="inputpw" >
+	<input type="button" value="확인" onclick="checkPw()"  class ="checkbtn">
 	<input type="hidden" value="${roomDetail.roomcode}" name="roomcode">
 	<input type="hidden" value="${roomDetail.roompw}" name="roompw">
 </div>
@@ -20,7 +28,6 @@
 
 function checkPw()
 {
-	
 	var roomcode = document.getElementsByName("roomcode")[0].value;
 	var roompw = document.getElementsByName("roompw")[0].value;
 	var inputpw = document.getElementsByName("inputpw")[0].value;

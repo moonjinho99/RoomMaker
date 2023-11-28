@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="../resources/css/room/roomAside.css" />
 <link rel="stylesheet" href="../resources/css/room/roomFooter.css" />
 <link rel="stylesheet" href="../resources/css/room/roomChatting.css" /> 
+<link rel="stylesheet" href="../resources/css/room/fileList.css" /> 
+<link rel="stylesheet" href="../resources/css/room/fileUpload.css" /> 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
@@ -43,14 +45,19 @@
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script>
 
+
 	var roomcode = document.getElementsByName("roomcode")[0].value;
+
+
+
         $(document).ready(function () {
+        	
             $(".room_function").click(function () {
                 var buttonValue = $(this).text().trim();
                 $.ajax({
                     type: 'GET',
                     url: '/room/loadDynamicJSP',
-                    data: {buttonValue: buttonValue, roomcode: roomcode },
+                    data: {buttonValue: buttonValue , roomcode:roomcode},
                     success: function (data) {
                         $('#dynamicContent').html(data);
                     },
@@ -59,6 +66,21 @@
                     }
                 });
             });
+            
+            $(".fileUploadGo").click(function(){
+            	$.ajax({
+                    type: 'GET',
+                    url: '/room/loadDynamicJSP',
+                    data: {buttonValue: buttonValue , roomcode:roomcode},
+                    success: function (data) {
+                        $('#dynamicContent').html(data);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("에러 발생:", error);
+                    }
+                });
+            })
+            
             
         });
         

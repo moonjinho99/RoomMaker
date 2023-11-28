@@ -51,7 +51,7 @@
             	
                 <div class="many_room">
                 	<%-- <a href='/room/roomDetail?roomcode=<c:out value="${roomList.roomcode}"/>' onclick="inRoomDetail('${roomList.roomcode}')"> --%>
-					<a href="#" onclick="inRoomDetail('${roomList.roomcode}')">
+					<a href="#" onclick="inRoomDetail('${roomList.roomcode}')" value="hi">
                     <div class="room_info">
                     
                         <div class="room_icon">
@@ -138,6 +138,8 @@
     		var url = '/room/roomPwCheck?roomcode='+roomcode;
     		window.open(url,"_blank_1","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=450,height=300");
     	}
+    	
+    	
     </script>
 
 <%@ include file="footer.jsp" %>

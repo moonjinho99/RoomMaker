@@ -253,16 +253,15 @@ public class RoomController{
 	   
 	   
 	   @GetMapping("/loadDynamicJSP")
-       public String loadDynamicJSP(@RequestParam String buttonValue,int roomcode, Model model) {
-           // Your logic to determine which JSP to include based on buttonValue
-           String jspToInclude = determineJSP(buttonValue,roomcode,model);
-           
-           System.out.println("넘어온 코드 : "+roomcode);
-           
-           // Add any model attributes if needed
-           model.addAttribute("someAttribute", "someValue");
-           
-
+	    public String loadDynamicJSP(@RequestParam String buttonValue,int roomcode, Model model) {
+	        // Your logic to determine which JSP to include based on buttonValue
+	        String jspToInclude = determineJSP(buttonValue,roomcode,model);
+	        
+	        System.out.println("넘어온 코드 : "+roomcode);
+	        
+	        // Add any model attributes if needed
+	        model.addAttribute("someAttribute", "someValue");
+	        
            // Return the name of the JSP file to include (without .jsp extension)
            return jspToInclude;
        }

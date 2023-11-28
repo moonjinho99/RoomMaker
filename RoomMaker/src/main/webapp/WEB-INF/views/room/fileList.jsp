@@ -1,14 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
-    section {
+section {
     	display: flex;
         width: 60%;
         height: 500px;
         border-bottom: 1px solid black;
        
-    }
+	}
 </style>
-
 	<div>
 		<form id="fileList_form">
 		<div class="fileUploadTitle">
@@ -27,24 +29,23 @@
 		<td>${status.count}</td><td>${list.filetitle}</td><td>${list.filemember }</td><td><fmt:formatDate value="${list.fileuploaddate}" type="both" pattern="yyyy년 MM월 dd일"/></td>
 		</tr>
 		
-		 </c:forEach>
+		 </c:forEach> 
 		</table>
 		</form>
         <div class="clear"></div>
         
     </div>
     <section id="dynamicContent">
-    <div class="clear" style="float:left;"></div>
-    <!-- 채팅화면 -->
-     <div th:include="${'defaultJSP'} :: content"></div>
-</section>
+
+   		<div class="clear" style="float:left;"></div>
+     	<div th:include="${'defaultJSP'} :: content"></div>
+	</section>
 <script>
 function go()
-{
-   
-   var buttonValue = document.getElementById("uploadId").getAttribute('data-value');
-   
-   $.ajax({
+{	
+	var buttonValue = document.getElementById("fileUploadGo").getAttribute('data-value');
+	
+	$.ajax({
         type: 'GET',
         url: '/room/loadDynamicJSP',
         data: {buttonValue: buttonValue , roomcode:roomcode},

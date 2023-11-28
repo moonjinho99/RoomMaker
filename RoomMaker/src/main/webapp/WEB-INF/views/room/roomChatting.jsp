@@ -13,7 +13,7 @@
         $('#message').val('');
     });
 
-    let sock = new SockJS("http://localhost/chatting");
+    let sock = new SockJS("http://localhost:8000/chatting");
     sock.onmessage = onMessage;
     sock.onclose = onClose;
 
