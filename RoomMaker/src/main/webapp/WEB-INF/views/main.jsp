@@ -41,7 +41,7 @@
     <section>
         <div id="main_room">
             <div class="main_room_top">
-                <button class="room_button" onclick="location.href='room/makeRoom';"><span>방만들기</span></button>
+                <button class="room_button" onclick="location.href='room/makeRoom'"><span>방만들기</span></button>
                 <button class="room_button" style="margin-left: 400px;"><span>방리스트</span></button>
                 <button class="room_button"><span>친구 보기</span></button>
             </div>
@@ -97,10 +97,11 @@
                 </c:forEach>
             </div>
         </div>
-                
+              
+         <input type="hidden" name="keyword" value="${paging.keyword }">  
 		 <div style="display: block; text-align: center; margin-top:20px" class="pagemove">		
 		<c:if test="${paging.startPage != 1 }">
-			<a href="/main?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}" class="before">◀이전</a>
+			<a href="/main?keyword=${paging.keyword}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}" class="before">◀이전</a>
 		</c:if>
 		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 			<c:choose>
@@ -108,12 +109,12 @@
 					<b style="color:skyblue;">${p }</b>
 				</c:when>
 				<c:when test="${p != paging.nowPage }">
-					<a href="/main?nowPage=${p }&cntPerPage=${paging.cntPerPage}">다음▶</a>
+					<a href="/main?keyword=${paging.keyword}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">다음▶</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${paging.endPage != paging.lastPage}">
-			<a href="/main?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}"  class="next">다음▶</a>
+			<a href="/main?keyword=${paging.keyword}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}"  class="next">다음▶</a>
 		</c:if>
 	</div> 
     </section>

@@ -4,7 +4,7 @@
 <header style="display: flex;">
         <div class="make_room" style="width: 60%;">
         	<img class="logo" src="../resources/images/logo.png">
-            <input type="text" class="find_room" placeholder="방 번호를 입력해주세요">
+            <input type="text" class="find_room" placeholder="방 제목을 입력해주세요" id="keyword">
             <button class="find_room_click"><img src="./resources/images/clickicon.jpg"></button>
             <a href="#" class="mypage" data-text="마이페이지" style="margin-left: 750px;">마이페이지</a>       
         </div>
@@ -14,5 +14,15 @@
 		<div class="make_room_logout" style="width: 10%">
 			<button class="logout">logout</button>
 		</div>
-		
+
 </header>
+
+<script>
+
+
+$(".find_room_click").on("click", function(e){
+	
+	var keyword = document.getElementById('keyword').value;
+	location.href = "/main?keyword="+keyword;
+});
+</script>

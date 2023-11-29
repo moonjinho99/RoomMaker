@@ -17,7 +17,11 @@
 		</div>
 		
 		<script>
-			location.href="/room/roomLogout";
+			function logout()
+			{
+				location.href="/room/roomLogout";
+			}
+			
 		</script>
 		
 </header>

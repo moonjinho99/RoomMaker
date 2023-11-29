@@ -58,7 +58,7 @@
 <div class="create_room">
 <h1>방 생성</h1>
 
-<form action="/room/makeRoom" method="post" name="frm" onsubmit="return makeCheck()">
+<form action="/room/makeRoom" method="post" name="frm" onsubmit="return makeCheck()" enctype="multipart/form-data">
 <table style="height: 540px; text-align: center; margin: 0 auto;">
 	<tr>
 		<td>방 제목</td>

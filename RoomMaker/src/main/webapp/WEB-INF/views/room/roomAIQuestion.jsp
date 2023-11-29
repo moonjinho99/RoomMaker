@@ -68,7 +68,7 @@
         // 전송 버튼
         const sendButton = document.querySelector('#sendButton');
         // 발급받은 OpenAI API 키를 변수로 저장
-        const apiKey = "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";
+        const apiKey = "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";
         // OpenAI API 엔드포인트 주소를 변수로 저장
         const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
         
@@ -95,7 +95,7 @@
                 body: JSON.stringify({
                     model: "gpt-3.5-turbo",  // 사용할 AI 모델
                     messages: [{
-                        role: "user", // 메시지 역할을 user로 설정
+                        role: "user",// 메시지 역할을 user로 설정
                         content: prompt // 사용자가 입력한 메시지
                     }],
                     temperature: 0.8, // 모델의 출력 다양성

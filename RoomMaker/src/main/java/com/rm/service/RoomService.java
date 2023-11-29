@@ -24,7 +24,7 @@ public interface RoomService {
 	public RoomVO getRoomDetail(int roomcode);
 	
 	//占쏙옙 占쏙옙占쏙옙
-	public int countRoom();
+	public int countRoom(PagingVO vo);
 		
 	//占쏙옙占쏙옙징 처占쏙옙 占쏙옙 占쏙옙회
 	public List<RoomVO> selectRoom(PagingVO vo);

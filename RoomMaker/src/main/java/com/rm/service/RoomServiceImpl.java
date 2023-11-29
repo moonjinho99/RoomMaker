@@ -66,9 +66,9 @@ public class RoomServiceImpl implements RoomService{
 
 	//占쏙옙체 占쏙옙 占쏙옙
 	@Override
-	public int countRoom() {
+	public int countRoom(PagingVO vo) {
 		
-		return mapper.countRoom();
+		return mapper.countRoom(vo);
 	}
 
 

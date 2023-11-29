@@ -42,7 +42,11 @@
 	
 	<!-- 방 갯수 출력 -->
 	<select id="countRoom" resultType="int">
-		select count(*) from room
+		select count(*) from room r1 join roomdetail r2 on r1.roomcode = r2.roomcode
+		
+		<if test="keyword != null">
+			where title like concat('%',#{keyword},'%')
+		</if>
 	</select>
 	
 	<!-- 페이징 처리 후 방 조회 -->
@@ -66,6 +70,9 @@
 		    FROM room r1
 		    JOIN roomdetail r2 ON r1.roomcode = r2.roomcode
 		    JOIN room_image r3 ON r1.roomcode = r3.roomcode
+		    <if test="keyword != null">
+		    	where title like concat('%',#{keyword},'%')
+		    </if>
 		    ORDER BY roomcode DESC
 		) AS b
 		WHERE rn BETWEEN #{start} AND #{end};

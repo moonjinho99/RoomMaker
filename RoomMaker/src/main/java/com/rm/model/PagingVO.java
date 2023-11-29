@@ -6,6 +6,9 @@ public class PagingVO {
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage,start,end;
 	private int cntPage = 1;
 	
+	//검색어 키워드
+	private String keyword;
+	
 	public PagingVO() {
 		
 	}
@@ -45,6 +48,16 @@ public class PagingVO {
 	public void calcStartEnd(int nowPage, int cntPerPage) {
 		setEnd(nowPage * cntPerPage);
 		setStart(getEnd() - cntPerPage + 1);
+	}
+
+	
+	
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 
 	public int getNowPage() {
@@ -123,8 +136,10 @@ public class PagingVO {
 	public String toString() {
 		return "PagingVO [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total=" + total
 				+ ", cntPerPage=" + cntPerPage + ", lastPage=" + lastPage + ", start=" + start + ", end=" + end
-				+ ", cntPage=" + cntPage + "]";
+				+ ", cntPage=" + cntPage + ", keyword=" + keyword + "]";
 	}
+
+	
 	
 	
 

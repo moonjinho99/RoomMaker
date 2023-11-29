@@ -75,11 +75,12 @@ public class HomeController {
 	
 	
 	@GetMapping("/main")
-	public String roomList(PagingVO vo, Model model,
+	public String roomList(String keyword,PagingVO vo, Model model,
 			@RequestParam(value="nowPage", required=false)String nowPage,
 			@RequestParam(value="cntPerPage", required=false)String cntPerPage) {
 		
-		int total = service.countRoom();
+		
+		int total = service.countRoom(vo);
 		System.out.println("√—«’ : "+total);
 		if(nowPage == null && cntPerPage == null) {
 			nowPage="1";
@@ -91,6 +92,8 @@ public class HomeController {
 		}
 		
 		vo = new PagingVO(total,Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		vo.setKeyword(keyword);
+		
 		
 		System.out.println("∆‰¿Ã¬°2 : "+vo);
 		model.addAttribute("paging",vo);
