@@ -11,64 +11,46 @@
 <link rel="stylesheet" href="../resources/css/room/roomAside.css" />
 <link rel="stylesheet" href="../resources/css/room/roomFooter.css" />
 <style>
-a{
- text-decoration: none;
- color: black;
- }
- 
- section{
- width: 1000px;
-    height: 740px;
-    font-size: 18px;
-    margin-left: 330px;
-    padding: 0;
-    display: block;
- }
-  
-#fileUpload_form{
-	width: 1000px;
-    height: 740px;
-    padding: 0;
-    display: block;
-}
-  
-.fileDetailTitle{
-	margin-top: 25px;
-	width: 870px;
-	height: 50px;
-}
-
-.fileDetailTitle img{
-	width: 50px;
-	height: 50px;
-	float: left;
-}
-
-.fileDetailTitle span{
-	margin: 0;
-	margin-left: 180px;
-	width: 400px;
-	height: 50px;
-	font-size: 2em;
-	line-height: 50px;
-	font-weight: bold;
-	display: block;
-}
+section {
+    	display: flex;
+        width: 65%;
+        height: 500px;
+        border-bottom: 1px solid black;
+	}
 </style>
 </head>
 <body>
-<%@ include file="roomHeader.jsp" %>
-<%@ include file="roomAside.jsp" %>
 	<section>
+	<div id="fileDetailWrap">
 	<div class="fileDetailTitle">
 		 	<img class="DetailIcon" src="../resources/images/fileDetailIcon.png">
 		 	<span>자료 디테일</span>
 		 </div>
-		 <form id="fileDetail_form">
-		 <div class="fileDetailTitle"><c:out value="${file.filetitle}"/></div>
-		 </form>
+		 <table style="width: 600px; height: 250px; border: none;">
+		 <tr>
+		 <td style="width: 150px; height: 5px; border-right: none;">no. ${file.filecode }</td>
+		 <td>${file.filetitle }</td>
+		 </tr>
+		  <tr>
+		 <td>${file.filemember }</td>
+		 <td><fmt:formatDate value="${file.fileuploaddate}" pattern="yyyy년 MM월 dd일" ></fmt:formatDate></td>
+		 </tr>
+		 <tr>
+		 <td colspan="2">${file.fileName}<input type="button" onclick="fileDownload(${file.filecode})" class=".downloadBtn" value="다운로드"></td>
+		 </tr>
+		 <tr>
+		 <td colspan="2">${file.content }</td>
+		 </tr>
+		 </table>
+		 <div class="buttons">
+		 <input type="button" id="resetbutton" onclick="resetAction()" value="취소">
+		 <input type="button" id="deletebutton" onclick="" value="삭제">
+		 <input type="button" id="modifybutton" onclick="" value="수정">
+		 </div>
+		 </div>
+		 
         <div class="clear"></div>
 		        
         
     </section>
-<%@ include file="roomFooter.jsp" %>
+

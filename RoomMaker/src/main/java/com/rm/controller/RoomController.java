@@ -2,7 +2,9 @@ package com.rm.controller;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
@@ -12,8 +14,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.net.URLEncoder;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +43,7 @@ import com.rm.mapper.AttachMapper;
 import com.rm.model.AttachImageVO;
 import com.rm.model.MemberVO;
 import com.rm.model.RoomMemberVO;
+import com.rm.model.PagingVO;
 import com.rm.model.FileVO;
 import com.rm.model.RoomVO;
 import com.rm.service.MemberService;
@@ -304,7 +310,6 @@ public class RoomController{
 		   model.addAttribute("roomDetail",roomService.getRoomDetail(roomcode));
 	   }
 	   
-	   
 	   @GetMapping("/loadDynamicJSP")
 	    public String loadDynamicJSP(@RequestParam String buttonValue,int roomcode, Model model) {
 	        // Your logic to determine which JSP to include based on buttonValue
@@ -321,22 +326,22 @@ public class RoomController{
 
        // Your method to determine which JSP to include based on the buttonValue
        private String determineJSP(String buttonValue,int roomcode,Model model) {
-           
+          System.out.println("넘어온 buttonValue의 값 : "+buttonValue);
               String jspToInclude = "";
               
               
               // 버튼에 따라 로드할 JSP 결정
               if ("일정보기".equals(buttonValue)) {
                   jspToInclude = "/room/roomSchedule";
-              } else if ("자료공유".equals(buttonValue)) {
+              } else if (("자료공유".equals(buttonValue))||("취소".equals(buttonValue))) {
                   jspToInclude = "/room/fileList";
                   
-               List<FileVO> fileList = new ArrayList<FileVO>();
-       		   fileList = roomService.getFileList(roomcode);
-       		   System.out.println("fileList : "+fileList);
-       		   
-       			model.addAttribute("list",fileList);
+                  PagingVO paging = new PagingVO();
+                  String nowPage = null;
+                  String cntPerPage = null;
+                  System.out.println("자료공유 roomcode="+roomcode);
                   
+                  fileListAction(paging,model,roomcode,nowPage,cntPerPage);
                   
               } else if ("채팅하기".equals(buttonValue)) {
                   jspToInclude = "/room/roomChatting";
@@ -344,7 +349,8 @@ public class RoomController{
                   jspToInclude = "/room/question";
               } else if ("공지보기".equals(buttonValue)) {
                   jspToInclude = "/room/roomNotice";
-              } else if("자료 등록".equals(buttonValue)) {
+              } else if ("자료등록".equals(buttonValue)) {
+            	  model.addAttribute("roomcode",roomcode);
             	  jspToInclude = "/room/fileUpload";
               }
 
@@ -356,43 +362,62 @@ public class RoomController{
 	   {
 		   log.info("AI 질문 페이지");
 	   }
-
-	   //자료 공유방 리스트 GET
-	   /*@GetMapping("/fileList")
-	   public void fileListGET(int roomcode, Model model){
-		   
-		   //임시
-		   roomcode=2;
-		   
-		   log.info("fileList 진입");
-		   
-		   List<FileVO> fileList = new ArrayList<FileVO>();
-		   fileList = roomService.getFileList(roomcode);
-		   System.out.println("fileList : "+fileList);
-		   
-			model.addAttribute("list",fileList);	   
-	   }*/
 	   
-	   //자료 공유방 등록 GET
-	   @GetMapping("/fileUpload")
-	   public void fileUploadGET(){
-		   
-		   log.info("fileUpload 진입");
-		   
+	   @PostMapping("/fileListPaging")
+	   public String fileListPaging(
+	       @RequestParam(value = "nowPage", required = false) Integer nowPage,
+	       @RequestParam(value = "cntPerPage", required = false) Integer cntPerPage,
+	       int roomcode,
+	       Model model) {
+	       PagingVO paging = new PagingVO();
+
+	       String nowPageStr = Integer.toString(nowPage);
+	       String cntPerPageStr = Integer.toString(cntPerPage);
+	       System.out.println("fileListPaging 이동함");
+	       
+	       fileListAction(paging, model, roomcode, nowPageStr, cntPerPageStr);
+
+	       return "room/fileList";
 	   }
 	   
-	   //등록 버튼 누르고 자료 공유방 파일 등록/VO 올리기
-	   //자료 공유방 등록 POST
-	   @PostMapping("/fileUpload")
-	   public void fileUploadPOST(MultipartFile[] uploadFile,int roomcode, String filetitle, String filemember, String content, String uploadPath) throws Exception{
+	   public void fileListAction(PagingVO vo, Model model, int roomcode,
+			   @RequestParam(value="nowPage", required=false)String nowPage,
+				@RequestParam(value="cntPerPage", required=false)String cntPerPage) {
 		   
-		   //파일 등록
+		   int total = roomService.countFile();
+		   System.out.println("fileListAction 이동함");
+		   System.out.println("File total: "+total);
+		   if(nowPage == null && cntPerPage == null) {
+				nowPage="1";
+				cntPerPage = "6";
+			} else if(nowPage == null) {
+				nowPage = "1";
+			} else if(cntPerPage == null) {
+				cntPerPage="6";
+			}
+		   
+		   vo = new PagingVO(total,Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			
+			model.addAttribute("paging",vo);
+			System.out.println(vo);
+		   
+		   
+		   List<FileVO> fileList = new ArrayList<FileVO>();
+   		   fileList = roomService.getFileList(roomcode,vo);
+   		   System.out.println("fileList : "+fileList);
+   			model.addAttribute("list",fileList);
+	   }
+	   
+	 //등록 버튼 누르고 자료 공유방 파일 등록/VO 올리기
+	   //자료 공유방 등록 POST
+	   @PostMapping("/loadDynamicFileJSP")
+	   public String loadDynamicFileJSP(@RequestParam int roomcode, MultipartFile[] uploadFile, String filetitle, String filemember, String content, String uploadPath, Model model) throws Exception {
+		 //파일 등록
 		   log.info("파일 등록 중..................");
 		   //오늘 날짜로 등록
 		   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = new Date();
 			String Date = sdf.format(date);
-			System.out.println("Date : "+Date);
 			
 			String uploadFileName = null;
 			
@@ -416,7 +441,6 @@ public class RoomController{
 				
 				//파일 이름 저장
 				uploadFileName = uploadFile[i].getOriginalFilename();
-				
 				// uuid 적용 파일 이름 
 				String uuid = UUID.randomUUID().toString();
 				uploadFileName = uuid + "_" + uploadFileName;
@@ -453,18 +477,58 @@ public class RoomController{
 		   int filecode = roomService.selectFileCode(file);
 		   file.setFilecode(filecode);
 		   roomService.uploadFileDetail(file);
-		  
+				
+		   String result = determineJSP("자료공유", roomcode, model);
+		   
+		   return result;
 	   }
 	   
 	 //자료 공유방 등록 GET
 	   @GetMapping("/fileDetail")
-	   public void fileDetailGET(int roomcode, int filecode, Model model){
+	   public String fileDetailGET(@RequestParam int roomcode, @RequestParam int filecode, Model model){
 		   
 		   log.info("fileDetail 진입");
-		   System.out.println("roomcode :"+roomcode);
 		   FileVO fileDetail = roomService.getFileDetail(roomcode, filecode);
 		   model.addAttribute("file",fileDetail);
 		 System.out.println(fileDetail);
+		 
+		 return "/room/fileDetail";
+		 
+	   }
+	   
+	   //자료 다운로드
+	   @PostMapping("/fileDownload")
+	   public void fileDownloadPOST(@RequestParam int roomcode, @RequestParam int filecode, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		   log.info("fileDownloading.............");
+		   FileVO uploadedFile = roomService.getFileDetail(roomcode, filecode);
+		   String filePath = uploadedFile.getUploadPath();
+		   String fileName = uploadedFile.getFileName();
+		   File file = new File(filePath,fileName);
+		   System.out.println(file);
+		   BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
+
+		   //User-Agent : 어떤 운영체제로  어떤 브라우저를 서버( 홈페이지 )에 접근하는지 확인함
+		   String header = request.getHeader("User-Agent");
+		   String storeToFileName;
+		   
+		   if ((header.contains("MSIE")) || (header.contains("Trident")) || (header.contains("Edge"))) {
+			    //인터넷 익스플로러 10이하 버전, 11버전, 엣지에서 인코딩 
+			    storeToFileName = URLEncoder.encode(uploadedFile.getFileName(), "UTF-8");
+			  } else {
+			    //나머지 브라우저에서 인코딩
+			    storeToFileName = new String(uploadedFile.getFileName().getBytes("UTF-8"), "iso-8859-1");
+			  }
+		   
+		   response.setContentType("application/download");
+		   response.setHeader("Content-Disposition", "attachment; filename=\"" + storeToFileName + "\"");
+		   response.setHeader( "Content-Transfer-Encoding", "binary" );
+		   
+		 //파일복사
+		   FileCopyUtils.copy(in, response.getOutputStream());
+		   in.close();
+		   response.getOutputStream().flush();
+		   response.getOutputStream().close();
+		   
 	   }
 	   
 	   //파일 삭제

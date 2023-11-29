@@ -79,6 +79,11 @@
 		
 	</select>
 	
+	<!-- 자료리스트의 수 -->
+	<select id="countFile" resultType="int">
+		select count(*) from file
+	</select>
+	
 	<!-- 자료리스트에 뿌릴 정보 올리기 -->
 	<insert id="uploadFile">
 		insert into file(roomcode, filetitle, fileuploaddate, filemember) values(#{roomcode},#{filetitle}, sysdate() ,#{filemember})
@@ -86,7 +91,7 @@
 	
 	<!-- filecode 가져오기 -->
 	<select id="selectFileCode" resultType="int">
-		select filecode from file where roomcode = #{roomcode} and filetitle = #{filetitle} and filemember = #{filemember}
+		select max(filecode) from file
 	</select>
 	
 	<!-- 자료디테일 업로드-->
@@ -96,12 +101,15 @@
 	
 	<!-- 자료 리스트 정보 가져오기 -->
 	<select id="getFileList" resultType="com.rm.model.FileVO">
-		select * from file where roomcode = #{roomcode} order by fileuploaddate desc
+		select * from(select ROW_NUMBER() OVER (ORDER BY filecode DESC) AS rn,
+		roomcode, filecode, filetitle, fileuploaddate, filemember from file) a
+		 where roomcode = #{param1} and rn BETWEEN #{param2.start} AND #{param2.end} ORDER BY fileuploaddate desc
+	
 	</select>
 	
 	<!-- 자료 디테일 가져오기-->
 	<select id="getFileDetail" resultType="com.rm.model.FileVO">
-		select f1.filecode,roomcode,filetitle,fileuploaddate,filemember,content,fileName,uploadPath from file f1 join filedetail f2 on f1.filecode = f2.filecode where roomcode= #{roomcode} and filecode = #{filecode}
+		select f1.filecode,roomcode,filetitle,fileuploaddate,filemember,content,fileName,uploadPath from file f1 join filedetail f2 on f1.filecode = f2.filecode where roomcode= #{param1} and f1.filecode = #{param2}
 	</select>
 	
 	<!-- 방 입장시 roommember에 삽입 -->

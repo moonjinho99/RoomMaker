@@ -2,6 +2,8 @@ package com.rm.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.rm.model.AttachImageVO;
 import com.rm.model.PagingVO;
 import com.rm.model.RoomMemberVO;
@@ -34,6 +36,9 @@ public interface RoomMapper {
 	//占쏙옙占쏙옙징 처占쏙옙 占쏙옙 占쏙옙회
 	public List<RoomVO> selectRoom(PagingVO vo);
 	
+	//file count
+	public int countFile();
+	
 	//file insert
 	public void uploadFile(FileVO file);
 	
@@ -45,6 +50,9 @@ public interface RoomMapper {
 	
 	//fileList 媛��졇�삤湲�
 	public List<FileVO> getFileList(int roomcode);
+	
+	//fileList 가져오기
+	public List<FileVO> getFileList(int roomcode, PagingVO vo);
 	
 	//fileDetail 媛��졇�삤湲�
 	public FileVO getFileDetail(int roomcode, int filecode);

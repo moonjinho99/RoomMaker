@@ -99,8 +99,8 @@ public class RoomServiceImpl implements RoomService{
 	
 	//fileList 媛��졇�삤湲�
 	@Override
-	public List<FileVO> getFileList(int roomcode){
-		return mapper.getFileList(roomcode);
+	public List<FileVO> getFileList(int roomcode, PagingVO vo){
+		return mapper.getFileList(roomcode,vo);
 	}
 	
 	//fileDetail 媛��졇�삤湲�
@@ -109,8 +109,13 @@ public class RoomServiceImpl implements RoomService{
 		   System.out.println("serviceroomcode :"+roomcode);
 		return mapper.getFileDetail(roomcode, filecode);
 	}
-
-
+	
+	//fileList 갯수 가져오기
+	@Override
+	public int countFile() {
+		return mapper.countFile();
+	}
+	
 	//방 입장시 roommember 삽입
 	@Override
 	public void insertRoomMember(RoomMemberVO roommember) {

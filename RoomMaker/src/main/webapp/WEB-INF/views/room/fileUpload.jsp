@@ -7,7 +7,7 @@
 	
 	<section>
 		<form id="fileUpload_form" method="POST" enctype="multipart/form-data">
-		<input type="hidden" class="roomcode" name="roomcode" value='<c:out value="${roomList.roomcode}"/>'>
+		<input type="hidden" class="roomcode" name="roomcode" value="${roomcode }">
 		<input type="hidden" class="uploadPath" name="uploadPath" value="/Users/hangayeon/RoomMaker/RoomMaker/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapp/upload">
 		<input type="hidden" class="filemember" name="filemember" value="aa"> 
 		 <div class="fileUpload_wrap">
@@ -27,8 +27,8 @@
 		 		<span>설명</span>
 		 		<textarea class="content" name="content" rows="4" cols="10"></textarea>
 		 	</div>
-		 <input type="button" class="filebutton" value="자료 올리기">
-		 <input type="button" class="resetbutton" value="취소">
+		 <input type="button" class="filebutton" onclick="fileUploadAction()" value="자료 올리기">
+		 <input type="button" id="resetbutton" onclick="resetAction()" value="취소">
 		 </div>
 		</form>
         <div class="clear"></div>

@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+ a{
+ text-decoration: none;
+ color: black;
+ }
+ 
+ #fileDetailWrap{
+ width: 870px;
+ height: 500px;
+ }
+
+  
+.fileDetailTitle{
+	margin-top: 25px;
+	width: 870px;
+	height: 50px;
+}
+
+.fileDetailTitle img{
+	width: 50px;
+	height: 50px;
+	float: left;
+}
+
+.fileDetailTitle span{
+	margin: 0;
+	margin-left: 80px;
+	width: 400px;
+	height: 50px;
+	font-size: 2em;
+	line-height: 50px;
+	font-weight: bold;
+	display: block;
+}
+
+.buttons{
+	margin-top: 15px;
+}

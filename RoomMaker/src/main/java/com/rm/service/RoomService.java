@@ -37,14 +37,16 @@ public interface RoomService {
 	//filedetail insert
 	public void uploadFileDetail(FileVO file);
 	
-	//fileList 媛��졇�삤湲�
-	public List<FileVO> getFileList(int roomcode);
+	//fileList 가져오기
+	public List<FileVO> getFileList(int roomcode, PagingVO vo);
 
 	//filedetail 媛��졇�삤湲�
 	public FileVO getFileDetail(int roomcode,int filecode);
 	
 	//roommember 삽입
 	public void insertRoomMember(RoomMemberVO roommember);
+	//fileList 갯수
+	public int countFile();
 
 	//roommember 가져오기
 	public List<RoomMemberVO> selectRoomMember();

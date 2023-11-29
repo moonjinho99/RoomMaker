@@ -4,14 +4,7 @@
  text-decoration: none;
  color: black;
  }
-  
-#fileUpload_form{
-	width: 1000px;
-    height: 740px;
-    padding: 0;
-    display: block;
-}
-  
+
 .fileUploadTitle{
 	margin-top: 25px;
 	width: 870px;
@@ -32,7 +25,6 @@
 	font-size: 2em;
 	line-height: 50px;
 	font-weight: bold;
-	display: block;
 }
 
 .fileUploadGo_div{
@@ -73,10 +65,35 @@ td{
 	text-align: center;
 }
 
-.fileDetailGo:hover+td{
-	background-color: #FAF082;
-	font-weight: bold;
+
+.before{
+	margin: 10px;
+	text-decoration : none;
+    background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+    color: white;
+    border: none;
+    width: 100px;
+    height: 50px;
+    font-family: "Bagel Fat One", sans-serif;
+    font-weight: 200px;
+    padding : 5px;
+	
 }
+
+.next{
+	margin: 10px;
+	text-decoration : none;
+    background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+    color: white;
+    border: none;
+    width: 100px;
+    height: 50px;
+    font-family: "Bagel Fat One", sans-serif;
+    font-weight: 200px;
+	padding : 5px;
+}
+
+
 
 
 
