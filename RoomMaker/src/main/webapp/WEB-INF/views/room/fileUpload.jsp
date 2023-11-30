@@ -8,8 +8,8 @@
 	<section>
 		<form id="fileUpload_form" method="POST" enctype="multipart/form-data">
 		<input type="hidden" class="roomcode" name="roomcode" value="${roomcode }">
-		<input type="hidden" class="uploadPath" name="uploadPath" value="C:\\upload\\temp">
-		<input type="hidden" class="filemember" name="filemember" value="aa"> 
+		<input type="hidden" class="uploadPath" name="uploadPath" value="/Users/hangayeon/RoomMaker/RoomMaker/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapp/upload">
+		<input type="hidden" class="filemember" name="filemember" value="${member.id }"> 
 		 <div class="fileUpload_wrap">
 		 	<div class="fileUploadTitle">
 		 	<img class="uploadIcon" src="../resources/images/uploadFileIcon.png">

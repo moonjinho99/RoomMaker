@@ -44,8 +44,8 @@ section {
 		 </table>
 		 <div class="buttons">
 		 <input type="button" id="resetbutton" onclick="resetAction()" value="취소">
-		 <input type="button" id="deletebutton" onclick="" value="삭제">
-		 <input type="button" id="modifybutton" onclick="" value="수정">
+		 <input type="button" id="deletebutton" onclick="deleteAction(${loginUser})" value="삭제">
+		 <input type="button" id="modifybutton" onclick="modifyAction(${loginUser})" value="수정">
 		 </div>
 		 </div>
 		 

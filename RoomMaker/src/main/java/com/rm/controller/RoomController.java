@@ -8,6 +8,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +21,7 @@ import java.net.URLEncoder;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -313,7 +316,7 @@ public class RoomController{
 	   }
 	   
 	   @GetMapping("/loadDynamicJSP")
-	    public String loadDynamicJSP(@RequestParam String buttonValue,int roomcode, Model model) {
+	    public String loadDynamicJSP(@RequestParam String buttonValue,int roomcode, Model model ,HttpServletRequest request) {
 	        // Your logic to determine which JSP to include based on buttonValue
 	        String jspToInclude = determineJSP(buttonValue,roomcode,model);
 	        
@@ -413,7 +416,7 @@ public class RoomController{
 	 //등록 버튼 누르고 자료 공유방 파일 등록/VO 올리기
 	   //자료 공유방 등록 POST
 	   @PostMapping("/loadDynamicFileJSP")
-	   public String loadDynamicFileJSP(@RequestParam int roomcode, MultipartFile[] uploadFile, String filetitle, String filemember, String content, String uploadPath, Model model) throws Exception {
+	   public String loadDynamicFileJSP(@RequestParam int roomcode, MultipartFile[] uploadFile, String filetitle, String filemember, String content, String uploadPath, Model model ,HttpServletRequest request) throws Exception {
 		 //파일 등록
 		   log.info("파일 등록 중..................");
 		   //오늘 날짜로 등록
@@ -450,6 +453,7 @@ public class RoomController{
 				//파일 위치, 파일 이름을 합친 File 객체
 				File saveFile = new File(uploadPath, uploadFileName);
 				
+				
 				//파일 저장 
 				try {
 					uploadFile[i].transferTo(saveFile);
@@ -483,24 +487,59 @@ public class RoomController{
 		   String result = determineJSP("자료공유", roomcode, model);
 		   
 		   return result;
+		  
 	   }
 	   
 	 //자료 공유방 등록 GET
 	   @GetMapping("/fileDetail")
-	   public String fileDetailGET(@RequestParam int roomcode, @RequestParam int filecode, Model model){
+	   public String fileDetailGET(@RequestParam int roomcode, @RequestParam int filecode, Model model, HttpServletRequest request){
 		   
 		   log.info("fileDetail 진입");
 		   FileVO fileDetail = roomService.getFileDetail(roomcode, filecode);
 		   model.addAttribute("file",fileDetail);
-		 System.out.println(fileDetail);
-		 
-		 return "/room/fileDetail";
+
+		   return "/room/fileDetail";
 		 
 	   }
 	   
 	   //자료 다운로드
 	   @PostMapping("/fileDownload")
 	   public void fileDownloadPOST(@RequestParam int roomcode, @RequestParam int filecode, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		 
+		   //response 사용하지 않음(file 이름 인코딩된 채 저장)
+		   log.info("fileDownloading.............");
+		   FileVO uploadedFile = roomService.getFileDetail(roomcode, filecode);
+		   String filePath = uploadedFile.getUploadPath();
+		   String fileName = uploadedFile.getFileName();
+		   File file = new File(filePath,fileName);
+
+		   //User-Agent : 어떤 운영체제로  어떤 브라우저를 서버( 홈페이지 )에 접근하는지 확인함
+		   String header = request.getHeader("User-Agent");
+		   String storeToFileName;
+		   
+		   if ((header.contains("MSIE")) || (header.contains("Trident")) || (header.contains("Edge"))) {
+			    //인터넷 익스플로러 10이하 버전, 11버전, 엣지에서 인코딩 
+			    storeToFileName = URLEncoder.encode(uploadedFile.getFileName(), "UTF-8");
+			  } else {
+			    //나머지 브라우저에서 인코딩
+			    storeToFileName = new String(uploadedFile.getFileName().getBytes("UTF-8"), "iso-8859-1");
+			  }
+		   
+		// 업로드할 파일 경로 설정
+	        String downloadPath = "/Users/hangayeon/Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다.
+
+	        // 다운로드 폴더에 파일 복사
+	        try {
+	            Path targetPath = new File(downloadPath, storeToFileName).toPath();
+	            Files.copy(file.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            // 예외 처리 로직 추가
+	        }
+		   
+		   
+		   /*
+		   //response사용
 		   log.info("fileDownloading.............");
 		   FileVO uploadedFile = roomService.getFileDetail(roomcode, filecode);
 		   String filePath = uploadedFile.getUploadPath();
@@ -517,12 +556,21 @@ public class RoomController{
 			    storeToFileName = URLEncoder.encode(uploadedFile.getFileName(), "UTF-8");
 			  } else {
 			    //나머지 브라우저에서 인코딩
+<<<<<<< Updated upstream
 			    storeToFileName = new String(uploadedFile.getFileName().getBytes("UTF-8"), "iso-8859-1");
 			    System.out.println("다운로드 : "+storeToFileName);
 			  }
 		   
 		   response.setContentType("application/octet-stream");
 		   response.setHeader("Content-Disposition", "attachment; filename=\"" + storeToFileName + "\"");
+=======
+			    storeToFileName = new String(uploadedFile.getFileName().getBytes("UTF-8"), "UTF-8");
+			    System.out.println("인코딩 된 : "+storeToFileName);
+			  }
+		   
+		   response.setContentType("application/octet-stream");
+		   response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+>>>>>>> Stashed changes
 		   response.setHeader( "Content-Transfer-Encoding", "binary" );
 		   
 		 //파일복사
@@ -530,7 +578,7 @@ public class RoomController{
 		   in.close();
 		   response.getOutputStream().flush();
 		   response.getOutputStream().close();
-		   
+		   */
 	   }
 	   
 	   //파일 삭제
@@ -556,6 +604,6 @@ public class RoomController{
 			return new ResponseEntity<String>("success", HttpStatus.OK);
 			
 		}
-	  
+		
 }
 
