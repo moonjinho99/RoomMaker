@@ -257,18 +257,20 @@ public class RoomController{
 		   
 		   RoomMemberVO roommembervo = new RoomMemberVO();
 		   
+		  
 		   //방장의 아이디
 		   String masterId = roomService.getRoomDetail(roomcode).getId();
 		   
 		   //방안의 참여자 아이디
 		   List<RoomMemberVO> roomMemberList = roomService.selectRoomMember();
 		   
+		   		   
 		   //방안의 참여자 인지 구분
 		   boolean room_in_member = false;
 		   
 		   for(int i=0; i<roomMemberList.size(); i++)
 		   {
-			   if(id.equals(roomMemberList.get(i).getId()))
+			   if(id.equals(roomMemberList.get(i).getId()) && roomcode == roomMemberList.get(i).getRoomcode())
 			   {
 				   room_in_member = true;
 			   }
@@ -506,7 +508,6 @@ public class RoomController{
 		   File file = new File(filePath,fileName);
 		   System.out.println(file);
 		   BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
-
 		   //User-Agent : 어떤 운영체제로  어떤 브라우저를 서버( 홈페이지 )에 접근하는지 확인함
 		   String header = request.getHeader("User-Agent");
 		   String storeToFileName;
@@ -517,9 +518,10 @@ public class RoomController{
 			  } else {
 			    //나머지 브라우저에서 인코딩
 			    storeToFileName = new String(uploadedFile.getFileName().getBytes("UTF-8"), "iso-8859-1");
+			    System.out.println("다운로드 : "+storeToFileName);
 			  }
 		   
-		   response.setContentType("application/download");
+		   response.setContentType("application/octet-stream");
 		   response.setHeader("Content-Disposition", "attachment; filename=\"" + storeToFileName + "\"");
 		   response.setHeader( "Content-Transfer-Encoding", "binary" );
 		   
@@ -554,10 +556,6 @@ public class RoomController{
 			return new ResponseEntity<String>("success", HttpStatus.OK);
 			
 		}
-	   
-	   
-	   
-	
-	
+	  
 }
 

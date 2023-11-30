@@ -53,7 +53,7 @@
 </style>
 
 <body>
-<%@ include file="../room/header.jsp" %>
+<%@ include file="../header.jsp" %>
 <section>
 <div class="create_room">
 <h1>방 생성</h1>

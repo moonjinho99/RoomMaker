@@ -146,6 +146,17 @@ public class MemberController {
 			}	
 	    
 	    }
+	    
+	    //로그아웃
+	    @RequestMapping(value="Logout", method=RequestMethod.GET)
+	    public String logoutPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
+	        
+	        logger.info("로그아웃 POST 진입");
+	        
+	        HttpSession session = request.getSession();
+	        session.invalidate();
+	        return "redirect:/member/login";
+	    }
 
 	
 }

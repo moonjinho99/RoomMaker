@@ -8,44 +8,43 @@
 </div>
 
 <script type="text/javascript">
-    $("#sendBtn").click(function() {
-        sendMessage();
-        $('#message').val('');
-    });
 
-    let sock = new SockJS("http://localhost:8000/chatting");
-    sock.onmessage = onMessage;
-    sock.onclose = onClose;
 
-    var memberName = "<%= ((MemberVO)session.getAttribute("member")).getName() %>";
 
- 
-    function sendMessage() {
-        var message = memberName + ": " + $("#message").val();
-        sock.send(message);
+$("#sendBtn").click(function() {
+    sendMessage();
+    $('#message').val('');
+});
+//스크립트의 최상위에서 sock 변수를 선언
+let sock = new SockJS("http://localhost:8000/chatting");
+sock.onmessage = onMessage;
+sock.onclose = onClose;
+
+var memberName = "<%= ((MemberVO)session.getAttribute("member")).getName() %>";
+
+function sendMessage() {
+    var message = memberName + ": " + $("#message").val();
+    sock.send(message);
+}
+
+function onMessage(msg) {
+    var data = msg.data;
+    displayMessage(data);
+}
+
+function onClose(evt) {
+    displayMessage("Connection lost");
+}
+
+function displayMessage(message) {
+    var messageDiv = $("<div>").addClass("message");
+
+    if (message.startsWith(memberName)) {
+        messageDiv.addClass("own-message").text(message);
+    } else {
+        messageDiv.addClass("other-message").text(message);
     }
 
-  
-    function onMessage(msg) {
-        var data = msg.data;
-        displayMessage(data);
-    }
-
-   r
-    function onClose(evt) {
-        displayMessage("Connection lost");
-    }
-
- 
-    function displayMessage(message) {
-        var messageDiv = $("<div>").addClass("message");
-
-        if (message.startsWith(memberName)) {
-            messageDiv.addClass("own-message").text(message);
-        } else {
-            messageDiv.addClass("other-message").text(message);
-        }
-
-        $("#messageArea").append(messageDiv);
-    }
+    $("#messageArea").append(messageDiv);
+}
 </script>

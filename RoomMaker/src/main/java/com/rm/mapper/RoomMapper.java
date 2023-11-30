@@ -66,4 +66,19 @@ public interface RoomMapper {
 	//member_cnt증가
 	public void updateMemberCnt(int roomcode);
 	
+	//내가 참여중인 방
+	public List<RoomVO> joinRoomList(String id,PagingVO vo);
+	
+	//참여중인 방의 개수
+	public int countJoinRoom(String id);
+	
+	
+	//내가 만든방
+	public List<RoomVO> makeRoomList(String id, PagingVO vo);
+	
+	//내가 만든 방의 수 
+	public int countMakeRoom(String id);
+	
+	
+	
 }

@@ -135,10 +135,35 @@ public class RoomServiceImpl implements RoomService{
 	public void updateMemberCnt(int roomcode) {
 		mapper.updateMemberCnt(roomcode);
 	}
-	
-	
-	
-	
+
+
+	//참여중인 방
+	@Override
+	public List<RoomVO> joinRoomList(String id, PagingVO vo) {
+		return mapper.joinRoomList(id, vo);
+	}
+
+	//참여중인 방의 개수
+	@Override
+	public int countJoinRoom(String id) {
+		
+		return mapper.countJoinRoom(id);
+	}
+
+
+	//내가 만든 방
+	@Override
+	public List<RoomVO> makeRoomList(String id, PagingVO vo) {
+		
+		return mapper.makeRoomList(id, vo);
+	}
+
+	//내가 만든 방의 수
+	@Override
+	public int countMakeRoom(String id) {
+		// TODO Auto-generated method stub
+		return mapper.countMakeRoom(id);
+	}
 	
 
 }

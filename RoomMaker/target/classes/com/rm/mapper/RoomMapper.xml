@@ -127,4 +127,72 @@
 		update roomdetail set join_member_cnt = join_member_cnt + 1 where roomcode = #{roomcode}
 	</update>
 	
+	
+	<!-- 참여중인 방 -->
+	<select id="joinRoomList" resultType="com.rm.model.RoomVO">	
+	 SELECT *
+			FROM (
+			    SELECT 
+			        ROW_NUMBER() OVER (ORDER BY roomcode DESC) AS rn,
+			        r1.roomcode,
+			        type,
+			        r1.id,
+			        title,
+			        roompw,
+			        member_cnt,
+			        join_member_cnt,
+			        explanation,
+			        fileName,
+			        uploadPath,
+			        uuid
+			    FROM room r1
+			    JOIN roomdetail r2 ON r1.roomcode = r2.roomcode
+			    JOIN roommember r3 ON r1.roomcode = r3.roomcode
+			    JOIN room_image r4 ON r1.roomcode = r4.roomcode
+			    where r3.id = #{param1} AND r1.id !=#{param1} 
+			    ORDER BY roomcode DESC
+			) AS b
+			WHERE rn BETWEEN #{param2.start} AND #{param2.end};
+ 
+ </select>
+	
+	<!-- 참여중인 방의 수 -->
+	<select id="countJoinRoom" resultType="int">
+		select count(*) from room r1 join roomdetail r2 on r1.roomcode = r2.roomcode join roommember r3 on r1.roomcode = r3.roomcode join room_image r4 on r1.roomcode = r4.roomcode where r1.id != #{id} and r3.id =#{id}; 
+	</select>	
+	
+	
+	<!-- 내가 만든 방 -->
+	<select id="makeRoomList" resultType="com.rm.model.RoomVO">	
+	 SELECT *
+			FROM (
+			    SELECT 
+			        ROW_NUMBER() OVER (ORDER BY roomcode DESC) AS rn,
+			        r1.roomcode,
+			        type,
+			        r1.id,
+			        title,
+			        roompw,
+			        member_cnt,
+			        join_member_cnt,
+			        explanation,
+			        fileName,
+			        uploadPath,
+			        uuid
+			    FROM room r1
+			    JOIN roomdetail r2 ON r1.roomcode = r2.roomcode
+			    JOIN roommember r3 ON r1.roomcode = r3.roomcode
+			    JOIN room_image r4 ON r1.roomcode = r4.roomcode
+			    where r1.id =#{param1} 
+			    ORDER BY roomcode DESC
+			) AS b
+			WHERE rn BETWEEN #{param2.start} AND #{param2.end};
+ 	</select>
+ 	
+ 	<!-- 내가 만든 방의 수 -->
+	<select id="countMakeRoom" resultType="int">
+		select count(*) from room r1 join roomdetail r2 on r1.roomcode = r2.roomcode join roommember r3 on r1.roomcode = r3.roomcode join room_image r4 on r1.roomcode = r4.roomcode where r1.id = #{id}; 
+	</select>	
+	
+	
 </mapper>

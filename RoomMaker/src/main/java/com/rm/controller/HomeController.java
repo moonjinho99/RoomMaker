@@ -75,30 +75,97 @@ public class HomeController {
 	
 	
 	@GetMapping("/main")
-	public String roomList(String keyword,PagingVO vo, Model model,
+	public String roomList(String keyword,PagingVO vo, Model model,String type, String id,
 			@RequestParam(value="nowPage", required=false)String nowPage,
 			@RequestParam(value="cntPerPage", required=false)String cntPerPage) {
 		
+		int total =0;
+		List <RoomVO> roomList = new ArrayList<RoomVO>();
 		
-		int total = service.countRoom(vo);
-		System.out.println("√—«’ : "+total);
-		if(nowPage == null && cntPerPage == null) {
-			nowPage="1";
-			cntPerPage = "6";
-		} else if(nowPage == null) {
-			nowPage = "1";
-		} else if(cntPerPage == null) {
-			cntPerPage="6";
+		if(type == null && id == null)
+		{
+			total = service.countRoom(vo);
+			System.out.println("√—«’ : "+total);
+			if(nowPage == null && cntPerPage == null) {
+				nowPage="1";
+				cntPerPage = "6";
+			} else if(nowPage == null) {
+				nowPage = "1";
+			} else if(cntPerPage == null) {
+				cntPerPage="6";
+			}
+			
+			vo = new PagingVO(total,Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			vo.setKeyword(keyword);
+			
+			
+			System.out.println("∆‰¿Ã¬° : "+vo);
+			model.addAttribute("paging",vo);
+			
+			roomList = service.selectRoom(vo);
+			
+			model.addAttribute("type","all");
+			
+			
+		}
+		else if(type.equals("joinroom"))
+		{
+			System.out.println("≥ª∞° ¬¸ø©«— πÊ");
+			
+			total = service.countJoinRoom(id);
+			System.out.println("join√—«’ : "+total);
+			if(nowPage == null && cntPerPage == null) {
+				nowPage="1";
+				cntPerPage = "6";
+			} else if(nowPage == null) {
+				nowPage = "1";
+			} else if(cntPerPage == null) {
+				cntPerPage="6";
+			}
+			
+			vo = new PagingVO(total,Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			vo.setKeyword(keyword);
+			
+			
+			System.out.println("∆‰¿Ã¬° : "+vo);
+			model.addAttribute("paging",vo);
+			
+			roomList = service.joinRoomList(id,vo);
+			
+			model.addAttribute("type","joinroom");
+
+			
 		}
 		
-		vo = new PagingVO(total,Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		vo.setKeyword(keyword);
+		else if(type.equals("makeroom"))
+		{
+			System.out.println("≥ª∞° ∏∏µÁ πÊ");
+			
+			total = service.countMakeRoom(id);
+			System.out.println("make√—«’ : "+total);
+			if(nowPage == null && cntPerPage == null) {
+				nowPage="1";
+				cntPerPage = "6";
+			} else if(nowPage == null) {
+				nowPage = "1";
+			} else if(cntPerPage == null) {
+				cntPerPage="6";
+			}
+			
+			vo = new PagingVO(total,Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			vo.setKeyword(keyword);
+			
+			
+			System.out.println("∆‰¿Ã¬° : "+vo);
+			model.addAttribute("paging",vo);
+			
+			roomList = service.makeRoomList(id, vo);
+			
+			model.addAttribute("type","makeroom");
+			
+		}
 		
 		
-		System.out.println("∆‰¿Ã¬°2 : "+vo);
-		model.addAttribute("paging",vo);
-		
-		List<RoomVO> roomList = service.selectRoom(vo);
 		System.out.println("∏ÆΩ∫∆Æ(¿ÃπÃ¡ˆ ¿¸) : "+roomList);
 		
 		roomList.forEach(room ->{
