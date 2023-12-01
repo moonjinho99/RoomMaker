@@ -17,6 +17,7 @@ $("#sendBtn").click(function() {
 });
 //스크립트의 최상위에서 sock 변수를 선언
 let sock = new SockJS("http://localhost:8080/chatting");
+
 sock.onmessage = onMessage;
 sock.onclose = onClose;
 

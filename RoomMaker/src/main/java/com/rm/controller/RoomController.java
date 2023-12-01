@@ -82,6 +82,15 @@ public class RoomController{
       roomService.makeRoom(room);
       room.setRoomcode(roomService.findRoomCode());
       roomService.makerRoomDetail(room);
+	  
+      RoomMemberVO roommembervo = new RoomMemberVO();
+      
+       roommembervo.setId(room.getId());
+	   roommembervo.setRoomcode(room.getRoomcode());
+	   roommembervo.setRoomlevel(1);
+	   
+	   roomService.insertRoomMember(roommembervo);
+	   roomService.updateMemberCnt(room.getRoomcode());
       
       return "redirect:/main";
    }

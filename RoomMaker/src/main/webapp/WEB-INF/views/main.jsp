@@ -183,12 +183,14 @@
        
        function inRoomDetail(roomcode)
        {
-          if(join_member_cnt < member_cnt)
+          if(parseInt(join_member_cnt) < parseInt(member_cnt))
             {
              var url = '/room/roomPwCheck?roomcode='+roomcode;
               window.open(url,"_blank_1","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=450,height=300");
             }
           else{
+        	 alert(join_member_cnt);
+        	 alert(member_cnt);
              alert("방 인원이 전부 찼습니다.");
           }
        }
