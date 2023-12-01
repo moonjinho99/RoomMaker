@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<body>
+<body id="main_backround" style="background-image:url('../resources/images/sky2.jpeg'); background-size: cover;">
 <header style="display: flex;">
         <div class="make_room" style="width: 60%;">
         	<img class="logo" src="../resources/images/logo.png" onclick="location.href='/main'">
@@ -11,7 +11,7 @@
 		<div class="make_room_right" style="margin-left:300px;margin-top:80px; width: 10%;">
 			<span style="font-size: 24px;">${member.name}님</span>
 		</div>
-		<div class="make_room_logout" style="width: 10%">
+		<div class="make_room_logout" style="width: 10%;">
 			<button class="logout" onclick="logout()">logout</button>
 		</div>
 

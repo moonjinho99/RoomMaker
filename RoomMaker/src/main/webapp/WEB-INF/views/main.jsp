@@ -36,45 +36,45 @@
 
    <%@ include file="header.jsp" %>
     <section>
-        <div id="main_room">
+        <div id="main_room" style="background: #f7fdfe">
             <div class="main_room_top">
                 <button class="room_button" onclick="location.href='room/makeRoom'"><span>방만들기</span></button>
                 <button class="room_button" style="margin-left: 400px;" onclick="location.href='/main?type='+'joinroom'+'&id='+'${member.id}'"><span>참여중인 방</span></button>
                 <button class="room_button" onclick="location.href='/main?type='+'makeroom'+'&id='+'${member.id}'"><span>내가 만든 방</span></button>
             </div>
-            <div class="main_room_section">
+            <div class="main_room_section" style="background: #ebf9f9">
             
             <c:forEach items="${roomList}" var="roomList" varStatus="status">
                
-                <div class="many_room">
+                <div class="many_room" style="background: #f5f5dc;">
                <a href="#" onclick="inRoomDetail('${roomList.roomcode}')" value="hi">
                     <div class="room_info">
                     
                         <div class="room_icon">
              
                      
-                        <div class="image_wrap" style="width:100%; height:100%;" data-bookid="${roomList.imageList[0].roomcode}" data-path="${roomList.imageList[0].uploadPath}" data-uuid="${roomList.imageList[0].uuid}" data-filename="${roomList.imageList[0].fileName}">
+                        <div class="image_wrap" style="background: white; 100%; height:100%;" data-bookid="${roomList.imageList[0].roomcode}" data-path="${roomList.imageList[0].uploadPath}" data-uuid="${roomList.imageList[0].uuid}" data-filename="${roomList.imageList[0].fileName}">
                            <img style="width:100%; height:100%; object-fit:cover; border-radius: 10px">
                         </div>                  
                   
            
                         </div>
                         
-                        <div class="room_title">
+                        <div class="room_title" style="background: white;">
                             
                             <div class="room_number">
                                 <div style="margin-left: -10px; ">
-                                <span>${roomList.roomcode}</span>
+                                 	${roomList.title}
                                 </div>
-                                <div class="room_name" style="text-align: center;">
-                                    ${roomList.title}
-                                </div>
+                                <!-- <div class="room_name" style="text-align: center;">
+                                   
+                                </div> -->
                             </div>
                             <div class="room_sub_title">
-                                <div style="width: 50%;">${roomList.id}</div>
+                                <div style="width: 40%;">방장 : ${roomList.id}</div>
                                 <div style="display: flex;">
                                 <div>
-                                    ${roomList.join_member_cnt}/${roomList.member_cnt}
+                                    참여자 ${roomList.join_member_cnt}/${roomList.member_cnt}
                                 </div>
                                 <input type="hidden" name="join_member_cnt" value="${roomList.join_member_cnt}">
                                 <input type="hidden" name="member_cnt" value="${roomList.member_cnt}">

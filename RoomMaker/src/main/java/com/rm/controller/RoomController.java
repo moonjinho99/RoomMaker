@@ -42,6 +42,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.mysql.cj.Session;
 import com.rm.mapper.AttachMapper;
 import com.rm.model.AttachImageVO;
 import com.rm.model.MemberVO;
@@ -253,12 +255,12 @@ public class RoomController{
 		
 		//방 상세 페이지
 	   @GetMapping("/roomDetail")
-	   public void roomDetailGET(int roomcode, Model model)
+	   public void roomDetailGET(int roomcode, Model model,HttpServletRequest request)
 	   {
 	      log.info("방상세");
-	      
-	      model.addAttribute("roomDetail",roomService.getRoomDetail(roomcode));
-	      
+	      	
+	      HttpSession session = request.getSession();
+	      session.setAttribute("roomDetail", roomService.getRoomDetail(roomcode));	      
 	   }
 	   
 	   //방 입장
@@ -310,8 +312,6 @@ public class RoomController{
 			   roomService.updateMemberCnt(roomcode);
 		   }
 		   
-		   model.addAttribute("roomDetail",roomService.getRoomDetail(roomcode));
-
 		   return "redirect:/room/roomDetail?roomcode="+roomcode;
 	   }
 	   
