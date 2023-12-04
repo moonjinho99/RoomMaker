@@ -85,6 +85,8 @@ public interface RoomMapper {
 	//내가 만든 방의 수 
 	public int countMakeRoom(String id);
 	
+	//회원의 이름
+	public String selectName(String id);
 	
 	
 }

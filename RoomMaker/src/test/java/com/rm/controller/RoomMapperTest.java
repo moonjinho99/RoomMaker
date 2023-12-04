@@ -96,10 +96,16 @@ public class RoomMapperTest {
 //		mapper.updateMemberCnt(60);
 //	}
 	
+//	@Test
+//	public void testJoinRoom()
+//	{
+//		System.out.println(mapper.countJoinRoom("ok2241"));
+//	}
+	
 	@Test
-	public void testJoinRoom()
+	public void testSelectName()
 	{
-		System.out.println(mapper.countJoinRoom("ok2241"));
+		System.out.println(mapper.selectName("ok2241"));
 	}
 	
 }

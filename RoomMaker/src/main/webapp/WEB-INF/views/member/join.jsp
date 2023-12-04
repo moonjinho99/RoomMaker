@@ -10,20 +10,26 @@
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous"></script>
 </head>
+<style>
+body{
+	background-image:url('../resources/images/sky3.jpg'); 
+	background-size: cover;
+}
+</style>
 <body>
 	<div id="join_wrap">
 		<div class="join_logo">
 			<a href="#"><img src="../resources/images/logo.png"></a>
 		</div>
-		<div class="join_content">
+		<div class="join_content" style="background: #ebf3f9" >
 			<form id="join_form" name="join_form" method="post">
-				<div class="join_div">
+				<div class="join_div" style="background: white;">
 				<input type="text" class="joinId" name="id" placeholder="아이디">
 				<span class="joinIdChk"></span>
 				<input type="password" class="joinPw input" name="pw" placeholder="패스워드">
 				<input type="password" class="joinPwCheck input" name="pwChk" placeholder="패스워드 확인">
 				</div>
-				<div class="private_div">
+				<div class="private_div" style="background: white;">
 				<input type="text" class="joinName input" name="name" placeholder="이름">
 				<input type="text" class="joinPhone input" name="phonenum" placeholder="010-0000-0000">
 				<div class="gender_button">

@@ -32,7 +32,6 @@ function checkPw()
 	var id = document.getElementsByName("id")[0].value;
 	if(roompw == inputpw)
 	{
-		//opener.location.href='/room/roomDetail?roomcode='+roomcode; 
 		opener.location.href='/room/roomMemberIn?id='+id+'&roomcode='+roomcode;
 		window.close();
 	}

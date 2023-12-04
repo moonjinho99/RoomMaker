@@ -15,5 +15,37 @@ aside{
     width: 60%;
 }
 .room_function{
-    margin-top:40px ;
+	margin-top:15px;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+    background:skyblue;
+    font-size: 20px;
+    padding: 10px 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+    border-radius: 10px;
+}
+
+.room_out{
+	margin-top:35px;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+    background:#1ab8be;
+    font-size: 20px;
+    padding: 10px 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+    border-radius: 10px;
 }

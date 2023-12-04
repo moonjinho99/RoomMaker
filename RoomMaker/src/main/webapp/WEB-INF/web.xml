@@ -26,7 +26,7 @@
 		<async-supported>true</async-supported>
 		<!-- 업로드 관련 설정 -->
 		<multipart-config>
-			<location>/Users/hangayeon/RoomMaker/RoomMaker/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapp/upload</location>		
+			<location>C:\\upload\\temp</location>		
 			<max-file-size>20971520</max-file-size>					<!-- 1MB * 20 -->
 			<max-request-size>41943040</max-request-size>			<!-- 40MB -->
 			<file-size-threshold>20971520</file-size-threshold>		<!-- 20MB -->

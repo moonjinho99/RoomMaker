@@ -19,6 +19,9 @@
 
 body {
 	position: relative;
+	background-image:url('../resources/images/sky3.jpg'); 
+	background-size: cover;
+	
 }
 
 a{
@@ -36,6 +39,7 @@ a{
 	margin-top: 100px; 
 	width: 400px;
 	height: 100px;
+	background-color: rgba( 255, 255, 255, 0 );
 }
 
 .login_content{
@@ -43,6 +47,7 @@ a{
 	border-radius: 15px;
 	width: 500px;
 	height: 400px;
+	background: #ebf3f9;
 }
 
 .login_div{
@@ -108,7 +113,7 @@ a{
 		</div>
 		<div class="login_content">
 			<form id="login_form" method="post">
-				<div class="login_div">
+				<div class="login_div" style="background: white;">
 					<input name="id" type="text" placeholder="아이디">
 					<input name="pw" type="password" placeholder="패스워드">
 				</div>

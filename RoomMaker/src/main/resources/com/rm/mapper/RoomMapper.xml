@@ -19,7 +19,7 @@
 </select>
 
 <insert id="makeRoomDetail">
-	insert into roomdetail values(#{roomcode},#{title}, #{roompw}, #{member_cnt}, #{explanation}, #{join_member_cnt}) 
+	insert into roomdetail values(#{roomcode},#{title}, #{roompw}, #{member_cnt},#{join_member_cnt}, #{explanation}) 
 </insert>
 
 
@@ -203,6 +203,11 @@
 	<select id="countMakeRoom" resultType="int">
 		select count(*) from room r1 join roomdetail r2 on r1.roomcode = r2.roomcode join roommember r3 on r1.roomcode = r3.roomcode join room_image r4 on r1.roomcode = r4.roomcode where r1.id = #{id}; 
 	</select>	
+	
+	<!-- 회원 이름 가져오기 -->
+	<select id="selectName" resultType="String">
+		select name from member where id = #{id}
+	</select>
 	
 	
 </mapper>

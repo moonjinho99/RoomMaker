@@ -176,6 +176,12 @@ public class RoomServiceImpl implements RoomService{
 		// TODO Auto-generated method stub
 		return mapper.countMakeRoom(id);
 	}
+
+
+	@Override
+	public String selectName(String id) {
+		return mapper.selectName(id);
+	}
 	
 
 }

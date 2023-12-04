@@ -77,6 +77,13 @@ public class MemberController {
 	            return "redirect:/member/login";
 	        }
 	        
+	        if(memberVO.getMemberlevel() == 1)
+	        {
+	        	System.out.println("관리자 로그인 성공");
+	        	session.setAttribute("member", memberVO); 
+	        	return "redirect:/admin/admin_main";
+	        }
+	        
 	        session.setAttribute("member", memberVO);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
 	        
 	        return "redirect:/main";

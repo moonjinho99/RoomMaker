@@ -18,7 +18,7 @@ public class MypageController {
 
 	@GetMapping(value="/main")
 	public void mypageGet(HttpServletRequest request) {
-		log.info("ë§ˆì´í˜ì´ì§€ ì§„ì…");
+		log.info("¸¶ÀÌÆäÀÌÁö ÁøÀÔ");
 		
 	}
 

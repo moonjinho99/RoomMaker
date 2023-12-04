@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="../resources/css/room/roomHeader.css" />
 <link rel="stylesheet" href="../resources/css/room/roomAside.css" />
 <link rel="stylesheet" href="../resources/css/room/roomFooter.css" />
+<link rel="stylesheet" href="../resources/css/footer.css?v=1" />
 <link rel="stylesheet" href="../resources/css/room/roomChatting.css" /> 
 <link rel="stylesheet" href="../resources/css/room/fileList.css" /> 
 <link rel="stylesheet" href="../resources/css/room/fileUpload.css" /> 
@@ -41,7 +42,7 @@
 	
 	
 
-<%@ include file="roomFooter.jsp" %>
+<%@ include file="../footer.jsp" %>
 
 	
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

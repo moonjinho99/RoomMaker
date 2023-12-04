@@ -61,8 +61,6 @@ import net.coobird.thumbnailator.Thumbnails;
 public class RoomController{
    private static final Logger log = LoggerFactory.getLogger(RoomController.class);
    
-   
-   
    @Autowired
    private AttachMapper attachMapper;
    
@@ -315,6 +313,15 @@ public class RoomController{
 		   return "redirect:/room/roomDetail?roomcode="+roomcode;
 	   }
 	   
+	   
+	   //방장명 가져오기
+	   @RequestMapping(value = "/selectName")
+	   @ResponseBody
+	   public String selectRoomMemberName(@RequestParam("id") String id){
+		   	System.out.println("ajax로 받은 아이디 : "+id);
+	       return id;
+	   }
+	   
 	   //방 암호 체크
 	   @GetMapping("/roomPwCheck")
 	   public void roomPwCheck(int roomcode,Model model)
@@ -535,8 +542,7 @@ public class RoomController{
 			  }
 		   
 		// 업로드할 파일 경로 설정
-	        String downloadPath = "/Users/hangayeon/Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다.
-
+	        String downloadPath = "C:\\Users\\PC\\Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다
 	        // 다운로드 폴더에 파일 복사
 	        try {
 	            Path targetPath = new File(downloadPath, storeToFileName).toPath();
@@ -545,41 +551,7 @@ public class RoomController{
 	            e.printStackTrace();
 	            // 예외 처리 로직 추가
 	        }
-		   
-		   /*
-		   //response사용
-		   log.info("fileDownloading.............");
-		   FileVO uploadedFile = roomService.getFileDetail(roomcode, filecode);
-		   String filePath = uploadedFile.getUploadPath();
-		   String fileName = uploadedFile.getFileName();
-		   File file = new File(filePath,fileName);
-		   System.out.println(file);
-		   BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
-		   //User-Agent : 어떤 운영체제로  어떤 브라우저를 서버( 홈페이지 )에 접근하는지 확인함
-		   String header = request.getHeader("User-Agent");
-		   String storeToFileName;
-		   
-		   if ((header.contains("MSIE")) || (header.contains("Trident")) || (header.contains("Edge"))) {
-			    //인터넷 익스플로러 10이하 버전, 11버전, 엣지에서 인코딩 
-			    storeToFileName = URLEncoder.encode(uploadedFile.getFileName(), "UTF-8");
-			  } else {
-			    //나머지 브라우저에서 인코딩
-			    storeToFileName = new String(uploadedFile.getFileName().getBytes("UTF-8"), "iso-8859-1");
-			    System.out.println("다운로드 : "+storeToFileName);
-			  }
-		   
-			    System.out.println("인코딩 된 : "+storeToFileName);
-		   
-		   response.setContentType("application/octet-stream");
-		   response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-		   response.setHeader( "Content-Transfer-Encoding", "binary" );
-		   
-		 //파일복사
-		   FileCopyUtils.copy(in, response.getOutputStream());
-		   in.close();
-		   response.getOutputStream().flush();
-		   response.getOutputStream().close();
-		   */
+
 	   }
 	   
 	   //파일 삭제
@@ -594,7 +566,7 @@ public class RoomController{
 			
 			try {
 				//원본파일삭제
-				file = new File(fileDetail.getUploadPath()+"/"+URLDecoder.decode(fileDetail.getFileName(), "UTF-8"));
+				file = new File(fileDetail.getUploadPath()+"\\"+URLDecoder.decode(fileDetail.getFileName(), "UTF-8"));
 				String FileName = file.getAbsolutePath();
 				System.out.println("fileName:"+FileName);
 				file = new File(FileName);
