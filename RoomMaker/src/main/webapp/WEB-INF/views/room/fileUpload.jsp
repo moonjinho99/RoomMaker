@@ -16,19 +16,21 @@
 		 	<span>자료 올리기</span>
 		 	</div>
 		 	<div class="fileUpload_title">
-		 		<div class="span"><span>TITLE</span></div>
+		 		<span class="span">TITLE</span>
 		 		<input type="text" class="filetitle" name="filetitle">
 		 	</div>
 		 	<div class="fileUpload_div">
-		 		<span>첨부파일</span>
-		 		<input type="file" multiple name="uploadFile">
+		 		<span class="span">첨부파일</span>
+		 		<input type="file" class="uploadFile" multiple name="uploadFile">
 		 	</div>
 		 	<div class="fileUpload_content">
-		 		<span>설명</span>
-		 		<textarea class="content" name="content" rows="4" cols="10"></textarea>
+		 		<span class="span">설명</span>
+		 		<textarea class="content" name="content"></textarea>
 		 	</div>
-		 <input type="button" class="filebutton" onclick="fileUploadAction()" value="자료 올리기">
-		 <input type="button" id="resetbutton" onclick="resetAction()" value="취소">
+		 <div class="fileUploadButtons">
+		 	<input type="button" class="filebutton" onclick="fileUploadAction()" value="자료 올리기">
+		 	<input type="button" id="resetbutton" onclick="resetAction()" value="취소">
+		 </div>	
 		 </div>
 		</form>
         <div class="clear"></div>

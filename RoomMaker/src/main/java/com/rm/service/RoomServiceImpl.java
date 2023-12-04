@@ -116,6 +116,18 @@ public class RoomServiceImpl implements RoomService{
 		return mapper.countFile();
 	}
 	
+	//deleteFile
+	@Override
+	public void deleteFile(int roomcode, int filecode) {
+		mapper.deleteFile(roomcode, filecode);
+	}
+	
+	//modifyFile
+	@Override
+	public void updateFile(FileVO file, int filecode) {
+		mapper.updateFile(file, filecode);
+	}
+	
 	//방 입장시 roommember 삽입
 	@Override
 	public void insertRoomMember(RoomMemberVO roommember) {

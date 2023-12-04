@@ -57,6 +57,12 @@ public interface RoomMapper {
 	//fileDetail 媛��졇�삤湲�
 	public FileVO getFileDetail(int roomcode, int filecode);
 	
+	//file Delete
+	public void deleteFile(int roomcode, int filecode);
+	
+	//file modify
+	public void updateFile(FileVO file, int filecode);
+	
 	//roomMember에 삽입
 	public void insertRoomMember(RoomMemberVO roomVO);
 	

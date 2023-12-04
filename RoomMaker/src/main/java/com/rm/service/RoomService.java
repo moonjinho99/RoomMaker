@@ -43,6 +43,12 @@ public interface RoomService {
 	//filedetail 媛��졇�삤湲�
 	public FileVO getFileDetail(int roomcode,int filecode);
 	
+	//delete file
+	public void deleteFile(int roomcode, int filecode);
+	
+	//modify file
+	public void updateFile(FileVO file, int filecode);
+	
 	//roommember 삽입
 	public void insertRoomMember(RoomMemberVO roommember);
 	//fileList 갯수

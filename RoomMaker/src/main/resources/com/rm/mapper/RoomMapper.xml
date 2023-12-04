@@ -112,6 +112,16 @@
 		select f1.filecode,roomcode,filetitle,fileuploaddate,filemember,content,fileName,uploadPath from file f1 join filedetail f2 on f1.filecode = f2.filecode where roomcode= #{param1} and f1.filecode = #{param2}
 	</select>
 	
+	<!-- 자료 삭제 -->
+	<select id="deleteFile">
+		delete from file where roomcode = #{param1} and filecode = #{param2}
+	</select>
+	
+	<insert id="updateFile">
+	    update file set filetitle = #{param1.filetitle} where filecode = #{param2};
+		update filedetail set content = #{param1.content} where filecode = #{param2}
+	</insert>
+	
 	<!-- 방 입장시 roommember에 삽입 -->
 	<insert id="insertRoomMember">
 		insert into roommember values(#{roomcode},#{id},#{roomlevel})

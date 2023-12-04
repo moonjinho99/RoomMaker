@@ -325,7 +325,7 @@ public class RoomController{
 	   }
 	   
 	   @GetMapping("/loadDynamicJSP")
-	    public String loadDynamicJSP(@RequestParam String buttonValue,int roomcode, Model model ,HttpServletRequest request) {
+	    public String loadDynamicJSP(@RequestParam String buttonValue,int roomcode, Model model ) {
 	        // Your logic to determine which JSP to include based on buttonValue
 	        String jspToInclude = determineJSP(buttonValue,roomcode,model);
 	        
@@ -546,7 +546,6 @@ public class RoomController{
 	            // 예외 처리 로직 추가
 	        }
 		   
-		   
 		   /*
 		   //response사용
 		   log.info("fileDownloading.............");
@@ -565,21 +564,14 @@ public class RoomController{
 			    storeToFileName = URLEncoder.encode(uploadedFile.getFileName(), "UTF-8");
 			  } else {
 			    //나머지 브라우저에서 인코딩
-<<<<<<< Updated upstream
 			    storeToFileName = new String(uploadedFile.getFileName().getBytes("UTF-8"), "iso-8859-1");
 			    System.out.println("다운로드 : "+storeToFileName);
 			  }
 		   
-		   response.setContentType("application/octet-stream");
-		   response.setHeader("Content-Disposition", "attachment; filename=\"" + storeToFileName + "\"");
-=======
-			    storeToFileName = new String(uploadedFile.getFileName().getBytes("UTF-8"), "UTF-8");
 			    System.out.println("인코딩 된 : "+storeToFileName);
-			  }
 		   
 		   response.setContentType("application/octet-stream");
 		   response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
->>>>>>> Stashed changes
 		   response.setHeader( "Content-Transfer-Encoding", "binary" );
 		   
 		 //파일복사
@@ -592,27 +584,62 @@ public class RoomController{
 	   
 	   //파일 삭제
 		@PostMapping("/deleteUploadedFile")
-		public ResponseEntity<String> deleteUploadedFile(String fileName){
+		public String deleteUploadedFile(int filecode, int roomcode, Model model){
 			
-			log.info("deleteFile........" + fileName);
+			String buttonValue="자료공유";
+			String result = null;
+			log.info("deleteFile........" + filecode+"("+roomcode+")");
+			FileVO fileDetail = roomService.getFileDetail(roomcode, filecode);
 			File file = null;
 			
 			try {
-				file = new File("/Users/hangayeon/RoomMaker/RoomMaker/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapp/upload" 
-			+ URLDecoder.decode(fileName, "UTF-8"));
 				//원본파일삭제
+				file = new File(fileDetail.getUploadPath()+"/"+URLDecoder.decode(fileDetail.getFileName(), "UTF-8"));
 				String FileName = file.getAbsolutePath();
-				log.info("FileName : " + FileName);
+				System.out.println("fileName:"+FileName);
 				file = new File(FileName);
-				file.delete();
+				if (file.exists()) {
+				    file.delete();
+				} else {
+					System.out.println("해당 파일이 존재하지 않습니다.");
+				}
+				
+				//DB 삭제
+				roomService.deleteFile(roomcode, filecode);
+				result = determineJSP(buttonValue,roomcode,model);
+				
 			} catch(Exception e) {
 				e.printStackTrace();
-				return new ResponseEntity<String>("fail", HttpStatus.NOT_IMPLEMENTED);
+				
 			}
 			
-			return new ResponseEntity<String>("success", HttpStatus.OK);
+			return result;
+		}
+		
+		@GetMapping("/goFileModify")
+		public String goFileModify( @RequestParam int roomcode, int filecode, Model model) {
+			FileVO file = roomService.getFileDetail(roomcode, filecode);
+			model.addAttribute("file",file);
+			
+			return "/room/fileModify";
+		}
+		
+		@PostMapping("/modifyUploadedFile")
+		public String mofidyUloadedFile(@RequestParam int roomcode,@RequestParam int filecode,@RequestParam("filetitle") String filetitle,@RequestParam String content, Model model) {
+			
+			log.info("modifyFile.........");
+			FileVO file = new FileVO();
+			file.setFiletitle(filetitle);
+			file.setContent(content);
+			
+			roomService.updateFile(file, filecode);
+			
+			String buttonValue= "자료공유";
+			return determineJSP(buttonValue, roomcode, model);
 			
 		}
 		
+
+	
 }
 
