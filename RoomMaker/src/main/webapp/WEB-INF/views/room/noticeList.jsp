@@ -65,9 +65,12 @@
 <body>
 <div class="notice_main">
 <h1>공지 목록페이지입니다.</h1>
+<c:if test="${roomDetail.id == member.id}">
 <div class="noticeEnrollGo_div" style="margin-left: 800px;">
 <a onclick="gonoticeEnroll()" data-value="공지등록" id="noticeEnrollGo" class="noticeEnrollGo" style="border: 2px solid black;">공지 등록</a>	
 </div>
+</c:if>
+
 <div class="table_wrap">
 	<table>
 		<thead>
@@ -140,6 +143,25 @@ $(document).ready(function(){
 });
 
 
+function gonoticeEnroll(){   
+    var buttonValue= document.getElementById("noticeEnrollGo").getAttribute('data-value');
+        
+    $.ajax({
+         type: 'GET',
+         url: '/room/loadDynamicJSP',
+         data: {buttonValue: buttonValue , roomcode:roomcode},
+         success: function (data) {
+             $('#dynamicContent').html(data);
+             },
+             error: function (xhr, status, error) {
+                 console.error("에러 발생:", error);
+             }
+
+    });
+       
+}
+
+
 function goNoticeDetail(noticecode){
 
 	$.ajax({
@@ -206,6 +228,7 @@ function afterNoticeAction(){
         }
     });
 }
+
 </script>
 
 

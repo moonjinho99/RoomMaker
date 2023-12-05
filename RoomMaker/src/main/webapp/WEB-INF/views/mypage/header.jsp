@@ -13,7 +13,7 @@
 			<span style="font-size: 24px;">${member.name}님</span>
 		</div>
 		<div class="make_room_logout" style="width: 10%;">
-			<button class="logout" onclick="logout()">logout</button>
+			<button class="logout" onclick="logout()" style="background-color: rgba( 255, 255, 255, 0 );">logout</button>
 		</div>
 
 </header>

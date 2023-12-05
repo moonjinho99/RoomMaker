@@ -9,6 +9,7 @@ import com.rm.model.PagingVO;
 import com.rm.model.RoomMemberVO;
 import com.rm.model.FileVO;
 import com.rm.model.NoticeVO;
+import com.rm.model.MemberVO;
 import com.rm.model.RoomVO;
 
 public interface RoomMapper {
@@ -89,8 +90,17 @@ public interface RoomMapper {
 	//회원의 이름
 	public String selectName(String id);
 	
+
 	/*공지 등록*/
 	public void noticeEnroll(NoticeVO notice);
+
+	//참여 회원 정보
+	public List<MemberVO> roomMemberList(int roomcode);
+	
+	//방 정보 수정
+	public void updateRoom(RoomVO vo);
+	
+
 	
 	/*공지 리스트(페이징)*/
 	public List<NoticeVO> getNoticeList(int roomcode, PagingVO vo);

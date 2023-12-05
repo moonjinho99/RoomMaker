@@ -1,16 +1,15 @@
 package com.rm.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.rm.mapper.RoomMapper;
 import com.rm.model.PagingVO;
 import com.rm.model.RoomMemberVO;
 import com.rm.model.FileVO;
 import com.rm.model.NoticeVO;
+import com.rm.model.MemberVO;
 import com.rm.model.RoomVO;
 
 @Service
@@ -182,6 +181,19 @@ public class RoomServiceImpl implements RoomService{
 	@Override
 	public String selectName(String id) {
 		return mapper.selectName(id);
+	}
+
+
+	@Override
+	public List<MemberVO> roomMemberList(int roomcode) {
+
+		return mapper.roomMemberList(roomcode);
+	}
+
+
+	@Override
+	public void updateRoom(RoomVO vo) {
+		mapper.updateRoom(vo);
 	}
 	
 	/*공지 등록*/

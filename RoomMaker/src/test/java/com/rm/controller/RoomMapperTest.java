@@ -105,7 +105,16 @@ public class RoomMapperTest {
 	@Test
 	public void testSelectName()
 	{
-		System.out.println(mapper.selectName("ok2241"));
+		RoomVO vo = new RoomVO();
+		
+		vo.setRoomcode(73);
+		vo.setTitle("자바 심화반");
+		vo.setRoompw("123");
+		vo.setMember_cnt(10);
+		vo.setJoin_member_cnt(1);
+		vo.setExplanation("자바 심화반입니다.");
+		
+		mapper.updateRoom(vo);
 	}
 	
 }

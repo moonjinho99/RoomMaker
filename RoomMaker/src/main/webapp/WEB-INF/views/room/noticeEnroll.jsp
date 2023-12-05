@@ -17,6 +17,10 @@
 	margin-left: -90px;
 }
 </style>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 <body>
 <div class="noticeEnroll"></div>
 <h1>공지 등록</h1>
@@ -27,7 +31,7 @@
     
     <div class="input_wrap">
         <label style="font-weight: bold;">Title</label>
-        <input class="title" style="width: 300px; height: 30px;margin-left: 20px;" >
+        <input type="text" class="title" style="width: 300px; height: 30px;margin-left: 20px;" >
     </div>
    
     <div class="input_wrap">
@@ -43,9 +47,7 @@
 </form>
 <script type="text/javascript">
 function NoticeEnrollAction(){
-	
-	
-    
+	   
     var title = $('.title').val();
     var content = $('.content').val();
     var writemember = $('.writemember').val();

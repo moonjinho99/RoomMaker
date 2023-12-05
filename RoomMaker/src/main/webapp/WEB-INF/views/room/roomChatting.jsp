@@ -7,6 +7,15 @@
     <input type="button" id="sendBtn" value="전송"/>
 </div>
 
+<style>
+.other-message{
+	font-size: 24px;
+}
+.own-message{
+	font-size: 24px;
+}
+</style>
+
 <script type="text/javascript">
 
 
@@ -15,11 +24,8 @@ $("#sendBtn").click(function() {
     $('#message').val('');
 });
 //스크립트의 최상위에서 sock 변수를 선언
-<<<<<<< HEAD
-let sock = new SockJS("http://localhost:8081/chatting");
-=======
+
 let sock = new SockJS("http://localhost:8000/chatting");
->>>>>>> fb4436c26a66f19a01489d3052f70cddc242a534
 
 sock.onmessage = onMessage;
 sock.onclose = onClose;

@@ -4,7 +4,6 @@
 <aside>
  <div class="aside_function">
      <div class="clear"></div>
-     <button class="room_function">일정보기</button>
      <button class="room_function">자료공유</button>
      <button class="room_function">채팅하기</button>
      <button class="room_function">질문확인</button>

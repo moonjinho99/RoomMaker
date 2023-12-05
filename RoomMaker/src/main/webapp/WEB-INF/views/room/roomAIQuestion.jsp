@@ -68,7 +68,7 @@
         // 전송 버튼
         const sendButton = document.querySelector('#sendButton');
         // 발급받은 OpenAI API 키를 변수로 저장
-        const apiKey = "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";
+        const apiKey = "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";
         // OpenAI API 엔드포인트 주소를 변수로 저장
         const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
         

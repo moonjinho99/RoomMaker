@@ -112,9 +112,7 @@
 		select f1.filecode,roomcode,filetitle,fileuploaddate,filemember,content,fileName,uploadPath from file f1 join filedetail f2 on f1.filecode = f2.filecode where roomcode= #{param1} and f1.filecode = #{param2}
 	</select>
 	
-<<<<<<< HEAD
 
-=======
 	<!-- 자료 삭제 -->
 	<select id="deleteFile">
 		delete from file where roomcode = #{param1} and filecode = #{param2}
@@ -125,7 +123,7 @@
 		update filedetail set content = #{param1.content} where filecode = #{param2}
 	</insert>
 	
->>>>>>> fb4436c26a66f19a01489d3052f70cddc242a534
+
 	<!-- 방 입장시 roommember에 삽입 -->
 	<insert id="insertRoomMember">
 		insert into roommember values(#{roomcode},#{id},#{roomlevel})
@@ -197,7 +195,7 @@
 			    JOIN roomdetail r2 ON r1.roomcode = r2.roomcode
 			    JOIN roommember r3 ON r1.roomcode = r3.roomcode
 			    JOIN room_image r4 ON r1.roomcode = r4.roomcode
-			    where r1.id =#{param1} 
+			    where r1.id =#{param1} and r3.id = #{param1}
 			    ORDER BY roomcode DESC
 			) AS b
 			WHERE rn BETWEEN #{param2.start} AND #{param2.end};
@@ -205,7 +203,7 @@
  	
  	<!-- 내가 만든 방의 수 -->
 	<select id="countMakeRoom" resultType="int">
-		select count(*) from room r1 join roomdetail r2 on r1.roomcode = r2.roomcode join roommember r3 on r1.roomcode = r3.roomcode join room_image r4 on r1.roomcode = r4.roomcode where r1.id = #{id}; 
+		select count(r1.roomcode) from room r1 join roomdetail r2 on r1.roomcode = r2.roomcode join roommember r3 on r1.roomcode = r3.roomcode join room_image r4 on r1.roomcode = r4.roomcode where r1.id = #{id} and r3.id = #{id}; 
 	</select>	
 
 	
@@ -218,6 +216,10 @@
 		select name from member where id = #{id}
 	</select>
 	
+	<!-- 참여중인 회원 정보 가져오기 -->
+	<select id="roomMemberList" resultType="com.rm.model.MemberVO">
+		select m1.id,name,gender from member m1 join roommember m2 on m1.id = m2.id where m2.roomcode=#{roomcode}
+	</select>	
 	
 	<select id="countNotice" resultType="int">
 	SELECT COUNT(*) FROM NOTICE
@@ -243,5 +245,9 @@
         update notice set title = #{title}, content = #{content}
     </update> 
     
-    
+	<!-- 방의 정보 수정 -->
+	<update id="updateRoom">
+		update roomdetail set roomcode = #{roomcode}, title=#{title}, roompw=#{roompw}, member_cnt=#{member_cnt}, join_member_cnt=#{join_member_cnt},explanation=#{explanation} where roomcode=#{roomcode}
+	</update>
+
 </mapper>

@@ -5,6 +5,7 @@ import com.rm.model.PagingVO;
 import com.rm.model.RoomMemberVO;
 import com.rm.model.FileVO;
 import com.rm.model.NoticeVO;
+import com.rm.model.MemberVO;
 import com.rm.model.RoomVO;
 
 public interface RoomService {
@@ -73,7 +74,7 @@ public interface RoomService {
 	//내가 만든 방의 수 
 	public int countMakeRoom(String id);
 	
-<<<<<<< HEAD
+
 	//공지 등록
 	public void noticeEnroll(NoticeVO notice);
 	
@@ -87,8 +88,15 @@ public interface RoomService {
     
     /*공지 수정*/
     public int noticeModify(NoticeVO notice);
-=======
+
 	//회원의 이름 가져오기
 	public String selectName(String id);
->>>>>>> fb4436c26a66f19a01489d3052f70cddc242a534
+
+	
+	//참여 회원 정보
+	public List<MemberVO> roomMemberList(int roomcode);
+	
+	//방 정보 수정
+	public void updateRoom(RoomVO vo);
+
 }
