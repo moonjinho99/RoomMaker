@@ -13,6 +13,7 @@ import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -53,6 +54,11 @@ import com.rm.model.NoticeVO;
 import com.rm.model.RoomMemberVO;
 import com.rm.model.PagingVO;
 import com.rm.model.FileVO;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.rm.mapper.AttachMapper;
+import com.rm.model.AttachImageVO;
+import com.rm.model.QuestionVO;
 import com.rm.model.RoomVO;
 import com.rm.service.AdminService;
 import com.rm.service.MemberService;
@@ -130,7 +136,7 @@ public class RoomController{
 			
 		}// for
 		
-		String uploadFolder = "C:\\upload";
+		String uploadFolder = "/Users/choejin-yeong/RoomMaker/RoomMaker/RoomMaker/Upload";
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -204,6 +210,8 @@ public class RoomController{
 	
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getImage(String fileName){
+		//File file = new File("c:\\upload\\" + fileName);
+		
 		File file = new File("c:\\upload\\" + fileName);
 		
 		ResponseEntity<byte[]> result = null;
@@ -234,7 +242,7 @@ public class RoomController{
 		
 		try {
 			//썸네일 파일 삭제
-			file = new File("c:\\upload\\"+URLDecoder.decode(fileName,"UTF-8"));
+			file = new File("c:\\\\upload\\\\"+URLDecoder.decode(fileName,"UTF-8"));
 			
 			file.delete();
 			
@@ -318,6 +326,10 @@ public class RoomController{
 		   }
 		   
 		   return "redirect:/room/roomDetail?roomcode="+roomcode;
+	      
+	      
+	     
+	      
 	   }
 	   
 	   
@@ -370,7 +382,23 @@ public class RoomController{
                   
               } else if ("채팅하기".equals(buttonValue)) {
                   jspToInclude = "/room/roomChatting";
-              } else if ("질문확인".equals(buttonValue)) {
+              } else if (("질문확인".equals(buttonValue))||("조회취소".equals(buttonValue))) {
+            	  
+            	log.info("질문 확인 목록 진입");
+            	
+            	PagingVO paging = new PagingVO();
+            	String nowPage = null;
+            	String cntPerPage = null;
+            	System.out.println("자료공유 roomcode=" + roomcode);
+            	questionListAction(paging,model,roomcode,nowPage,cntPerPage);
+            	
+//         	model.addAttribute("list", roomService.question(roomcode));
+//        		   
+//       		   	List<QuestionVO> list = roomService.question(roomcode);
+//       		   
+//       		   	System.out.println(list);
+            	
+       		               	  
                   jspToInclude = "/room/question";
               } else if ("공지보기".equals(buttonValue)) {
                   
@@ -394,6 +422,20 @@ public class RoomController{
             	  jspToInclude = "/room/fileUpload";
               } else if ("방수정".equals(buttonValue)) {
             	  jspToInclude = "/room/roomUpdate";
+              } else if("글 작성".equals(buttonValue)) {
+            	  
+            	  log.info("글 작성 진입");
+            	              	  
+            	  model.addAttribute("roomcode", roomcode);
+            	              	  
+            	  jspToInclude = "/room/questionWrite";
+              } else if("조회하기".equals(buttonValue)) {
+            	  
+            	  log.info("조회하기 진입");
+            	  
+            	  model.addAttribute("roomcode", roomcode);
+            	  
+            	  jspToInclude = "/room/questionDetail";
               }
 
            return jspToInclude; 
@@ -563,7 +605,8 @@ public class RoomController{
 			  }
 		   
 		// 업로드할 파일 경로 설정
-	        String downloadPath = "C:\\Users\\PC\\Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다
+	        String downloadPath = "/Users/choejin-yeong/Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다.
+
 	        // 다운로드 폴더에 파일 복사
 	        try {
 	            Path targetPath = new File(downloadPath, storeToFileName).toPath();
@@ -763,5 +806,155 @@ public class RoomController{
 
 	          return "room/noticeList";
 	      }
+	   
+	   	
+	   
+	
+	
+	   /* 질문하기 페이지 접속 */
+	   @GetMapping("/question")
+	   public void roomQuestionGET(int roomcode,Model model) {
+	  
+		   
+
+	   }
+	   
+	   @PostMapping("/question")
+	   public void roomQuestionPOST(QuestionVO roomcode) {
+		   
+		   log.info("QuestionVO : " + roomcode);
+		   
+	   }
+	 
+	   
+	   // 게시글 작성 처리 
+	   @PostMapping("/questionWrite")
+	   public String roomQuestionWrtiePOST(@RequestParam int roomcode, String questiontitle, String questionmember, String content, Model model) throws Exception{// POST > () 괄호안에 roomDetail.jsp 안에 변수 값 4개를 넣어줌
+		   
+		   QuestionVO qvo = new QuestionVO();
+		   
+		   qvo.setRoomcode(roomcode);
+		   qvo.setQuestiontitle(questiontitle);
+		   qvo.setContent(content);
+		   qvo.setQuestionmember(questionmember);
+		   
+		   roomService.insertQuestion(qvo);
+		   int qcode = roomService.findQuestionCode();
+		   
+		   qvo.setQuestioncode(qcode);
+		   
+		   roomService.insertQuestionDetail(qvo);
+		   
+		   
+		   
+		   
+		   String buttonvalue = "질문확인"; // 스트링으로 담고 나서 넣어주거나 
+		   
+		   //String address = determineJSP(buttonValue,roomcode,model);
+		   //return address;
+		   
+		  return determineJSP(buttonvalue,roomcode,model);
+		    
+	   }
+	   
+	   
+	   /* 조회 하기 */
+	   @GetMapping("/questionDetail")
+	   public String roomQuestionDetailGET(@RequestParam int roomcode, @RequestParam int questioncode, Model model, HttpServletRequest request) {
+		   
+		   System.out.println("questionDetail : " + roomcode);
+		   
+		   QuestionVO getQuestionDetail = roomService.getQuestionDetail(roomcode, questioncode);
+		   
+		   model.addAttribute("questionDetail",getQuestionDetail);
+		   
+		   return "/room/questionDetail";
+		   
+		  
+	   }
+	   
+	   @GetMapping("questionModify")
+	   public String questionModify(@RequestParam int roomcode, int questioncode, Model model) {
+		   
+		   QuestionVO question = roomService.getQuestionDetail(roomcode, questioncode);
+		   
+		   model.addAttribute("question", question);
+		   
+		   return "/room/questionModify";
+	   }
+	   
+	   @PostMapping("/modifyUploadedQuestion")
+	   public String modifyUploadedQuestion(@RequestParam int roomcode, @RequestParam int questioncode, @RequestParam("questiontitle") String questiontitle, @RequestParam String content, Model model) {
+		   
+	   }
+		
+		@PostMapping("/modifyUploadedFile")
+		public String mofidyUloadedFile(@RequestParam int roomcode,@RequestParam int filecode,@RequestParam("filetitle") String filetitle,@RequestParam String content, Model model) {
+			
+			log.info("modifyFile.........");
+			FileVO file = new FileVO();
+			file.setFiletitle(filetitle);
+			file.setContent(content);
+			
+			roomService.updateFile(file, filecode);
+			
+			String buttonValue= "자료공유";
+			return determineJSP(buttonValue, roomcode, model);
+			
+		}
+////////////////////
+	   
+	   @PostMapping("/questionListPaging")
+	   public String questionListPaging(
+	       @RequestParam(value = "nowPage", required = false) Integer nowPage,
+	       @RequestParam(value = "cntPerPage", required = false) Integer cntPerPage,
+	       int roomcode,
+	       Model model) {
+	       PagingVO paging = new PagingVO();
+
+	       String nowPageStr = Integer.toString(nowPage);
+	       String cntPerPageStr = Integer.toString(cntPerPage);
+	       System.out.println("questionListPaging 이동");
+	       
+	       questionListAction(paging, model, roomcode, nowPageStr, cntPerPageStr);
+
+	       return "room/question";
+	   }
+	   
+	   public void questionListAction(PagingVO vo, Model model,@RequestParam int roomcode,
+			   @RequestParam(value="nowPage", required=false)String nowPage,
+				@RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		   
+		   int total = roomService.questionCount(roomcode);
+		   System.out.println("questionListAction 이동");
+		   System.out.println("question total: "+total);
+		   if(nowPage == null && cntPerPage == null) {
+				nowPage="1";
+				cntPerPage = "6";
+			} else if(nowPage == null) {
+				nowPage = "1";
+			} else if(cntPerPage == null) {
+				cntPerPage="6";
+			}
+		   
+		   vo = new PagingVO(total,Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			
+			model.addAttribute("paging",vo);
+			System.out.println(vo);
+		   
+		   
+		   List<QuestionVO> list = new ArrayList<QuestionVO>();
+   		   list = roomService.question(roomcode, vo);
+   		   System.out.println("question : " + list);
+   			model.addAttribute("list", list);
+   			
+   			
+	   }
+	   
+	   
+	   
+	   
+	   
+	   	  
 }
 

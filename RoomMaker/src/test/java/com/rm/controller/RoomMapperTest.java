@@ -1,5 +1,6 @@
 package com.rm.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -10,6 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.rm.mapper.RoomMapper;
 import com.rm.model.RoomMemberVO;
+import com.rm.model.AttachImageVO;
+import com.rm.model.QuestionVO;
 import com.rm.model.RoomVO;
 
 import org.slf4j.Logger;
@@ -28,14 +31,14 @@ public class RoomMapperTest {
 //	{
 //		RoomVO vo = new RoomVO();
 //		
-////		vo.setTitle("Å×½ºÆ®Á¦¸ñ");
-////		vo.setId("Å×½ºÆ®¹æÀå");
+////		vo.setTitle("ï¿½×½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
+////		vo.setId("ï¿½×½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
 ////		vo.setMain_img("123");
 ////		vo.setMember_cnt(3);
 ////		vo.setExplanation("333");
 ////		
 ////		vo.setRoomcode(4);
-////		vo.setRoompw("Å×½ºÆ®¾ÏÈ£");
+////		vo.setRoompw("ï¿½×½ï¿½Æ®ï¿½ï¿½È£");
 ////		vo.setType(1);
 ////		
 ////		mapper.makeRoom(vo);
@@ -67,8 +70,8 @@ public class RoomMapperTest {
 //	@Test
 //	public void testPaging()
 //	{
-//		System.out.println("°Ô½Ã¹° °³¼ö : "+mapper.countRoom());
-//		//System.out.println("°Ô½Ã¹° ÆäÀÌÂ¡ Ã³¸® : "+mapper.selectRoom(null));
+//		System.out.println("ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½ : "+mapper.countRoom());
+//		//System.out.println("ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½ : "+mapper.selectRoom(null));
 //	}
 	
 //	@Test
@@ -102,19 +105,88 @@ public class RoomMapperTest {
 //		System.out.println(mapper.countJoinRoom("ok2241"));
 //	}
 	
+//	@Test
+//	public void testSelectName()
+//	{
+//		RoomVO vo = new RoomVO();
+//		
+//		vo.setRoomcode(73);
+//		vo.setTitle("ï¿½Ú¹ï¿½ ï¿½ï¿½È­ï¿½ï¿½");
+//		vo.setRoompw("123");
+//		vo.setMember_cnt(10);
+//		vo.setJoin_member_cnt(1);
+//		vo.setExplanation("ï¿½Ú¹ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
+//		
+//		mapper.updateRoom(vo);
+//		System.out.println("ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½ : "+mapper.countRoom());
+//		//System.out.println("ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½ : "+mapper.selectRoom(null));
+//	}
+//	
+//	@Test
+//	public void testQuestion() {
+//		
+//		QuestionVO vo = new QuestionVO();
+//		
+//		vo.setRoomcode(14);
+//		vo.setQuestioncode(15);
+//		vo.setQuestiontitle("quest_test");
+//		vo.setQuestiondate(null);
+//		vo.setQuestionmember("quest_test");
+//		vo.setContent("quest_test");
+//		vo.setAnswer("quest_test");
+//		vo.setAnswerdate("quest_test");
+//		vo.setAnswermember("quest_test");
+//		
+//		mapper.question(vo);
+//	
+//	}
+	
+//	@Test
+//	public void test01() {
+//		
+//		QuestionVO vo = new QuestionVO();
+//		
+//		vo.setRoomcode(1);
+//		vo.setQuestiontitle("afafa");
+//		vo.setQuestiondate(null);
+//		vo.setQuestionmember("aa");
+//		
+//		//mapper.insertQuestion(vo);
+//		
+//		int num = mapper.findQuestionCode();
+//		vo.setQuestioncode(num);
+//		vo.setContent("gaga");
+//		vo.setAnswer("afaf");
+//		vo.setAnswermember("admin");
+//		
+//		mapper.insertQuestionDetail(vo);
+//		
+//		
+//		
+//	}
+	
+//	@Test
+//	public void test02() {
+//		List<QuestionVO> list = mapper.question(1);
+//	
+//		System.out.println(list);
+//		
+//	
+//	}
+	
 	@Test
-	public void testSelectName()
-	{
-		RoomVO vo = new RoomVO();
+	public void testIQ() {
+		List<QuestionVO> list = mapper.question(1);
 		
-		vo.setRoomcode(73);
-		vo.setTitle("ÀÚ¹Ù ½ÉÈ­¹Ý");
-		vo.setRoompw("123");
-		vo.setMember_cnt(10);
-		vo.setJoin_member_cnt(1);
-		vo.setExplanation("ÀÚ¹Ù ½ÉÈ­¹ÝÀÔ´Ï´Ù.");
+		QuestionVO vo = new QuestionVO();
+		vo.setRoomcode(1);
+		vo.setQuestiontitle("IQ test");
+		vo.setQuestionmember("IQ test");
 		
-		mapper.updateRoom(vo);
+		System.out.println(list);
+		
 	}
+	
+	
 	
 }

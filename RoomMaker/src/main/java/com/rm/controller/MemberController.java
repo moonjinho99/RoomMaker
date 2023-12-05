@@ -43,14 +43,15 @@ public class MemberController {
 	//회원가입
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String joinPOST(MemberVO member) throws Exception{
-		logger.info("memberVO : "+member);
+		
 		logger.info("join 진입");
 		
 		//회원가입 서비스 실행
 		memberService.memberJoin(member);
+		
 		logger.info("join Service 성공");
 		
-		return "redirect:/member/login";
+		return "redirect:/main";
 	}
 	
 	

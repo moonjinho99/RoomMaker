@@ -10,6 +10,7 @@ import com.rm.model.RoomMemberVO;
 import com.rm.model.FileVO;
 import com.rm.model.NoticeVO;
 import com.rm.model.MemberVO;
+import com.rm.model.QuestionVO;
 import com.rm.model.RoomVO;
 
 @Service
@@ -109,6 +110,52 @@ public class RoomServiceImpl implements RoomService{
 		   System.out.println("serviceroomcode :"+roomcode);
 		return mapper.getFileDetail(roomcode, filecode);
 	}
+	// 질문 목록 가져오기
+	@Override
+	public List<QuestionVO> question(int roomcode, PagingVO vo) {
+		
+		return mapper.question(roomcode,vo);
+		
+	}
+	// insertQuestion 가져오기
+	@Override
+	public void insertQuestion(QuestionVO room) {
+		
+		mapper.insertQuestion(room);
+		
+	}
+	
+	@Override
+	public void insertQuestionDetail(QuestionVO room) {
+		
+		mapper.insertQuestionDetail(room);
+		
+	}
+	
+
+	@Override
+	public int findQuestionCode() {
+		
+		return mapper.findQuestionCode();
+		
+		
+	}
+	
+	@Override
+	public QuestionVO getQuestionDetail(int roomcode, int questioncode) {
+		
+		System.out.println("" + roomcode);
+		
+		return mapper.getQuestionDetail(roomcode, questioncode);
+	}
+	
+	//question 갯수 가져오기
+	@Override
+	public int questionCount(int roomcode) {
+		
+		return mapper.questionCount(roomcode);
+	}
+
 	
 	//fileList 갯수 가져오기
 	@Override
@@ -173,9 +220,22 @@ public class RoomServiceImpl implements RoomService{
 	//내가 만든 방의 수
 	@Override
 	public int countMakeRoom(String id) {
-		// TODO Auto-generated method stub
 		return mapper.countMakeRoom(id);
 	}
+
+
+	
+
+	
+
+
+	
+
+
+	
+
+
+	
 
 
 	@Override

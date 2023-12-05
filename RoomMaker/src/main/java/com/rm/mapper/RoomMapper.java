@@ -10,6 +10,7 @@ import com.rm.model.RoomMemberVO;
 import com.rm.model.FileVO;
 import com.rm.model.NoticeVO;
 import com.rm.model.MemberVO;
+import com.rm.model.QuestionVO;
 import com.rm.model.RoomVO;
 
 public interface RoomMapper {
@@ -107,8 +108,24 @@ public interface RoomMapper {
 	// 게시물 총 갯수
 	public int countNotice();
 
+	//questuion 삽입
+	public List<QuestionVO> question(int roomcode);
 	
+	//question 리스트 가져오기
+	public List<QuestionVO> question(int roomcode, PagingVO vo);
 	
+	//글 작성
+	public void insertQuestion(QuestionVO room);
+	
+	public int findQuestionCode();
+	
+	public void insertQuestionDetail(QuestionVO room);
+	
+	//글 조회하기
+	public QuestionVO getQuestionDetail(int roomcode, int questioncode);
+	
+	// question count
+	public int questionCount(int roomcode);	
 	
 	
 	/* 공지 디테일 */
