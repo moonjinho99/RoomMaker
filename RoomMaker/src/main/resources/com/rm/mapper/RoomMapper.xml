@@ -222,21 +222,21 @@
 	</select>	
 	
 	<select id="countNotice" resultType="int">
-	SELECT COUNT(*) FROM NOTICE
+		SELECT COUNT(*) FROM NOTICE
 	</select>
+	
+	
 	<!-- 퀘스트 리스트 -->
 	<select id="question" resultType = "com.rm.model.QuestionVO">
 			select * from(select ROW_NUMBER() OVER (ORDER BY questioncode DESC) AS rn,
-		roomcode, questioncode, questiontitle, questiondate, questionmember from question) a
+		roomcode, questioncode, questiontitle, questiondate, questionmember,content from question) a
 		 where roomcode = #{param1} and rn BETWEEN #{param2.start} AND #{param2.end} ORDER BY questiondate desc
-	
-
 	</select>
 	
 	
 	<insert id="insertQuestion">
 		
-		insert into question(roomcode,questiontitle,questiondate,questionmember) values(#{roomcode}, #{questiontitle}, sysdate(), #{questionmember})
+		insert into question(roomcode,questiontitle,questiondate,questionmember,content) values(#{roomcode}, #{questiontitle}, sysdate(), #{questionmember},#{content})
 	
 	</insert>
 	
@@ -245,28 +245,21 @@
 	</select>
 	
 	
-	<insert id="insertQuestionDetail"> 
+	<!-- <insert id="insertQuestionDetail"> 
 	
 		insert into questiondetail values(#{questioncode},#{content}, #{answer}, sysdate(),#{answermember})
 	
-	</insert>
+	</insert> -->
 	
 	<select id="getQuestionDetail" resultType = "com.rm.model.QuestionVO">
-			
-			select q1.questioncode,roomcode,questiontitle,questiondate,questionmember,content,answer,answerdate,answermember from question q1 join questiondetail q2 on q1.questioncode = q2.questioncode where roomcode= #{param1} and q1.questioncode = #{param2}
-	
+			select * from question where roomcode=#{param1} and questioncode=#{param2}
 	</select>
 	
-	<!-- 자료리스트의 수 -->
+	
+	<!--질문리스트의 수 -->
 	<select id="questionCount" resultType="int">
 		select count(*) from question where roomcode = #{roomcode}
 	</select>
-	
-	
-	
-	
-	
-	
 	
 	
 	<select id="getNoticeList" resultType="com.rm.model.NoticeVO">
@@ -284,7 +277,7 @@
     </select>
     
     <!-- 공지 수정 -->
-<update id="noticeModify">
+	<update id="noticeModify">
         <!-- MySQL -->
         update notice set title = #{title}, content = #{content}
     </update> 

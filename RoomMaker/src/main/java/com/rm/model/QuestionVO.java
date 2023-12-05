@@ -13,6 +13,7 @@ public class QuestionVO {
 	private String answer;
 	private Date answerdate;
 	private String answermember;
+	
 	public int getRoomcode() {
 		return roomcode;
 	}

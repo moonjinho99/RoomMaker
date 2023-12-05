@@ -109,7 +109,7 @@ public interface RoomMapper {
 	public int countNotice();
 
 	//questuion 삽입
-	public List<QuestionVO> question(int roomcode);
+	//public List<QuestionVO> question(int roomcode);
 	
 	//question 리스트 가져오기
 	public List<QuestionVO> question(int roomcode, PagingVO vo);
@@ -119,14 +119,14 @@ public interface RoomMapper {
 	
 	public int findQuestionCode();
 	
-	public void insertQuestionDetail(QuestionVO room);
+	//public void insertQuestionDetail(QuestionVO room);
 	
 	//글 조회하기
 	public QuestionVO getQuestionDetail(int roomcode, int questioncode);
 	
+	
 	// question count
 	public int questionCount(int roomcode);	
-	
 	
 	/* 공지 디테일 */
     public NoticeVO getNoticePage(int noticecode);

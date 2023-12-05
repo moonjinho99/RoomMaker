@@ -128,7 +128,7 @@ public class RoomServiceImpl implements RoomService{
 	@Override
 	public void insertQuestionDetail(QuestionVO room) {
 		
-		mapper.insertQuestionDetail(room);
+		//mapper.insertQuestionDetail(room);
 		
 	}
 	

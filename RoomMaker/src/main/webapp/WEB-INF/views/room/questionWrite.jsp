@@ -21,10 +21,9 @@
 		<input type="text" class="form-control questiontitle" id="exampleFormControlInput1" name="questiontitle" placeholder="제목을 작성해주세요.">
 	</div>
 	
-	<div class="form-group">
-		<label for="exampleFormControllInput1">작성자</label>
-		<input type="text" class="form-control questionmember" id="exampleFormControllInput1" name="questionmember" placeholder="이름을 적어주세요.">
-	</div>
+	
+	<input type="hidden" class="form-control questionmember" id="exampleFormControllInput1" name="questionmember" value="${member.id}">
+
 
 	<div class="form-group">
 		<label for="exampleFormControllInput1">내용</label>

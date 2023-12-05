@@ -843,7 +843,7 @@ public class RoomController{
 		   
 		   qvo.setQuestioncode(qcode);
 		   
-		   roomService.insertQuestionDetail(qvo);
+		   //roomService.insertQuestionDetail(qvo);
 		   
 		   
 		   
@@ -863,6 +863,8 @@ public class RoomController{
 	   public String roomQuestionDetailGET(@RequestParam int roomcode, @RequestParam int questioncode, Model model, HttpServletRequest request) {
 		   
 		   System.out.println("questionDetail : " + roomcode);
+		   System.out.println("questionCode : " + questioncode);
+
 		   
 		   QuestionVO getQuestionDetail = roomService.getQuestionDetail(roomcode, questioncode);
 		   
@@ -886,23 +888,9 @@ public class RoomController{
 	   @PostMapping("/modifyUploadedQuestion")
 	   public String modifyUploadedQuestion(@RequestParam int roomcode, @RequestParam int questioncode, @RequestParam("questiontitle") String questiontitle, @RequestParam String content, Model model) {
 		   
+		   return null;
 	   }
 		
-		@PostMapping("/modifyUploadedFile")
-		public String mofidyUloadedFile(@RequestParam int roomcode,@RequestParam int filecode,@RequestParam("filetitle") String filetitle,@RequestParam String content, Model model) {
-			
-			log.info("modifyFile.........");
-			FileVO file = new FileVO();
-			file.setFiletitle(filetitle);
-			file.setContent(content);
-			
-			roomService.updateFile(file, filecode);
-			
-			String buttonValue= "자료공유";
-			return determineJSP(buttonValue, roomcode, model);
-			
-		}
-////////////////////
 	   
 	   @PostMapping("/questionListPaging")
 	   public String questionListPaging(

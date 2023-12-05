@@ -43,9 +43,10 @@
 	    width: 100px;
 	    height: 50px;
 	    margin: 10px;
-	    display: inline-block; /* Use inline-block to keep them on the same line */
+	    display: inline-block;
 	}
 </style>
+
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -71,7 +72,7 @@
         </tr>
         <tr>
             <td>방암호</td>
-            <td><input type="password" name="update_password" value="${roomDetail.roompw}"></td>
+            <td><input type="password" style="font-family: serif;" name="update_password" value="${roomDetail.roompw}"></td>
         </tr>
         <tr>
             <td>수용 인원 수</td>

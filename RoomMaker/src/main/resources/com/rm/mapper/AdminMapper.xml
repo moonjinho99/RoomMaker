@@ -37,9 +37,9 @@
   </delete>
   
 
-<update id="DownMemberCnt">
-	update roomdetail set join_member_cnt = (join_member_cnt - 1) where roomcode = #{param1}
-</update>
+	<update id="DownMemberCnt">
+		update roomdetail set join_member_cnt = (join_member_cnt - 1) where roomcode = #{param1}
+	</update>
 
 	<delete id="deleteFileList">
 		delete from file where roomcode=#{param1} and filecode=#{param2}
@@ -48,5 +48,19 @@
 	<delete id="deleteAll">
 		delete from room where roomcode=#{roomcode}
 	</delete>
+	
+	<select id="getNoticeList" resultType="com.rm.model.NoticeVO">
+		select * from notice where roomcode=#{roomcode}
+	</select>
+	
+	<delete id="deleteNoticeList">
+		delete from notice where roomcode=#{param1} and noticecode=#{param2}
+	</delete>
+  
+  
+  
+  	<select id="getQuestionList" resultType="com.rm.model.QuestionVO">
+  		select * from question q1 join questiondetail q2 on q1.questioncode = q2.questioncode where roomcode=#{roomcode}
+  	</select>
   
   </mapper>

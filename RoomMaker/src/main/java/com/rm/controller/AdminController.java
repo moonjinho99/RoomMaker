@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.rm.model.FileVO;
 import com.rm.model.MemberVO;
+import com.rm.model.NoticeVO;
 import com.rm.model.RoomMemberVO;
 import com.rm.model.RoomVO;
 import com.rm.service.AdminService;
@@ -75,6 +76,9 @@ public class AdminController {
 	   List<RoomMemberVO> roomMemberList = service.getRoomMemberList(roomcode);
 	   model.addAttribute("adminRoomMemberList",roomMemberList);
 	   
+	   List<NoticeVO> noticeList = service.getNoticeList(roomcode);
+	   model.addAttribute("adminNoticeList",noticeList);
+	   
    }
    
    @GetMapping("/deleteRoomMemberList")
@@ -97,6 +101,13 @@ public class AdminController {
    public String deleteAll(int roomcode)
    {
 	    service.deleteAll(roomcode);
-	return "redirect:/admin/admin_main";
+	    return "redirect:/admin/admin_main";
+   }
+   
+   @GetMapping("/deleteNoticeList")
+   public String deleteNoticeList(int roomcode, int noticecode)
+   {
+	   service.deleteNoticeList(roomcode, noticecode);
+	   return "redirect:/admin/adminRoomDetail?roomcode="+roomcode;
    }
 }

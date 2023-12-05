@@ -133,7 +133,7 @@
         <tbody>
             <c:forEach items="${adminRoomList}" var="adminRList" varStatus="status">
             	<tr>
-            		<td><a href="#" onclick="adminRoomDetail('${adminRList.roomcode}')">${adminRList.roomcode}</a></td>
+            		<td>${adminRList.roomcode}</td>
             		<td>${adminRList.title}</td>
             		<c:if test="${adminRList.type == 0}">           		
            				<td>교육기관</td>
@@ -144,7 +144,7 @@
             		<td>${adminRList.join_member_cnt}</td>
             		<td>${adminRList.member_cnt}</td>
             		<td>${adminRList.id}</td>
-            		<td><input type="button" onclick="adminRoomDeleteBtn()" value="삭제" style="background: red; color:white;"></td>
+            		<td><input type="button" onclick="adminRoomDetail('${adminRList.roomcode}')" value="삭제" style="background: red; color:white;"></td>
             	</tr>
             
             </c:forEach>
@@ -159,16 +159,10 @@
       
        function adminRoomDetail(roomcode)
        {
-    	  
     	   var url = '/admin/adminRoomDetail?roomcode='+roomcode;
            window.open(url,"_blank_1","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=900,height=1000"); 
        }
        
-       function adminRoomDeleteBtn()
-       {
-    	   alert("방삭제");
-       }
-      
        function adminMemberDeleteBtn(id)
        {
     	   var url = '/admin/deleteMember?id='+id;
