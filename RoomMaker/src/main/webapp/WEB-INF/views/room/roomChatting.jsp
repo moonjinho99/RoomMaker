@@ -10,13 +10,12 @@
 <script type="text/javascript">
 
 
-
 $("#sendBtn").click(function() {
     sendMessage();
     $('#message').val('');
 });
 //스크립트의 최상위에서 sock 변수를 선언
-let sock = new SockJS("http://localhost:8080/chatting");
+let sock = new SockJS("http://localhost:8081/chatting");
 
 sock.onmessage = onMessage;
 sock.onclose = onClose;

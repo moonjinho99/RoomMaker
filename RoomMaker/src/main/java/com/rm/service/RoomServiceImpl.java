@@ -10,6 +10,7 @@ import com.rm.mapper.RoomMapper;
 import com.rm.model.PagingVO;
 import com.rm.model.RoomMemberVO;
 import com.rm.model.FileVO;
+import com.rm.model.NoticeVO;
 import com.rm.model.RoomVO;
 
 @Service
@@ -165,5 +166,35 @@ public class RoomServiceImpl implements RoomService{
 		return mapper.countMakeRoom(id);
 	}
 	
+	/*공지 등록*/
+	@Override
+	public void noticeEnroll(NoticeVO notice) {
+		mapper.noticeEnroll(notice);
+	}
+	
+	
+	
+	@Override
+	public int countNotice() {
+		return mapper.countNotice();
+	}
+	/*공지 목록(페이징)*/
+	@Override
+	public List<NoticeVO> getNoticeList(int roomcode,PagingVO vo) {
+		return mapper.getNoticeList(roomcode,vo);
+	}
 
+	/* 공지 디테일 */
+    @Override
+    public NoticeVO getNoticePage(int noticecode) {
+         
+        return mapper.getNoticePage(noticecode);
+    }  
+    
+    /* 공지 수정 */
+    @Override
+    public int noticeModify(NoticeVO notice) {
+        
+        return mapper.noticeModify(notice);
+    }
 }

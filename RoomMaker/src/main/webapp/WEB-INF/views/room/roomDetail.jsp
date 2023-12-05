@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/room/roomHeader.css" />
 <link rel="stylesheet" href="../resources/css/room/roomAside.css" />
-<link rel="stylesheet" href="../resources/css/room/roomFooter.css" />
+<link rel="stylesheet" href="../resources/css/room/roomFooter.css?v=1" />
 <link rel="stylesheet" href="../resources/css/room/roomChatting.css" /> 
 <link rel="stylesheet" href="../resources/css/room/fileList.css" /> 
 <link rel="stylesheet" href="../resources/css/room/fileUpload.css" /> 

@@ -112,6 +112,7 @@
 		select f1.filecode,roomcode,filetitle,fileuploaddate,filemember,content,fileName,uploadPath from file f1 join filedetail f2 on f1.filecode = f2.filecode where roomcode= #{param1} and f1.filecode = #{param2}
 	</select>
 	
+
 	<!-- 방 입장시 roommember에 삽입 -->
 	<insert id="insertRoomMember">
 		insert into roommember values(#{roomcode},#{id},#{roomlevel})
@@ -193,6 +194,36 @@
 	<select id="countMakeRoom" resultType="int">
 		select count(*) from room r1 join roomdetail r2 on r1.roomcode = r2.roomcode join roommember r3 on r1.roomcode = r3.roomcode join room_image r4 on r1.roomcode = r4.roomcode where r1.id = #{id}; 
 	</select>	
+
+	
+	<insert id="noticeEnroll">
+		insert into notice values (#{roomcode},#{noticecode},#{title},sysdate(), #{content}, #{writemember})
+	</insert>
 	
 	
+	<select id="countNotice" resultType="int">
+	SELECT COUNT(*) FROM NOTICE
+	</select>
+	
+	<select id="getNoticeList" resultType="com.rm.model.NoticeVO">
+    select * from(select ROW_NUMBER() OVER (ORDER BY noticecode DESC) AS rn,
+		roomcode, noticecode, title, content,writedate, writemember from notice) a
+		 where roomcode = #{param1} and rn BETWEEN #{param2.start} AND #{param2.end} ORDER BY writedate desc
+    </select>
+    
+    
+    <!-- 공지 디테일 -->
+    <select id="getNoticePage" resultType="com.rm.model.NoticeVO">
+    
+        select * from notice where noticecode = #{noticecode}
+    
+    </select>
+    
+    <!-- 공지 수정 -->
+<update id="noticeModify">
+        <!-- MySQL -->
+        update notice set title = #{title}, content = #{content}
+    </update> 
+    
+    
 </mapper>

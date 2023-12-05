@@ -51,13 +51,12 @@
                     <div class="room_info">
                     
                         <div class="room_icon">
-             
+
                      
                         <div class="image_wrap" style="background: white; 100%; height:100%;" data-bookid="${roomList.imageList[0].roomcode}" data-path="${roomList.imageList[0].uploadPath}" data-uuid="${roomList.imageList[0].uuid}" data-filename="${roomList.imageList[0].fileName}">
                            <img style="width:100%; height:100%; object-fit:cover; border-radius: 10px">
                         </div>                  
-                  
-           
+          
                         </div>
                         
                         <div class="room_title" style="background: white;">

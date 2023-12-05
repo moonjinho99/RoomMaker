@@ -4,6 +4,7 @@ import java.util.List;
 import com.rm.model.PagingVO;
 import com.rm.model.RoomMemberVO;
 import com.rm.model.FileVO;
+import com.rm.model.NoticeVO;
 import com.rm.model.RoomVO;
 
 public interface RoomService {
@@ -65,4 +66,18 @@ public interface RoomService {
 		
 	//내가 만든 방의 수 
 	public int countMakeRoom(String id);
+	
+	//공지 등록
+	public void noticeEnroll(NoticeVO notice);
+	
+	/*공지 리스트(페이징)*/
+	public List<NoticeVO> getNoticeList(int roomcode, PagingVO vo);
+	// 게시물 총 갯수
+	public int countNotice();
+	
+	/* 공지 디테일 */
+    public NoticeVO getNoticePage(int noticecode);
+    
+    /*공지 수정*/
+    public int noticeModify(NoticeVO notice);
 }

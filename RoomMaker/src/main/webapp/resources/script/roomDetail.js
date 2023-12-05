@@ -172,3 +172,122 @@ $(document).ready(function () {
         	});
         }
         
+        function beforeNoticeAction(){
+        	var nowPage= $('.startPage').val();
+        	var cntPerPage= $('.cntPerPage').val();
+        	nowPage = parseInt(nowPage, 10);
+            cntPerPage = parseInt(cntPerPage, 10);
+        	console.log(nowPage);
+        	console.log(cntPerPage);
+        	
+        	nowPage = nowPage-1;
+        	
+        	console.log(nowPage);
+        	console.log(cntPerPage);
+        	
+        	$.ajax({
+                type: 'POST',
+                url: '/room/noticeListPaging',
+                data: {nowPage: nowPage,cntPerPage: cntPerPage, roomcode:roomcode},
+                success: function (data) {
+                    $('#dynamicContent').html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error("에러 발생:", error);
+                }
+            });
+        }
+        
+        function afterNoticeAction(){
+        	var nowPage= $('.endPage').val();
+        	var cntPerPage= $('.cntPerPage').val();
+        	nowPage = parseInt(nowPage, 10);
+            cntPerPage = parseInt(cntPerPage, 10);
+        	console.log(nowPage);
+        	console.log(cntPerPage);
+        	
+        	nowPage = nowPage+1;
+        	
+        	console.log(nowPage);
+        	console.log(cntPerPage);
+        	
+        	$.ajax({
+                type: 'POST',
+                url: '/room/noticeListPaging',
+                data: {nowPage: nowPage,cntPerPage: cntPerPage, roomcode:roomcode},
+                success: function (data) {
+                    $('#dynamicContent').html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error("에러 발생:", error);
+                }
+            });
+        }
+        
+        
+function gonoticeEnroll(){
+
+			
+        	var buttonValue= document.getElementById("noticeEnrollGo").getAttribute('data-value');
+        	
+        	
+        	$.ajax({
+                type: 'GET',
+                url: '/room/loadDynamicJSP',
+                data: {buttonValue: buttonValue , roomcode:roomcode},
+                success: function (data) {
+                    $('#dynamicContent').html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error("에러 발생:", error);
+                }
+            });
+        }        
+        
+function NoticeEnrollAction(){
+        	
+        	
+      
+            var title = $('.title').val();
+            var content = $('.content').val();
+            var writemember = $('.writemember').val();
+           
+            
+            console.log("roomcode= "+roomcode);
+            console.log("title" + title);
+            console.log("content= "+content);
+            console.log("writemember" + writemember);
+
+            $.ajax({
+                type: 'POST',
+                url: '/room/roomNoticeEnroll',
+                data: {
+                	roomcode:roomcode,
+                	title:title,
+                	content:content,
+                	writemember:writemember
+                },
+                success: function (data) {
+                    $('#dynamicContent').html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error("에러 발생:", error);
+                }
+            });
+}
+
+
+function goNoticeDetail(noticecode){
+
+	$.ajax({
+		type: 'GET',
+		url: '/room/noticeDetail',
+        data: {noticecode: noticecode, roomcode:roomcode},
+        success: function (data) {
+            $('#dynamicContent').html(data);
+        },
+        error: function (xhr, status, error) {
+            console.error("에러 발생:", error);
+        }
+	});
+}
