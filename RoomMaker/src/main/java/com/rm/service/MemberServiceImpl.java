@@ -29,4 +29,14 @@ public class MemberServiceImpl implements MemberService{
 	public int joinIdCheck(String id) throws Exception{
 		return membermapper.joinIdCheck(id);
 	}
+	
+	@Override
+	public void modifyMember(MemberVO member) {
+		membermapper.modifyMember(member);
+	}
+	
+	@Override
+	public void deleteMember(MemberVO member) {
+		membermapper.deleteMember(member);
+	}
 }

@@ -112,8 +112,8 @@ public class RoomServiceImpl implements RoomService{
 	
 	//fileList 갯수 가져오기
 	@Override
-	public int countFile() {
-		return mapper.countFile();
+	public int countFile(int roomcode) {
+		return mapper.countFile(roomcode);
 	}
 	
 	//deleteFile

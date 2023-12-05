@@ -54,7 +54,7 @@ public interface RoomService {
 	//roommember 삽입
 	public void insertRoomMember(RoomMemberVO roommember);
 	//fileList 갯수
-	public int countFile();
+	public int countFile(int roomcode);
 
 	//roommember 가져오기
 	public List<RoomMemberVO> selectRoomMember();

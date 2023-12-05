@@ -81,7 +81,7 @@
 	
 	<!-- 자료리스트의 수 -->
 	<select id="countFile" resultType="int">
-		select count(*) from file
+		select count(*) from file where roomcode = #{roomcode}
 	</select>
 	
 	<!-- 자료리스트에 뿌릴 정보 올리기 -->

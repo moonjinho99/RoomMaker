@@ -7,6 +7,7 @@ encoding//src/main/java/com/rm/service/RoomService.java=UTF-8
 encoding//src/main/java/com/rm/service/RoomServiceImpl.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin/admin_main.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/mypage/modify.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/room/fileList.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/room/fileUpload.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/room/roomAIQuestion.jsp=UTF-8

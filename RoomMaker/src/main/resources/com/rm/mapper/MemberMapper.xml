@@ -14,5 +14,13 @@
   	<select id="joinIdCheck" resultType="int">
   		select count(*) from Member where id = #{id}
   	</select>
+  	<!-- 마이페이지에서 회원 정보 수정 -->
+  	<update id="modifyMember">
+  		update member set pw=#{pw}, name=#{name}, email=#{email}, phonenum=#{phonenum} where id = #{id} 
+  	</update>
+  	
+  	<delete id="deleteMember">
+  		delete from member where id = #{id} and pw = #{pw}
+  	</delete>
 	
   </mapper>

@@ -426,7 +426,7 @@ public class RoomController{
 			   @RequestParam(value="nowPage", required=false)String nowPage,
 				@RequestParam(value="cntPerPage", required=false)String cntPerPage) {
 		   
-		   int total = roomService.countFile();
+		   int total = roomService.countFile(roomcode);
 		   System.out.println("fileListAction 이동함");
 		   System.out.println("File total: "+total);
 		   if(nowPage == null && cntPerPage == null) {
@@ -572,7 +572,6 @@ public class RoomController{
 	            e.printStackTrace();
 	            // 예외 처리 로직 추가
 	        }
-
 	   }
 	   
 	   //파일 삭제

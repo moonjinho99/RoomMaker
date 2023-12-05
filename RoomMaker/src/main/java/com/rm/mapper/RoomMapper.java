@@ -39,7 +39,7 @@ public interface RoomMapper {
 	public List<RoomVO> selectRoom(PagingVO vo);
 	
 	//file count
-	public int countFile();
+	public int countFile(int roomcode);
 	
 	//file insert
 	public void uploadFile(FileVO file);
