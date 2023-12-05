@@ -93,7 +93,22 @@
 	</tr>
 </table>
 <input type="hidden" name="id" value="${member.id}">
-<input type="submit" value="방생성">
+<input type="submit" value="방생성" style="border: none;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  background:skyblue;
+  font-size: 20px;
+  padding: 17px 60px;
+  margin-top: 80px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+  border-radius: 10px;"
+  >
 
 </form>
 </div>
@@ -178,7 +193,7 @@ $("input[type='file']").on("change", function(e){
 });
 
 /* var, method related with attachFile */
-let regex = new RegExp("(.*?)\.(jpg|png)$");
+let regex = new RegExp("(.*?)\.(jpg|png|jpeg)$");
 let maxSize = 1048576; //1MB	
 
 function fileCheck(fileName, fileSize){

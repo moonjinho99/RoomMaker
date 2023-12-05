@@ -17,7 +17,7 @@ section {
 		 	<img class="ListIcon" src="../resources/images/fileListIcon.png">
 		 	<span>자료 리스트</span>
 		 </div>
-		 <div class="fileUploadGo_div"><a onclick="goFileUpload()" data-value="자료등록" id="fileUploadGo" class="fileUploadGo" >자료 등록</a>
+		 <div class="fileUploadGo_div"><input type="button" onclick="goFileUpload()" id="fileUploadGo" class="fileUploadGo" value="자료등록">
 		 </div>
 		 <table>
 		<tr>
@@ -26,7 +26,7 @@ section {
 		
 		 <c:forEach items="${list}" var="list" varStatus="status">
 		<tr>
-		<td>${list.filecode}</td><td><a onclick="goFileDetail(${list.filecode})">${list.filetitle}</a></td><td>${list.filemember }</td><td> <fmt:formatDate value="${list.fileuploaddate}" pattern="yyyy년 MM월 dd일" ></fmt:formatDate> </td>
+		<td>${list.filecode}</td><td><a class="filetitlea" onclick="goFileDetail(${list.filecode})">${list.filetitle}</a></td><td>${list.filemember }</td><td> <fmt:formatDate value="${list.fileuploaddate}" pattern="yyyy년 MM월 dd일" ></fmt:formatDate> </td>
 		</tr>
 		
 		 </c:forEach> 

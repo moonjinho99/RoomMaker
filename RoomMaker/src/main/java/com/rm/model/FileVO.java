@@ -5,6 +5,8 @@ import java.util.Date;
 public class FileVO {
 	private int roomcode, filecode;
 	private String filetitle, filemember, content, fileName, uploadPath;
+	private Date fileuploaddate;
+	
 	public String getContent() {
 		return content;
 	}
@@ -23,7 +25,7 @@ public class FileVO {
 	public void setUploadPath(String uploadPath) {
 		this.uploadPath = uploadPath;
 	}
-	private Date fileuploaddate;
+
 	public int getRoomcode() {
 		return roomcode;
 	}

@@ -58,6 +58,12 @@ public interface RoomMapper {
 	//fileDetail 媛��졇�삤湲�
 	public FileVO getFileDetail(int roomcode, int filecode);
 	
+	//file Delete
+	public void deleteFile(int roomcode, int filecode);
+	
+	//file modify
+	public void updateFile(FileVO file, int filecode);
+	
 	//roomMember에 삽입
 	public void insertRoomMember(RoomMemberVO roomVO);
 	
@@ -80,6 +86,8 @@ public interface RoomMapper {
 	//내가 만든 방의 수 
 	public int countMakeRoom(String id);
 	
+	//회원의 이름
+	public String selectName(String id);
 	
 	/*공지 등록*/
 	public void noticeEnroll(NoticeVO notice);

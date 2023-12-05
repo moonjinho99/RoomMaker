@@ -19,7 +19,7 @@
 </select>
 
 <insert id="makeRoomDetail">
-	insert into roomdetail values(#{roomcode},#{title}, #{roompw}, #{member_cnt}, #{explanation}, #{join_member_cnt}) 
+	insert into roomdetail values(#{roomcode},#{title}, #{roompw}, #{member_cnt},#{join_member_cnt}, #{explanation}) 
 </insert>
 
 
@@ -112,7 +112,20 @@
 		select f1.filecode,roomcode,filetitle,fileuploaddate,filemember,content,fileName,uploadPath from file f1 join filedetail f2 on f1.filecode = f2.filecode where roomcode= #{param1} and f1.filecode = #{param2}
 	</select>
 	
+<<<<<<< HEAD
 
+=======
+	<!-- 자료 삭제 -->
+	<select id="deleteFile">
+		delete from file where roomcode = #{param1} and filecode = #{param2}
+	</select>
+	
+	<insert id="updateFile">
+	    update file set filetitle = #{param1.filetitle} where filecode = #{param2};
+		update filedetail set content = #{param1.content} where filecode = #{param2}
+	</insert>
+	
+>>>>>>> fb4436c26a66f19a01489d3052f70cddc242a534
 	<!-- 방 입장시 roommember에 삽입 -->
 	<insert id="insertRoomMember">
 		insert into roommember values(#{roomcode},#{id},#{roomlevel})
@@ -199,6 +212,11 @@
 	<insert id="noticeEnroll">
 		insert into notice values (#{roomcode},#{noticecode},#{title},sysdate(), #{content}, #{writemember})
 	</insert>
+	
+	<!-- 회원 이름 가져오기 -->
+	<select id="selectName" resultType="String">
+		select name from member where id = #{id}
+	</select>
 	
 	
 	<select id="countNotice" resultType="int">

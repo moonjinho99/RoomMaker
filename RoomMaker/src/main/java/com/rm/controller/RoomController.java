@@ -64,8 +64,6 @@ import net.coobird.thumbnailator.Thumbnails;
 public class RoomController{
    private static final Logger log = LoggerFactory.getLogger(RoomController.class);
    
-   
-   
    @Autowired
    private AttachMapper attachMapper;
    
@@ -195,6 +193,7 @@ public class RoomController{
       }
       
       ResponseEntity<List<AttachImageVO>> result = new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
+
 
       return result;
    }
@@ -338,6 +337,158 @@ public class RoomController{
            // Add any model attributes if needed
            model.addAttribute("someAttribute", "someValue");
            
+
+		return result;
+	}
+	
+	
+	@GetMapping("/display")
+	public ResponseEntity<byte[]> getImage(String fileName){
+		File file = new File("c:\\upload\\" + fileName);
+		
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			
+			HttpHeaders header = new HttpHeaders();
+			
+			header.add("Content-type", Files.probeContentType(file.toPath()));
+			
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+			
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	/* 이미지 파일 삭제 */
+	@PostMapping("/deleteFile")
+	public ResponseEntity<String> deleteFile(String fileName){
+		
+		log.info("deleteFile........" + fileName);
+		
+		
+		File file = null;
+		
+		try {
+			//썸네일 파일 삭제
+			file = new File("c:\\upload\\"+URLDecoder.decode(fileName,"UTF-8"));
+			
+			file.delete();
+			
+			//원본 파일 삭제
+			String originFileName = file.getAbsolutePath().replace("s_", "");
+			
+			log.info("originFileName : " + originFileName);
+			
+			file = new File(originFileName);
+			
+			file.delete();
+			
+		} catch(Exception e)
+		{
+			e.printStackTrace();
+			
+			return new ResponseEntity<String>("fail",HttpStatus.NOT_IMPLEMENTED);
+			
+		}
+		
+		return new ResponseEntity<String>("success",HttpStatus.OK);
+	}
+		
+		//방 상세 페이지
+	   @GetMapping("/roomDetail")
+	   public void roomDetailGET(int roomcode, Model model,HttpServletRequest request)
+	   {
+	      log.info("방상세");
+	      	
+	      HttpSession session = request.getSession();
+	      session.setAttribute("roomDetail", roomService.getRoomDetail(roomcode));	      
+	   }
+	   
+	   //방 입장
+	   @GetMapping("/roomMemberIn")
+	   public String roomMemberIn(String id, int roomcode, Model model)
+	   {
+		   System.out.println("방 입장");
+		   
+		   RoomMemberVO roommembervo = new RoomMemberVO();
+		   
+		  
+		   //방장의 아이디
+		   String masterId = roomService.getRoomDetail(roomcode).getId();
+		   
+		   //방안의 참여자 아이디
+		   List<RoomMemberVO> roomMemberList = roomService.selectRoomMember();
+		   
+		   		   
+		   //방안의 참여자 인지 구분
+		   boolean room_in_member = false;
+		   
+		   for(int i=0; i<roomMemberList.size(); i++)
+		   {
+			   if(id.equals(roomMemberList.get(i).getId()) && roomcode == roomMemberList.get(i).getRoomcode())
+			   {
+				   room_in_member = true;
+			   }
+		   }
+		   
+		   
+		   //입장한 참여자가 방장일때 1 
+		   if(masterId.equals(id) && !room_in_member)
+		   {	
+			   roommembervo.setId(id);
+			   roommembervo.setRoomcode(roomcode);
+			   roommembervo.setRoomlevel(1);
+			   
+			   roomService.insertRoomMember(roommembervo);
+			   roomService.updateMemberCnt(roomcode);
+		   }
+		   //일반 참여자는 0
+		   else if(!room_in_member){
+			   
+			   roommembervo.setId(id);
+			   roommembervo.setRoomcode(roomcode);
+			   roommembervo.setRoomlevel(0);
+			   
+			   roomService.insertRoomMember(roommembervo);
+			   roomService.updateMemberCnt(roomcode);
+		   }
+		   
+		   return "redirect:/room/roomDetail?roomcode="+roomcode;
+	   }
+	   
+	   
+	   //방장명 가져오기
+	   @RequestMapping(value = "/selectName")
+	   @ResponseBody
+	   public String selectRoomMemberName(@RequestParam("id") String id){
+		   	System.out.println("ajax로 받은 아이디 : "+id);
+	       return id;
+	   }
+	   
+	   //방 암호 체크
+	   @GetMapping("/roomPwCheck")
+	   public void roomPwCheck(int roomcode,Model model)
+	   {
+		   log.info("방 암호 체크");
+		   
+		   model.addAttribute("roomDetail",roomService.getRoomDetail(roomcode));
+	   }
+	   
+	   @GetMapping("/loadDynamicJSP")
+	    public String loadDynamicJSP(@RequestParam String buttonValue,int roomcode, Model model ) {
+	        // Your logic to determine which JSP to include based on buttonValue
+	        String jspToInclude = determineJSP(buttonValue,roomcode,model);
+	        
+	        System.out.println("넘어온 코드 : "+roomcode);
+	        
+	        // Add any model attributes if needed
+	        model.addAttribute("someAttribute", "someValue");
+	        
+
            // Return the name of the JSP file to include (without .jsp extension)
            return jspToInclude;
        }
@@ -540,6 +691,7 @@ public class RoomController{
          String fileName = uploadedFile.getFileName();
          File file = new File(filePath,fileName);
 
+<<<<<<< HEAD
          //User-Agent : 어떤 운영체제로  어떤 브라우저를 서버( 홈페이지 )에 접근하는지 확인함
          String header = request.getHeader("User-Agent");
          String storeToFileName;
@@ -684,4 +836,90 @@ public class RoomController{
           return "redirect:/room/noticeList";
           
       }
+=======
+		   //User-Agent : 어떤 운영체제로  어떤 브라우저를 서버( 홈페이지 )에 접근하는지 확인함
+		   String header = request.getHeader("User-Agent");
+		   String storeToFileName;
+		   
+		   if ((header.contains("MSIE")) || (header.contains("Trident")) || (header.contains("Edge"))) {
+			    //인터넷 익스플로러 10이하 버전, 11버전, 엣지에서 인코딩 
+			    storeToFileName = URLEncoder.encode(uploadedFile.getFileName(), "UTF-8");
+			  } else {
+			    //나머지 브라우저에서 인코딩
+			    storeToFileName = new String(uploadedFile.getFileName().getBytes("UTF-8"), "iso-8859-1");
+			  }
+		   
+		// 업로드할 파일 경로 설정
+	        String downloadPath = "C:\\Users\\PC\\Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다
+	        // 다운로드 폴더에 파일 복사
+	        try {
+	            Path targetPath = new File(downloadPath, storeToFileName).toPath();
+	            Files.copy(file.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            // 예외 처리 로직 추가
+	        }
+
+	   }
+	   
+	   //파일 삭제
+		@PostMapping("/deleteUploadedFile")
+		public String deleteUploadedFile(int filecode, int roomcode, Model model){
+			
+			String buttonValue="자료공유";
+			String result = null;
+			log.info("deleteFile........" + filecode+"("+roomcode+")");
+			FileVO fileDetail = roomService.getFileDetail(roomcode, filecode);
+			File file = null;
+			
+			try {
+				//원본파일삭제
+				file = new File(fileDetail.getUploadPath()+"\\"+URLDecoder.decode(fileDetail.getFileName(), "UTF-8"));
+				String FileName = file.getAbsolutePath();
+				System.out.println("fileName:"+FileName);
+				file = new File(FileName);
+				if (file.exists()) {
+				    file.delete();
+				} else {
+					System.out.println("해당 파일이 존재하지 않습니다.");
+				}
+				
+				//DB 삭제
+				roomService.deleteFile(roomcode, filecode);
+				result = determineJSP(buttonValue,roomcode,model);
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+				
+			}
+			
+			return result;
+		}
+		
+		@GetMapping("/goFileModify")
+		public String goFileModify( @RequestParam int roomcode, int filecode, Model model) {
+			FileVO file = roomService.getFileDetail(roomcode, filecode);
+			model.addAttribute("file",file);
+			
+			return "/room/fileModify";
+		}
+		
+		@PostMapping("/modifyUploadedFile")
+		public String mofidyUloadedFile(@RequestParam int roomcode,@RequestParam int filecode,@RequestParam("filetitle") String filetitle,@RequestParam String content, Model model) {
+			
+			log.info("modifyFile.........");
+			FileVO file = new FileVO();
+			file.setFiletitle(filetitle);
+			file.setContent(content);
+			
+			roomService.updateFile(file, filecode);
+			
+			String buttonValue= "자료공유";
+			return determineJSP(buttonValue, roomcode, model);
+			
+		}
+		
+
+	
+>>>>>>> fb4436c26a66f19a01489d3052f70cddc242a534
 }

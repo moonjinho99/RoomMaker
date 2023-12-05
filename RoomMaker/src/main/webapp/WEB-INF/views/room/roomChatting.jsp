@@ -15,7 +15,11 @@ $("#sendBtn").click(function() {
     $('#message').val('');
 });
 //스크립트의 최상위에서 sock 변수를 선언
+<<<<<<< HEAD
 let sock = new SockJS("http://localhost:8081/chatting");
+=======
+let sock = new SockJS("http://localhost:8000/chatting");
+>>>>>>> fb4436c26a66f19a01489d3052f70cddc242a534
 
 sock.onmessage = onMessage;
 sock.onclose = onClose;

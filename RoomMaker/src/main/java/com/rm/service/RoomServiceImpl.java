@@ -117,6 +117,18 @@ public class RoomServiceImpl implements RoomService{
 		return mapper.countFile();
 	}
 	
+	//deleteFile
+	@Override
+	public void deleteFile(int roomcode, int filecode) {
+		mapper.deleteFile(roomcode, filecode);
+	}
+	
+	//modifyFile
+	@Override
+	public void updateFile(FileVO file, int filecode) {
+		mapper.updateFile(file, filecode);
+	}
+	
 	//방 입장시 roommember 삽입
 	@Override
 	public void insertRoomMember(RoomMemberVO roommember) {
@@ -164,6 +176,12 @@ public class RoomServiceImpl implements RoomService{
 	public int countMakeRoom(String id) {
 		// TODO Auto-generated method stub
 		return mapper.countMakeRoom(id);
+	}
+
+
+	@Override
+	public String selectName(String id) {
+		return mapper.selectName(id);
 	}
 	
 	/*공지 등록*/

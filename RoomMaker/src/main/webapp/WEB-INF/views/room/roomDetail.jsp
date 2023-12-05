@@ -9,11 +9,15 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/room/roomHeader.css" />
 <link rel="stylesheet" href="../resources/css/room/roomAside.css" />
-<link rel="stylesheet" href="../resources/css/room/roomFooter.css?v=1" />
+
+<link rel="stylesheet" href="../resources/css/room/roomFooter.css" />
+<link rel="stylesheet" href="../resources/css/footer.css?v=1" />
+
 <link rel="stylesheet" href="../resources/css/room/roomChatting.css" /> 
 <link rel="stylesheet" href="../resources/css/room/fileList.css" /> 
 <link rel="stylesheet" href="../resources/css/room/fileUpload.css" /> 
-<link rel="stylesheet" href="../resources/css/room/fileDetail.css" /> 
+<link rel="stylesheet" href="../resources/css/room/fileDetail.css" />
+<link rel="stylesheet" href="../resources/css/room/fileModify.css" />  
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
@@ -40,13 +44,9 @@
 	
 	
 
-<%@ include file="roomFooter.jsp" %>
+<%@ include file="../footer.jsp" %>
 
 	
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script type="text/javascript" src="../resources/script/roomDetail.js"></script>
      
-
-    
-
-    

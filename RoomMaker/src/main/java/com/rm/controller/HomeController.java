@@ -79,7 +79,7 @@ public class HomeController {
 		
 		System.out.println("메인 페이지 진입");
 		
-		return "/";
+		return "home";
 	}
 	
 	

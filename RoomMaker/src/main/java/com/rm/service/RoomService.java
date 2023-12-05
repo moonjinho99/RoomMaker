@@ -44,6 +44,12 @@ public interface RoomService {
 	//filedetail 媛��졇�삤湲�
 	public FileVO getFileDetail(int roomcode,int filecode);
 	
+	//delete file
+	public void deleteFile(int roomcode, int filecode);
+	
+	//modify file
+	public void updateFile(FileVO file, int filecode);
+	
 	//roommember 삽입
 	public void insertRoomMember(RoomMemberVO roommember);
 	//fileList 갯수
@@ -67,6 +73,7 @@ public interface RoomService {
 	//내가 만든 방의 수 
 	public int countMakeRoom(String id);
 	
+<<<<<<< HEAD
 	//공지 등록
 	public void noticeEnroll(NoticeVO notice);
 	
@@ -80,4 +87,8 @@ public interface RoomService {
     
     /*공지 수정*/
     public int noticeModify(NoticeVO notice);
+=======
+	//회원의 이름 가져오기
+	public String selectName(String id);
+>>>>>>> fb4436c26a66f19a01489d3052f70cddc242a534
 }

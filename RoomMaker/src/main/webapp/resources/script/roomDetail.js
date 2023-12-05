@@ -25,7 +25,7 @@ $(document).ready(function () {
 
 
  function goFileUpload(){
-        	var buttonValue= document.getElementById("fileUploadGo").getAttribute('data-value');
+        	var buttonValue= "자료등록";
         	//var buttonValue = $(this).val().trim();
         	$.ajax({
                 type: 'GET',
@@ -49,11 +49,11 @@ $(document).ready(function () {
             var uploadPath = $('.uploadPath').val();
             let formData = new FormData($("#fileUpload_form")[0]);
             
-            console.log("roomcode= "+roomcode);
-            console.log("filetitle= "+filetitle);
-            console.log("filemember= "+filemember);
-            console.log("content= "+content);
-            console.log("uploadPath= "+uploadPath);
+            if(filetitle===""){
+            alert("게시물의 제목을 입력해주세요");
+            return false;
+            }
+            
 
             $.ajax({
                 type: 'POST',
@@ -91,6 +91,12 @@ $(document).ready(function () {
                 }
             });
         };
+        
+        function resetActionFromFileMod(){
+        	var buttonValue=""
+        
+        
+        }
         
         function beforeAction(){
         	var nowPage= $('.startPage').val();
@@ -172,6 +178,7 @@ $(document).ready(function () {
         	});
         }
         
+<<<<<<< HEAD
         function beforeNoticeAction(){
         	var nowPage= $('.startPage').val();
         	var cntPerPage= $('.cntPerPage').val();
@@ -191,10 +198,28 @@ $(document).ready(function () {
                 data: {nowPage: nowPage,cntPerPage: cntPerPage, roomcode:roomcode},
                 success: function (data) {
                     $('#dynamicContent').html(data);
+=======
+        function deleteAction(filecode){
+       		var loginId = $('.loginId').val();  //로그인 되어 있는 유저 Id
+       		var roomId=$('.roomId').val();		//방장 Id
+       		var uploadId= $('.uploadId').val();		//파일을 업로드한 유저 Id
+       
+        
+        	if(loginId===uploadId||loginId===roomId){
+        		console.log("일치");
+        		$.ajax({
+        		type: 'POST',
+        		url: '/room/deleteUploadedFile',
+                data: {filecode: filecode, roomcode:roomcode},
+                success: function (data) {
+                	alert("파일 삭제 완료");
+                	 $('#dynamicContent').html(data);
+>>>>>>> fb4436c26a66f19a01489d3052f70cddc242a534
                 },
                 error: function (xhr, status, error) {
                     console.error("에러 발생:", error);
                 }
+<<<<<<< HEAD
             });
         }
         
@@ -217,10 +242,36 @@ $(document).ready(function () {
                 data: {nowPage: nowPage,cntPerPage: cntPerPage, roomcode:roomcode},
                 success: function (data) {
                     $('#dynamicContent').html(data);
+=======
+        	});
+        	}
+        	else{
+        		alert("삭제할 수 있는 권한이 없습니다.");
+        		return false;
+       		}
+      	
+        }
+        
+        function goFileModify(filecode){
+       		var loginId = $('.loginId').val();  //로그인 되어 있는 유저 Id
+       		var roomId=$('.roomId').val();		//방장 Id
+       		var uploadId= $('.uploadId').val();		//파일을 업로드한 유저 Id
+       
+        
+        	if(loginId===uploadId||loginId===roomId){
+        		console.log("일치");
+        		$.ajax({
+        		type: 'GET',
+        		url: '/room/goFileModify',
+                data: {filecode: filecode, roomcode:roomcode},
+                success: function (data) {
+                	 $('#dynamicContent').html(data);
+>>>>>>> fb4436c26a66f19a01489d3052f70cddc242a534
                 },
                 error: function (xhr, status, error) {
                     console.error("에러 발생:", error);
                 }
+<<<<<<< HEAD
             });
         }
         
@@ -237,10 +288,39 @@ function gonoticeEnroll(){
                 data: {buttonValue: buttonValue , roomcode:roomcode},
                 success: function (data) {
                     $('#dynamicContent').html(data);
+=======
+        	});
+        		
+        	}
+        	else{
+        		alert("수정할 수 있는 권한이 없습니다.");
+        		return false;
+       		}
+      	
+        }
+        
+        function modifyAction(filecode){
+        	var filetitle = $('.fileModify_title_sec').val();
+        	var content = $('.modifycontent').val();
+        	
+        	console.log(filetitle, content);
+        	
+        	if(filetitle===""){
+        	alert("수정하실 게시물 제목을 입력해주세요");
+        	return false;
+        	}
+        	$.ajax({
+        		type: 'POST',
+        		url: '/room/modifyUploadedFile',
+                data: {filecode: filecode, roomcode:roomcode, filetitle: filetitle, content: content},
+                success: function (data) {
+                	 $('#dynamicContent').html(data);
+>>>>>>> fb4436c26a66f19a01489d3052f70cddc242a534
                 },
                 error: function (xhr, status, error) {
                     console.error("에러 발생:", error);
                 }
+<<<<<<< HEAD
             });
         }        
         
@@ -291,3 +371,26 @@ function goNoticeDetail(noticecode){
         }
 	});
 }
+=======
+        	});
+        	
+        }
+        
+        function resetActionFromFileMod(filecode){
+        	console.log(filecode)
+        	$.ajax({
+        		type: 'GET',
+        		url: '/room/fileDetail',
+                data: {filecode: filecode, roomcode:roomcode},
+                success: function (data) {
+                	 $('#dynamicContent').html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error("에러 발생:", error);
+                }
+        	});
+        
+        }
+        
+       
+>>>>>>> fb4436c26a66f19a01489d3052f70cddc242a534
