@@ -21,7 +21,7 @@ public class AdminMapperTest {
 	@Test
 	public void test()
 	{
-		System.out.println("방 공지 리스트 : " + mapper.getNoticeList(73));
+		System.out.println("방 질문 대답 리스트 : " + mapper.roomAnswerList(1));
 	}
 
 }

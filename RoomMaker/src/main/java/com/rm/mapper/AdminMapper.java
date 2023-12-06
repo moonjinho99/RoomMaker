@@ -5,6 +5,7 @@ import java.util.List;
 import com.rm.model.FileVO;
 import com.rm.model.MemberVO;
 import com.rm.model.NoticeVO;
+import com.rm.model.QuestionVO;
 import com.rm.model.RoomMemberVO;
 import com.rm.model.RoomVO;
 
@@ -49,4 +50,15 @@ public interface AdminMapper {
 	//방의 공지 삭제
 	public void deleteNoticeList(int roomcode,int noticecode);
 	
+	//방의 질문 리스트 가져오기
+	public List<QuestionVO> getQuestionList(int roomcode);
+	
+	//방의 질문 리스트 삭제
+	public void deleteQuestionList(int roomcode,int questioncode);
+	
+	//방의 질문 대답 리스트 가져오기
+	public List<QuestionVO> roomAnswerList(int questioncode);
+	
+	//벙의 질문 대답 삭제
+	public void deleteAnswerList(int roomcode, String answer);
 }

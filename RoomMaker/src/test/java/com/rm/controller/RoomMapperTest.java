@@ -174,19 +174,5 @@ public class RoomMapperTest {
 //	
 //	}
 	
-	@Test
-	public void testIQ() {
-		List<QuestionVO> list = mapper.question(1);
-		
-		QuestionVO vo = new QuestionVO();
-		vo.setRoomcode(1);
-		vo.setQuestiontitle("IQ test");
-		vo.setQuestionmember("IQ test");
-		
-		System.out.println(list);
-		
-	}
-	
-	
 	
 }

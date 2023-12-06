@@ -9,6 +9,7 @@ import com.rm.mapper.AdminMapper;
 import com.rm.model.FileVO;
 import com.rm.model.MemberVO;
 import com.rm.model.NoticeVO;
+import com.rm.model.QuestionVO;
 import com.rm.model.RoomMemberVO;
 import com.rm.model.RoomVO;
 
@@ -89,6 +90,26 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void deleteNoticeList(int roomcode, int noticecode) {
 		mapper.deleteNoticeList(roomcode, noticecode);
+	}
+
+	@Override
+	public List<QuestionVO> getQuestionList(int roomcode) {
+		return mapper.getQuestionList(roomcode);
+	}
+
+	@Override
+	public void deleteQuestionList(int roomcode, int questioncode) {
+		mapper.deleteQuestionList(roomcode, questioncode);
+	}
+
+	@Override
+	public List<QuestionVO> roomAnswerList(int questioncode) {
+		return mapper.roomAnswerList(questioncode);
+	}
+
+	@Override
+	public void deleteAnswerList(int roomcode, String answer) {
+		mapper.deleteAnswerList(roomcode, answer);
 	}
 
 	

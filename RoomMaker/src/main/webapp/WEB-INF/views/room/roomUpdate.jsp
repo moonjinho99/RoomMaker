@@ -139,24 +139,23 @@
 	
 	function deleteRoom()
 	{      	
-   		$.ajax({
-    		type: 'POST',
+   		 $.ajax({
+    		type: 'GET',
     		url: '/room/deleteRoom',
             data: {roomcode:roomcode},
             success: function (data) {
-            	alert(roomtitle+"방이 삭제되었습니다.");
+            	alert(beforetitle+"방이 삭제되었습니다.");    
             	location.href="/main";
             },
             error: function (xhr, status, error) {
                 console.error("에러 발생:", error);
             }
       	});
-      	        	
 	}
 	
 	function cancel()
 	{
-		
+		location.href="/room/roomDetail?roomcode="+roomcode;
 	}
 </script>
 </html>

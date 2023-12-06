@@ -13,7 +13,7 @@
         	<div class="master_update_btn" style="background-color: rgba( 255, 255, 255, 0 );">
                 <button 
                 	 style="font-size:20px; font-style: bold; 
-                	 padding:20px; background: skyblue; color:white; padding: 10px 30px;
+                	 padding:20px; background: skyblue; color:black; padding: 10px 30px;
    					 box-shadow: 0 5px 15px rgba(0,0,0,0.20);
     				 border-radius: 10px; "
     				 >방수정</button>

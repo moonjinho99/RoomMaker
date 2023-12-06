@@ -1,5 +1,10 @@
 @charset "UTF-8";
-
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 aside{
     width: 30%;
     height: 500px;
@@ -15,7 +20,8 @@ aside{
     width: 60%;
 }
 .room_function{
-	margin-top:30px;
+   font-family: 'Cafe24SsurroundAir'; 
+   margin-top:30px;
     border: none;
     display: inline-block;
     text-align: center;
@@ -24,7 +30,7 @@ aside{
     outline: none;
     overflow: hidden;
     position: relative;
-    color: #fff;
+    color: black;
     background:skyblue;
     font-size: 20px;
     padding: 10px 30px;
@@ -33,7 +39,7 @@ aside{
 }
 
 .room_out{
-	margin-top:35px;
+   margin-top:35px;
     border: none;
     display: inline-block;
     text-align: center;
@@ -48,4 +54,9 @@ aside{
     padding: 10px 30px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.20);
     border-radius: 10px;
+}
+
+section{
+   font-family: 'Cafe24SsurroundAir';
+   
 }

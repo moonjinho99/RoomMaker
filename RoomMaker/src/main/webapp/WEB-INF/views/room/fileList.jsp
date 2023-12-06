@@ -7,8 +7,7 @@ section {
     	display: flex;
         width: 60%;
         height: 500px;
-        border-bottom: 1px solid black;
-       
+        border-bottom: 1px solid black;      
 	}
 </style>
 	<div>
@@ -62,5 +61,21 @@ section {
    		<div class="clear" style="float:left;"></div>
      	<div th:include="${'defaultJSP'} :: content"></div>
 	</section>
-
+	
+<script>
+function goFileUpload(){
+	var buttonValue= "자료등록";
+	$.ajax({
+        type: 'GET',
+        url: '/room/loadDynamicJSP',
+        data: {buttonValue: buttonValue , roomcode:roomcode},
+        success: function (data) {
+            $('#dynamicContent').html(data);
+        },
+        error: function (xhr, status, error) {
+            console.error("에러 발생:", error);
+        }
+    });
+}
+</script>
 

@@ -36,8 +36,9 @@
 
 <section id="dynamicContent">
     <div class="clear" style="float:left;"></div>
-    <!-- 채팅화면 -->
+
      <div th:include="${'defaultJSP'} :: content"></div>
+     
 </section>
 	
 	
@@ -55,12 +56,25 @@
 	var roomcode = document.getElementsByName("roomcode")[0].value;
 	console.log(roomcode);
 
-
-
         $(document).ready(function () {
+        	
+        	//첫화면
+        	$.ajax({
+                type: 'GET',
+                url: '/room/loadDynamicJSP',
+                data: {buttonValue: '공지보기' , roomcode:roomcode},
+                success: function (data) {
+                    $('#dynamicContent').html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error("에러 발생:", error);
+                }
+            });
+        	
         	
             $(".room_function").click(function () {
                 var buttonValue = $(this).text().trim();
+                
                 $.ajax({
                     type: 'GET',
                     url: '/room/loadDynamicJSP',

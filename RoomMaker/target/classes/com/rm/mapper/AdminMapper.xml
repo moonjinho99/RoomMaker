@@ -56,9 +56,21 @@
 	<delete id="deleteNoticeList">
 		delete from notice where roomcode=#{param1} and noticecode=#{param2}
 	</delete>
-  
+
   	<select id="getQuestionList" resultType="com.rm.model.QuestionVO">
-  		select * from question q1 join questiondetail q2 on q1.questioncode = q2.questioncode where roomcode=#{roomcode}
+  		select * from question where roomcode=#{roomcode}
   	</select>
+  	
+  	<delete id="deleteQuestionList">
+  		delete from question where roomcode=#{param1} and questioncode=#{param2}
+  	</delete>
+  	
+  	<select id="roomAnswerList" resultType="com.rm.model.QuestionVO">
+  		select * from answer where questioncode = #{questioncode}
+  	</select>
+  
+  	<delete id="deleteAnswerList">
+  		delete from answer where roomcode=#{param1} and answer=#{param2}
+  	</delete>
   
   </mapper>

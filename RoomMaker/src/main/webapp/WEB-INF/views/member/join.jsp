@@ -12,7 +12,7 @@
 </head>
 <style>
 body{
-	background-image:url('../resources/images/sky3.jpg'); 
+	background-image:url('../resources/images/back.jpg'); 
 	background-size: cover;
 }
 </style>

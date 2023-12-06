@@ -136,7 +136,7 @@ public class RoomController{
 			
 		}// for
 		
-		String uploadFolder = "/Users/choejin-yeong/RoomMaker/RoomMaker/RoomMaker/Upload";
+		String uploadFolder = "C:\\upload";
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -212,7 +212,7 @@ public class RoomController{
 	public ResponseEntity<byte[]> getImage(String fileName){
 		//File file = new File("c:\\upload\\" + fileName);
 		
-		File file = new File("c:\\upload\\" + fileName);
+		File file = new File("C:\\upload\\" + fileName);
 		
 		ResponseEntity<byte[]> result = null;
 		
@@ -242,7 +242,7 @@ public class RoomController{
 		
 		try {
 			//썸네일 파일 삭제
-			file = new File("c:\\\\upload\\\\"+URLDecoder.decode(fileName,"UTF-8"));
+			file = new File("C:\\upload\\"+URLDecoder.decode(fileName,"UTF-8"));
 			
 			file.delete();
 			
@@ -355,8 +355,7 @@ public class RoomController{
 	        String jspToInclude = determineJSP(buttonValue,roomcode,model);
 	        
 	        System.out.println("넘어온 코드 : "+roomcode);
-	        
-	        model.addAttribute("someAttribute", "someValue");
+	    
 	        
            return jspToInclude;
        }
@@ -392,7 +391,6 @@ public class RoomController{
             	System.out.println("자료공유 roomcode=" + roomcode);
             	questionListAction(paging,model,roomcode,nowPage,cntPerPage);
             	
-       		               	  
                   jspToInclude = "/room/question";
               } else if ("공지보기".equals(buttonValue)) {
                   
@@ -602,7 +600,7 @@ public class RoomController{
 			  }
 		   
 		// 업로드할 파일 경로 설정
-	        String downloadPath = "/Users/choejin-yeong/Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다.
+	        String downloadPath = "C:\\Users\\PC\\Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다.
 
 	        // 다운로드 폴더에 파일 복사
 	        try {
@@ -690,7 +688,7 @@ public class RoomController{
 	    }
 		
 		
-		@PostMapping("/deleteRoom")
+		@GetMapping("/deleteRoom")
 		public String deleteRoom(int roomcode, Model model) {
 			System.out.println(roomcode+"방삭제");
 			adminService.deleteAll(roomcode);
@@ -942,9 +940,13 @@ public class RoomController{
    			
 	   }
 	   
-	   
-	   
-	   
+	   @GetMapping("/roomNoticeDelete")
+	   public String roomNoticeDelete(int noticecode,int roomcode,Model model)
+	   {	   
+		   adminService.deleteNoticeList(roomcode, noticecode);
+		   String buttonValue= "공지보기";
+	 	   return determineJSP(buttonValue, roomcode,model);
+	   }
 	   
 	   	  
 }

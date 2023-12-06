@@ -1,5 +1,6 @@
 
 var roomcode = document.getElementsByName("roomcode")[0].value;
+var sock = new SockJS("http://localhost:8000/chatting");
 
 $(document).ready(function () {
 	
@@ -37,21 +38,7 @@ $(document).ready(function () {
 });
 
 
- function goFileUpload(){
-        	var buttonValue= "자료등록";
-        	//var buttonValue = $(this).val().trim();
-        	$.ajax({
-                type: 'GET',
-                url: '/room/loadDynamicJSP',
-                data: {buttonValue: buttonValue , roomcode:roomcode},
-                success: function (data) {
-                    $('#dynamicContent').html(data);
-                },
-                error: function (xhr, status, error) {
-                    console.error("에러 발생:", error);
-                }
-            });
-        }
+
         
         function fileUploadAction(){
         	

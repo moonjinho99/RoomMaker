@@ -8,16 +8,15 @@
 }
 
 *{
-	font-family: 'Cafe24Ssurround'; 
-	margin :0;
-	padding:0;
+   margin :0;
+   padding:0;
 }
 
 .clear{
     clear: both;
 }
 header{
-
+font-family: 'Cafe24Ssurround'; 
     width: 100%;
     height: 350px;
     border: 1px solid black;
@@ -39,7 +38,7 @@ header{
 }
 
 .master_update_btn{
-	width: 240px;
+   width: 240px;
     height: 100px;
     top: 100px;
     right: 40px;

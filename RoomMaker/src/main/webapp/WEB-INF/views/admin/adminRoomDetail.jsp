@@ -178,6 +178,7 @@
             <tr>
                 <th>방 ID</th>
                 <th>질문 ID</th>
+                <th>제목</th>
                 <th>작성일</th>
                 <th>작성자</th>
                 <th>내용</th>
@@ -186,7 +187,18 @@
             </tr>
         </thead>
         <tbody>
-          
+          <c:forEach items="${adminQuestionList}" var="adminQList" varStatus="status">
+           		<tr>
+           			<td>${adminQList.roomcode}</td>
+           			<td>${adminQList.questioncode}</td>
+           			<td>${adminQList.questiontitle}</td>
+        			<td><fmt:formatDate pattern="yyyy/MM/dd" value="${adminQList.questiondate}"/></td>					
+					<td>${adminQList.questionmember}</td>
+					<td>${adminQList.content}</td>
+					<td><a href="#" onclick="answerList('${adminQList.questioncode}')">답변보기</a></td>
+         			<td><input type="button" class="deleteBtn" onclick="deleteQuestionList('${adminQList.questioncode}')" value="삭제" style="background: red; color:white;"></td>
+           		</tr>
+           	</c:forEach> 
         </tbody>
     </table>
     
@@ -232,6 +244,7 @@ var roomcode = document.getElementsByName("roomcode")[0].value;
 
 function deleteAll()
 {
+	alert("방 "+roomcode+"가 삭제되었습니다.");
 	opener.location.href="/admin/deleteAll?roomcode="+roomcode;
 	window.close();
 }
@@ -244,17 +257,32 @@ function cancel()
 
 function deletefileList(filecode)
 {
+	alert("자료 "+filecode+"가 삭제되었습니다.")
 	location.href = "/admin/deleteFileList?roomcode="+roomcode+"&filecode="+filecode;
 }
 
 function deleteRoomMemberList(id)
 {
+	alert("회원 "+id+"가 삭제되었습니다.");
 	location.href = "/admin/deleteRoomMemberList?roomcode="+roomcode+"&id="+id;
 }
 
 function deleteNotice(noticecode)
 {
+	alert("공지 "+noticecode+"가 삭제되었습니다.");
 	location.href = "/admin/deleteNoticeList?roomcode="+roomcode+"&noticecode="+noticecode;
+}
+function deleteQuestionList(questioncode)
+{
+	alert("질문 "+questioncode+"가 삭제되었습니다.");
+	location.href = "/admin/deleteQuestionList?roomcode="+roomcode+"&questioncode="+questioncode;
+
+}
+
+function answerList(questioncode)
+{
+	var url = '/admin/roomAnswerList?questioncode='+questioncode;
+    window.open(url,"_blank","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=400,height=500");
 }
 
 </script>

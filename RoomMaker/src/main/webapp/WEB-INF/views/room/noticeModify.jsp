@@ -107,7 +107,7 @@ margin-top:10px;
 		
 	<div class="btn_wrap">
         <input type="button" id="resetbutton" onclick="resetActionFromNoticeMod(${pageInfo.noticecode})" value="취소">
-		<input type="button" id="deletebutton" onclick="deleteAction(${loginUser})" value="삭제">
+		<input type="button" id="deletebutton" onclick="deleteAction('${pageInfo.noticecode}','${pageInfo.roomcode}')" value="삭제">
 		<input type="button" id="modifybutton" onclick="noticeModifyAction(${pageInfo.noticecode})" value="수정">
 	</div>
 	</form>
@@ -160,6 +160,22 @@ function resetActionFromNoticeMod(noticecode){
         }
 	});
 
+}
+
+function deleteAction(noticecode,roomcode){
+	console.log(noticecode)
+	$.ajax({
+		type: 'GET',
+		url: '/room/roomNoticeDelete',
+        data: {noticecode: noticecode, roomcode:roomcode},
+        success: function (data) {
+        	 $('#dynamicContent').html(data);
+        },
+        error: function (xhr, status, error) {
+            console.error("에러 발생:", error);
+        }
+	});
+	
 }
 
 </script>	
