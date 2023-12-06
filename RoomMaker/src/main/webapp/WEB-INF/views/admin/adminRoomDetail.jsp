@@ -165,7 +165,7 @@
 					<td>${adminFList.filemember}</td>
 					<td>${adminFList.content}</td>
 					<td>${adminFList.fileName}</td>
-					<td>${adminFList.fileuploaddate}</td>
+	                <td><fmt:formatDate pattern="yyyy/MM/dd" value="${adminFList.fileuploaddate}"/></td>					
          			<td><input type="button" class="deleteBtn" onclick="deletefileList('${adminFList.filecode}')" value="삭제" style="background: red; color:white;"></td>
            		</tr>
            	</c:forEach> 
@@ -177,16 +177,16 @@
         <thead>
             <tr>
                 <th>방 ID</th>
-                <th>방 이름</th>
-                <th>방 종류</th>
-                <th>참여 인원</th>
-                <th>수용 인원</th>
-                <th>방장</th>
+                <th>질문 ID</th>
+                <th>작성일</th>
+                <th>작성자</th>
+                <th>내용</th>
+                <th>답변</th>
                 <th>삭제</th>
             </tr>
         </thead>
         <tbody>
-         
+          
         </tbody>
     </table>
     
@@ -194,17 +194,27 @@
     <table id="roomTable">
         <thead>
             <tr>
-                <th>방 ID</th>
-                <th>방 이름</th>
-                <th>방 종류</th>
-                <th>참여 인원</th>
-                <th>수용 인원</th>
-                <th>방장</th>
+            	<th>방 ID</th>
+                <th>공지 ID</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>작성일</th>
+                <th>작성자</th>       
                 <th>삭제</th>
             </tr>
         </thead>
         <tbody>
-         
+         <c:forEach items="${adminNoticeList}" var="adminNList" varStatus="status">
+           		<tr>
+           			<td>${adminNList.roomcode}</td>
+           			<td>${adminNList.noticecode}</td>
+           			<td>${adminNList.title}</td>
+					<td>${adminNList.content}</td>
+	                <td><fmt:formatDate pattern="yyyy/MM/dd" value="${adminNList.writedate}"/></td>
+					<td>${adminNList.writemember}</td>
+         			<td><input type="button" class="deleteBtn" onclick="deleteNotice('${adminNList.noticecode}')" value="삭제" style="background: red; color:white;"></td>
+           		</tr>
+           	</c:forEach> 
         </tbody>
     </table>
     
@@ -240,6 +250,11 @@ function deletefileList(filecode)
 function deleteRoomMemberList(id)
 {
 	location.href = "/admin/deleteRoomMemberList?roomcode="+roomcode+"&id="+id;
+}
+
+function deleteNotice(noticecode)
+{
+	location.href = "/admin/deleteNoticeList?roomcode="+roomcode+"&noticecode="+noticecode;
 }
 
 </script>

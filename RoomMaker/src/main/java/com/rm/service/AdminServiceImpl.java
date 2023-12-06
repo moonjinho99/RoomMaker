@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.rm.mapper.AdminMapper;
 import com.rm.model.FileVO;
 import com.rm.model.MemberVO;
+import com.rm.model.NoticeVO;
 import com.rm.model.RoomMemberVO;
 import com.rm.model.RoomVO;
 
@@ -77,6 +78,17 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void deleteAll(int roomcode) {
 		mapper.deleteAll(roomcode);
+	}
+
+	@Override
+	public List<NoticeVO> getNoticeList(int roomcode) {
+		
+		return mapper.getNoticeList(roomcode);
+	}
+
+	@Override
+	public void deleteNoticeList(int roomcode, int noticecode) {
+		mapper.deleteNoticeList(roomcode, noticecode);
 	}
 
 	

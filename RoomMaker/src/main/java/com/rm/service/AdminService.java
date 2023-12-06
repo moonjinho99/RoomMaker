@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.rm.model.FileVO;
 import com.rm.model.MemberVO;
+import com.rm.model.NoticeVO;
 import com.rm.model.RoomMemberVO;
 import com.rm.model.RoomVO;
 
@@ -41,4 +42,10 @@ public interface AdminService {
 	
 	//방 삭제
 	public void deleteAll(int roomcode);
+	
+	//방의 공지 정보 가져오기
+	public List<NoticeVO> getNoticeList(int roomcode);
+	
+	//방의 공지 삭제
+	public void deleteNoticeList(int roomcode,int noticecode);
 }

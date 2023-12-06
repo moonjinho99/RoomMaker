@@ -35,7 +35,7 @@ section {
 					<fmt:formatDate value="${file.fileuploaddate}"
 						pattern="yyyy년 MM월 dd일"></fmt:formatDate>
 				</div>
-				<div class="fileDetail_fileName">${file.fileName }<input type="button" class="filedownload" onclick="fileDownload(${file.filecode})" value="다운로드"></div>
+				<div class="fileDetail_fileName"><span class="fileDetail_fileName_span">${file.fileName }</span><input type="button" class="filedownload" onclick="fileDownload(${file.filecode})" value="다운로드"></div>
 				<div class="fileDetail_content">${file.content }</div>
 				<div class="buttons">
 					<input type="button" id="resetbutton" onclick="resetAction()"

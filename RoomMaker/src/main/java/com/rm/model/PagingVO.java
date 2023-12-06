@@ -2,11 +2,11 @@ package com.rm.model;
 
 public class PagingVO {
 	
-	//ÇöÀçÆäÀÌÁö, ½ÃÀÛÆäÀÌÁö, ³¡ÆäÀÌÁö, °Ô½Ã±Û ÃÑ °¹¼ö, ÆäÀÌÁö´ç ±Û °¹¼ö, ¸¶Áö¸·ÆäÀÌÁö, SQLÄõ¸®¿¡ ¾µ start, end
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, SQLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ start, end
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage,start,end;
 	private int cntPage = 1;
 	
-	//°Ë»ö¾î Å°¿öµå
+	//ï¿½Ë»ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ï¿½ï¿½
 	private String keyword;
 	
 	public PagingVO() {
@@ -23,16 +23,16 @@ public class PagingVO {
 		calcStartEnd(getNowPage(), getCntPerPage());
 	}
 	
-	//Á¦ÀÏ ¸¶Áö¸· ÆäÀÌÁö °è»ê
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public void calcLastPage(int total, int cntPerPage)
 	{
 		setLastPage((int)Math.ceil((double)total / (double)cntPerPage));
 		
 	}
 	
-	//½ÃÀÛ, ³¡ ÆäÀÌÁö °è»ê
+	//ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public void calcStartEndPage(int nowPage, int cntPage) {
-		System.out.println("ÇöÀç ÆäÀÌÁö : "+nowPage+"/"+"°Ô½Ã¹° °³¼ö : "+cntPage);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : "+nowPage+"/"+"ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½ : "+cntPage);
 		setEndPage(((int)Math.ceil((double)nowPage / (double)cntPage)) * cntPage);
 		if(getLastPage() < getEndPage()) {
 			setEndPage(getLastPage());
@@ -44,7 +44,7 @@ public class PagingVO {
 		}
 	}
 	
-	//DB Äõ¸®¿¡¼­ »ç¿ëÇÒ start, end°ª °è»ê
+	//DB ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ start, endï¿½ï¿½ ï¿½ï¿½ï¿½
 	public void calcStartEnd(int nowPage, int cntPerPage) {
 		setEnd(nowPage * cntPerPage);
 		setStart(getEnd() - cntPerPage + 1);

@@ -222,8 +222,45 @@
 	</select>	
 	
 	<select id="countNotice" resultType="int">
-	SELECT COUNT(*) FROM NOTICE
+		SELECT COUNT(*) FROM NOTICE
 	</select>
+	
+	
+	<!-- 퀘스트 리스트 -->
+	<select id="question" resultType = "com.rm.model.QuestionVO">
+			select * from(select ROW_NUMBER() OVER (ORDER BY questioncode DESC) AS rn,
+		roomcode, questioncode, questiontitle, questiondate, questionmember,content from question) a
+		 where roomcode = #{param1} and rn BETWEEN #{param2.start} AND #{param2.end} ORDER BY questiondate desc
+	</select>
+	
+	
+	<insert id="insertQuestion">
+		
+		insert into question(roomcode,questiontitle,questiondate,questionmember,content) values(#{roomcode}, #{questiontitle}, sysdate(), #{questionmember},#{content})
+	
+	</insert>
+	
+	<select id="findQuestionCode" resultType="int">
+		select max(questioncode) from question
+	</select>
+	
+	
+	<!-- <insert id="insertQuestionDetail"> 
+	
+		insert into questiondetail values(#{questioncode},#{content}, #{answer}, sysdate(),#{answermember})
+	
+	</insert> -->
+	
+	<select id="getQuestionDetail" resultType = "com.rm.model.QuestionVO">
+			select * from question where roomcode=#{param1} and questioncode=#{param2}
+	</select>
+	
+	
+	<!--질문리스트의 수 -->
+	<select id="questionCount" resultType="int">
+		select count(*) from question where roomcode = #{roomcode}
+	</select>
+	
 	
 	<select id="getNoticeList" resultType="com.rm.model.NoticeVO">
     select * from(select ROW_NUMBER() OVER (ORDER BY noticecode DESC) AS rn,

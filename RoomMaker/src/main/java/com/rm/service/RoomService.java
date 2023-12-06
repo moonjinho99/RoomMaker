@@ -6,6 +6,8 @@ import com.rm.model.RoomMemberVO;
 import com.rm.model.FileVO;
 import com.rm.model.NoticeVO;
 import com.rm.model.MemberVO;
+
+import com.rm.model.QuestionVO;
 import com.rm.model.RoomVO;
 
 public interface RoomService {
@@ -74,7 +76,6 @@ public interface RoomService {
 	//내가 만든 방의 수 
 	public int countMakeRoom(String id);
 	
-
 	//공지 등록
 	public void noticeEnroll(NoticeVO notice);
 	
@@ -98,5 +99,22 @@ public interface RoomService {
 	
 	//방 정보 수정
 	public void updateRoom(RoomVO vo);
+
+	public List<QuestionVO> question(int roomcode, PagingVO vo);
+	
+	public void insertQuestion(QuestionVO room);
+	
+	public void insertQuestionDetail(QuestionVO room);
+	
+	public int findQuestionCode();
+	
+	public QuestionVO getQuestionDetail(int roomcode, int questioncode);
+	
+	public int questionCount(int roomcode);
+	
+	
+	
+	
+	
 
 }
