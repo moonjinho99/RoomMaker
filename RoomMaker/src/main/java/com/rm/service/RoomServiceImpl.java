@@ -286,4 +286,17 @@ public class RoomServiceImpl implements RoomService{
     public void noticeModify(NoticeVO notice) {
     	mapper.noticeModify(notice);
     }
+    
+    //question 답변 등록
+  	@Override
+    public void enrollQAnswer(int roomcode, int questioncode, String answer, String answermember) {
+  		mapper.enrollQAnswer(roomcode, questioncode, answer, answermember);
+  	}
+  	
+  	//question 답변 가져오기
+  	@Override
+    public List<QuestionVO> getAnswerList(int roomcode,int questioncode){
+  		return mapper.getAnswerList(roomcode, questioncode);
+  	}
+  	
 }

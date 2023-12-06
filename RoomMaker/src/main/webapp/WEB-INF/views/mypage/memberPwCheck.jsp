@@ -5,9 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>암호 체크</title>
-<style>
 
-</style>
 
 
 </head>

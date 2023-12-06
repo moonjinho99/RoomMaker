@@ -114,12 +114,12 @@ a{
 		<div class="login_content">
 			<form id="login_form" method="post">
 				<div class="login_div" style="background: white;">
-					<input name="id" type="text" placeholder="아이디">
-					<input name="pw" type="password" placeholder="패스워드">
+					<input name="id" class="id" type="text" placeholder="아이디">
+					<input name="pw" class="pw" type="password" placeholder="패스워드">
 				</div>
 					<input class="login_button" type="button" value="LOGIN">
 				<div class="a_div">
-					<a href="#">아이디 찾기</a>
+					<a >아이디 찾기</a>
 					<a href="#">비밀번호 찾기</a>
 					<a href="/member/join">회원가입</a>
 				</div>
@@ -133,10 +133,23 @@ a{
 
 	<script>
 		$(".login_button").click(function() {
+			var id = $('.id').val();
+			var pw = $('.pw').val();
+			
+			if(id===""){
+				alert("아이디를 입력해주세요");
+				return false;
+			}else if(pw===""){
+				alert("비밀번호를 입력해주세요");
+				return false;
+			}
+			
 			//alert("로그인 버튼 작동");
 			$("#login_form").attr("action", "/member/login");
 			$("#login_form").submit();
 		});
+		
+	
 	</script>
 </body>
 </html>

@@ -279,5 +279,5 @@ function deleteFile(){
 
 </script>
 
-<%@ include file="../room/footer.jsp" %>
+<%@ include file="../room/roomFooter.jsp" %>
 

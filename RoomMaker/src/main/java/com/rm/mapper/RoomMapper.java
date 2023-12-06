@@ -133,4 +133,11 @@ public interface RoomMapper {
     
     /*공지 수정*/
     public void noticeModify(NoticeVO notice);
+    
+    //question 답변 등록
+    public void enrollQAnswer(int roomcode, int questioncode, String answer, String answermember);
+
+    //question 답변 가져오기
+    public List<QuestionVO> getAnswerList(int roomcode,int questioncode);
+    
 }

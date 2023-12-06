@@ -421,15 +421,8 @@ public class RoomController{
             	  model.addAttribute("roomcode", roomcode);
             	              	  
             	  jspToInclude = "/room/questionWrite";
-              } else if("조회하기".equals(buttonValue)) {
-            	  
-            	  log.info("조회하기 진입");
-            	  
-            	  model.addAttribute("roomcode", roomcode);
-            	  
-            	  jspToInclude = "/room/questionDetail";
 
-              }
+              } 
 
            return jspToInclude; 
        }
@@ -602,6 +595,7 @@ public class RoomController{
 		// 업로드할 파일 경로 설정
 	        String downloadPath = "C:\\Users\\PC\\Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다.
 
+	        //String downloadPath = "/Users/hangayeon/Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다
 	        // 다운로드 폴더에 파일 복사
 	        try {
 	            Path targetPath = new File(downloadPath, storeToFileName).toPath();
@@ -865,15 +859,14 @@ public class RoomController{
 		   
 		   System.out.println("questionDetail : " + roomcode);
 		   System.out.println("questionCode : " + questioncode);
-
 		   
 		   QuestionVO getQuestionDetail = roomService.getQuestionDetail(roomcode, questioncode);
+		   List<QuestionVO> answerList = roomService.getAnswerList(roomcode, questioncode);
 		   
 		   model.addAttribute("questionDetail",getQuestionDetail);
+		   model.addAttribute("answer",answerList);
 		   
 		   return "/room/questionDetail";
-		   
-		  
 	   }
 	   
 	   @GetMapping("questionModify")
@@ -947,6 +940,27 @@ public class RoomController{
 		   String buttonValue= "공지보기";
 	 	   return determineJSP(buttonValue, roomcode,model);
 	   }
+	   @GetMapping(value="/questionAnswerWindow")
+	   public void questionAnswerWindowGet() {
+		   log.info("question 답글 작성 윈도우 오픈");
+	   }
+	   
+	   @PostMapping(value="/questionAnswerWindow")
+	   public void questionAnswerWindowPOST(String answer, int questioncode, int roomcode, String answermember) {
+		   log.info("question 답글 작성 중..........");
+		   System.out.println(answer);
+		   System.out.println(questioncode);
+		   System.out.println(roomcode);
+		   System.out.println(answermember);
+		   
+		   roomService.enrollQAnswer(roomcode, questioncode, answer, answermember);
+		   
+		   
+	   }
+	   
+	   
+	   
+	   
 	   
 	   	  
 }

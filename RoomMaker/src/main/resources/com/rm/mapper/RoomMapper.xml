@@ -286,5 +286,15 @@
 	<update id="updateRoom">
 		update roomdetail set roomcode = #{roomcode}, title=#{title}, roompw=#{roompw}, member_cnt=#{member_cnt}, join_member_cnt=#{join_member_cnt},explanation=#{explanation} where roomcode=#{roomcode}
 	</update>
+	
+	<!-- question 답변 등록 -->
+	<insert id="enrollQAnswer">
+		insert into answer values(#{param1}, #{param2}, #{param3}, sysdate() , #{param4})
+	</insert>
+	
+	<!-- question 답변 가져오기 -->
+	<select id="getAnswerList" resultType="com.rm.model.QuestionVO">
+		select * from answer where roomcode = #{param1} and questioncode = #{param2}
+	</select>
 
 </mapper>

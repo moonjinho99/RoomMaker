@@ -24,10 +24,8 @@ function question()
 }
 </script>
 
-<link rel="stylesheet" href="../resources/css/room/question.css" />
- <link rel="stylesheet" href="../resources/css/room/roomHeader.css" />
-<link rel="stylesheet" href="../resources/css/room/roomAside.css" />
-<link rel="stylesheet" href="../resources/css/room/roomFooter.css" />
+
+
 </head>
 <body>
 	<section id="dynamicContent">

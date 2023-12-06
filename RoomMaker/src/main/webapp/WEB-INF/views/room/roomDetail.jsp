@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,28 +11,32 @@
 <link rel="stylesheet" href="../resources/css/room/roomFooter.css" />
 <link rel="stylesheet" href="../resources/css/footer.css?v=1" />
 
-<link rel="stylesheet" href="../resources/css/room/roomChatting.css" /> 
-<link rel="stylesheet" href="../resources/css/room/fileList.css" /> 
-<link rel="stylesheet" href="../resources/css/room/fileUpload.css" /> 
+<link rel="stylesheet" href="../resources/css/room/roomChatting.css" />
+<link rel="stylesheet" href="../resources/css/room/fileList.css" />
+<link rel="stylesheet" href="../resources/css/room/fileUpload.css" />
 <link rel="stylesheet" href="../resources/css/room/fileDetail.css" />
-<link rel="stylesheet" href="../resources/css/room/fileModify.css" />  
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<link rel="stylesheet" href="../resources/css/room/fileModify.css" />
+<link rel="stylesheet" href="../resources/css/room/questionDetail.css" />
+<link rel="stylesheet" href="../resources/css/room/question.css" />
+
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <style>
-    section {
-    	display: flex;
-        width: 60%;
-        height: 500px;
-        border-bottom: 1px solid black;
-       
-    }
+section {
+	display: flex;
+	width: 60%;
+	height: 500px;
+	border-bottom: 1px solid black;
+}
 </style>
 
 </head>
 <body>
-<%@ include file="roomHeader.jsp" %>
-<%@ include file="roomAside.jsp" %>
+	<%@ include file="roomHeader.jsp"%>
+	<%@ include file="roomAside.jsp"%>
 
 <section id="dynamicContent">
     <div class="clear" style="float:left;"></div>
@@ -43,7 +47,8 @@
 	
 	
 
-<%@ include file="../footer.jsp" %>
+<%@ include file="../room/roomFooter.jsp" %>
+
 
 	
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
@@ -237,15 +242,15 @@
                   }
               });
           };
+          
+          function answerButton() {
+  			var answermember = $('.loginId').val();
+  		    var questioncode = $('#questioncode').val();
+  		    console.log(questioncode);
+  		    console.log(answermember);
+  		    
+  		    var url = '/room/questionAnswerWindow?questioncode='+questioncode+'&roomcode='+roomcode+'&answermember='+answermember;
+  		    window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizeble=no, width=450, height=300");
+  		}
 
-       
-  
-        
-    
-        
-        
-        
-    </script>
-    
-    
- 
+	</script>

@@ -8,8 +8,12 @@
 	<section>
 		<form id="fileUpload_form" method="POST" enctype="multipart/form-data">
 		<input type="hidden" class="roomcode" name="roomcode" value="${roomcode }">
+<<<<<<< Updated upstream
 		<input type="hidden" class="uploadPath" name="uploadPath" value="C:\\upload\\temp">
 		<input type="hidden" class="uploadPath" name="uploadPath" value="/Users/choejin-yeong/RoomMaker/RoomMaker/RoomMaker/Upload">
+=======
+		<input type="hidden" class="uploadPath" name="uploadPath" value="/Users/hangayeon/RoomMaker/RoomMaker/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapp/upload">
+>>>>>>> Stashed changes
 		<input type="hidden" class="filemember" name="filemember" value="${member.id }"> 
 		 <div class="fileUpload_wrap">
 		 	<div class="fileUploadTitle">

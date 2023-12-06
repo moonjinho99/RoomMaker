@@ -174,5 +174,11 @@ public class RoomMapperTest {
 //	
 //	}
 	
+<<<<<<< Updated upstream
+=======
+
+	
+	
+>>>>>>> Stashed changes
 	
 }

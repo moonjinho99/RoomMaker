@@ -40,7 +40,7 @@ body{
 				</div>
 				<input type="text" class="joinEmail" name="email" placeholder="이메일">
 				<input type="button" class="emailNum" value="인증번호 발송">
-				<input type="text" class="joinEmailNum input" name="emailNum" placeholder="인증번호">
+				<input type="text" class="joinEmailNum input" name="emailNum" placeholder="인증번호" disabled>
 				<input type="hidden" name="memberlevel" value="0">
 				</div>
 				<input type="button" class="join_button" value="JOIN">
@@ -50,7 +50,7 @@ body{
 	<script>
 	 
 	$(document).ready(function(){
-
+		var code = 0;
 	    $(".join_button").click(function() {
 
 	        var id = $('.joinId').val();                 // id 입력란
@@ -98,13 +98,17 @@ body{
 	            alert("인증번호를 입력해주세요.");
 	            join_form.emailNum.focus();
 	            return false;
-	        }   
+	        } else if(code !== mailNum){
+	        	alert("인증번호가 옳지 않습니다");
+	        	join_form.mailNum.focus();
+	        	return false;
+	        }
 	        $("#join_form").attr("action", "/member/join");
 	        $("#join_form").submit();
 	    });
 
 	    $(".emailNum").click(function() {
-
+			
 	        var email = $(".joinEmail").val(); // 입력한 이메일
 
 	        if(email == ""){                // 이메일 공란 검사
