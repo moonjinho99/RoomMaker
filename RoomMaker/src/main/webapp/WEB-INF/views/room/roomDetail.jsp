@@ -15,12 +15,21 @@
 <link rel="stylesheet" href="../resources/css/room/fileList.css" />
 <link rel="stylesheet" href="../resources/css/room/fileUpload.css" />
 <link rel="stylesheet" href="../resources/css/room/fileDetail.css" />
+
 <link rel="stylesheet" href="../resources/css/room/fileModify.css" />
 <link rel="stylesheet" href="../resources/css/room/questionDetail.css" />
 <link rel="stylesheet" href="../resources/css/room/question.css" />
 
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
+<link rel="stylesheet" href="../resources/css/room/fileModify.css" />  
+<link rel="stylesheet" href="../resources/css/room/question.css" />
+<link rel="stylesheet" href="../resources/css/room/questionDetail.css" />
+<link rel="stylesheet" href="../resources/css/room/questionModify.css" />
+<link rel="stylesheet" href="../resources/css/room/questionWrite.css" />
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -252,5 +261,76 @@ section {
   		    var url = '/room/questionAnswerWindow?questioncode='+questioncode+'&roomcode='+roomcode+'&answermember='+answermember;
   		    window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizeble=no, width=450, height=300");
   		}
+          function resetActionQuestion(questioncode){
+        	  console.log(questioncode)
+        	  $.ajax({
+      			type: 'GET',
+      			url: '/room/questionDetail',
+      	        data: {questioncode: questioncode, roomcode:roomcode},
+      	        success: function (data) {
+      	        	 $('#dynamicContent').html(data);
+      	        },
+      	        error: function (xhr, status, error) {
+      	            console.error("에러 발생:", error);
+      	        }
+      		});
+        	  
+          }
+          
+          function questionModify(questioncode){
+         		var loginId = $('.loginId').val();  //로그인 되어 있는 유저 Id
+         		var roomId=$('.roomId').val();		//방장 Id
+         		var uploadId= $('.uploadId').val();		//파일을 업로드한 유저 Id
+         
+          
+          	if(loginId===uploadId||loginId===roomId){
+          		console.log("일치");
+          		$.ajax({
+          		type: 'GET',
+          		url: '/room/questionModify',
+                  data: {questioncode: questioncode, roomcode:roomcode},
+                  success: function (data) {
+                  	 $('#dynamicContent').html(data);
 
-	</script>
+                  },
+                  error: function (xhr, status, error) {
+                      console.error("에러 발생:", error);
+                  }
+          	});
+          		
+          	}
+          	else{
+          		alert("수정할 수 있는 권한이 없습니다.");
+          		return false;
+         		}
+        	
+          }
+              
+      function modifyActionQS(questioncode){
+      	var questiontitle = $('.questionModify_title_sec').val();
+      	var content = $('.modifycontent').val();
+      	
+      	console.log(questiontitle, content);
+      	
+      	if(questiontitle===""){
+      	alert("수정하실 게시물 제목을 입력해주세요");
+      	return false;
+      	}
+      	$.ajax({
+      		type: 'POST',
+      		url: '/room/modifyUploadedQuestion',
+              data: {questioncode: questioncode, roomcode:roomcode, questiontitle: questiontitle, content: content},
+              success: function (data) {
+              	 $('#dynamicContent').html(data);
+              },
+              error: function (xhr, status, error) {
+                  console.error("에러 발생:", error);
+              }
+
+      	});
+      	
+      }
+      
+        
+    </script>
+    

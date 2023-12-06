@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <style>
 section {
 	display: flex;
@@ -14,29 +19,22 @@ section {
 </head>
 <body>
 
-	<section id="dynamicContent">
+	<section id ="dynamicContent">
 		<form action="/room/questionDetail" method="get">
-			<div id="questionDetailWrap">
-				<input type="hidden" class="loginId" value="${member.id}"> <input
-					type="hidden" class="roomId" value="${roomDetail.id}"> <input
-					type="hidden" class="uploadId"
-					value="${questionDetail.questionmember }">
-				<div class="questionDetailTitle">
-				<img class="QDetailIcon" src="../resources/images/Q&A.png">
-				<span>질문 상세보기</span>
-			    </div>
-				<div class="questionDetail_title">
-					<span> no. ${questionDetail.questioncode}</span> <span
-						class="questionDetail_title_sec">
-						${questionDetail.questiontitle}</span>
-				</div>
-				<div class="questionDetail_member">${questionDetail.questionmember}</div>
-				<div class="questionDetail_uploaddate">
-					<fmt:formatDate pattern="yyyy년 MM월 dd일"
-						value="${questionDetail.questiondate}" />
-				</div>
-				<div class="questionDetail_content">${questionDetail.content}</div>
-
+		 <div id="questionDetailWrap">
+		 	<input type="hidden" class="loginId" value="${member.id}">
+		 	<input type="hidden" class="roomId" value="${roomDetail.id}">
+		 	<input type="hidden" class="uploadId" value="${questionDetail.questionmember }">
+		
+			<div class="questionDetail_title">
+				<span> no. ${questionDetail.questioncode}</span> <span class="questionDetail_title_sec"> ${questionDetail.questiontitle}</span>
+			</div>
+			<div class="questionDetail_member">${questionDetail.questionmember}</div>
+			<div class="questionDetail_uploaddate">
+					<fmt:formatDate pattern="yyyy/MM/dd" value="${questionDetail.questiondate}" />			
+			</div>
+			<div class="questionDetail_content">${questionDetail.content}</div>
+			<div>${questionDetail.answer}</div>
 
 				<div class="answer_content">
 					<c:forEach items="${answer }" var="answer" varStatus="status">
@@ -74,6 +72,8 @@ section {
 				</div>
 
 			</div>
+
+			
 
 		</form>
 

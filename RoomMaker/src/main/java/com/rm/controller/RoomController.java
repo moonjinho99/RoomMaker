@@ -855,7 +855,7 @@ public class RoomController{
 	   
 	   /* 조회 하기 */
 	   @GetMapping("/questionDetail")
-	   public String roomQuestionDetailGET(@RequestParam int roomcode, @RequestParam int questioncode, Model model, HttpServletRequest request) {
+	   public String roomQuestionDetailGET(@RequestParam int roomcode, @RequestParam int questioncode, Model model) {
 		   
 		   System.out.println("questionDetail : " + roomcode);
 		   System.out.println("questionCode : " + questioncode);
@@ -880,12 +880,19 @@ public class RoomController{
 	   }
 	   
 	   @PostMapping("/modifyUploadedQuestion")
-	   public String modifyUploadedQuestion(@RequestParam int roomcode, @RequestParam int questioncode, @RequestParam("questiontitle") String questiontitle, @RequestParam String content, Model model) {
+	   public String modifyUploadedQuestion(@RequestParam int roomcode, @RequestParam int questioncode, @RequestParam("questiontitle") String questiontitle,@RequestParam String content, Model model) {
 		   
-		   return null;
+		   log.info("modifyQuestion........");
+		   QuestionVO question = new QuestionVO();
+		   question.setQuestiontitle(questiontitle);
+		   question.setContent(content);
+
+		   roomService.updateQuestion(question, questioncode);
+		   
+		   return roomQuestionDetailGET(roomcode,questioncode,model);
+		   
 	   }
-		
-	   
+	   	   
 	   @PostMapping("/questionListPaging")
 	   public String questionListPaging(
 	       @RequestParam(value = "nowPage", required = false) Integer nowPage,

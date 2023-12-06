@@ -261,7 +261,10 @@
 		select count(*) from question where roomcode = #{roomcode}
 	</select>
 	
-	
+	<insert id="updateQuestion">
+		update question set questiontitle = #{param1.questiontitle},content= #{param1.content} where questioncode = #{param2};
+	</insert>
+					
 	<select id="getNoticeList" resultType="com.rm.model.NoticeVO">
     select * from(select ROW_NUMBER() OVER (ORDER BY noticecode DESC) AS rn,
 		roomcode, noticecode, title, content,writedate, writemember from notice) a

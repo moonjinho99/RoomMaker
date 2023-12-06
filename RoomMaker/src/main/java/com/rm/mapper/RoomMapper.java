@@ -128,6 +128,9 @@ public interface RoomMapper {
 	// question count
 	public int questionCount(int roomcode);	
 	
+	//question 수정
+	public void updateQuestion(QuestionVO question,int questioncode);
+	
 	/* 공지 디테일 */
     public NoticeVO getNoticePage(int noticecode);
     

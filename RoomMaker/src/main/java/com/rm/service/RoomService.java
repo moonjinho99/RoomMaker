@@ -115,6 +115,9 @@ public interface RoomService {
 	//question 답변 등록
 	public void enrollQAnswer(int roomcode, int questioncode, String answer, String answermember);
 	
+	// 게시글 수정
+	public void updateQuestion(QuestionVO question, int questioncode);
+	
 	//question 답변 가져오기
     public List<QuestionVO> getAnswerList(int roomcode,int questioncode);
 	

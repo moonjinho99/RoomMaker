@@ -2,19 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-</head>
-<body>
-<input type="button" value="질문하기" onclick="question()">
-</body>
+<style>
+section {
+	display: flex;
+	width: 60%;
+	height: 500px;
+	border-bottom: 1px solid black;
+	
+}
+</style>
+	
 
 <script>
 function question()
@@ -31,36 +28,43 @@ function question()
 	<section id="dynamicContent">
 <div class="table_wrap">
 <form action="/room/question" method="post">
+<div>
+	<form id="questionList_form">
+	<div class="questionUploadTitle">
+<!-- 		<img class=""> -->
+		<span>자료 리스트</span>
+	</div>
+	<div style="display:flex">
+	<div class="questionUploadGo_div" style="
+    width: 100px;
+"><input type="button" onclick="QuestionWriteMovo()" id="questionUploadGo" class="questionUploadGo" value="글 작성">
+	</div>
+	
+	<div class="button_Ai">
+		<input type="button" value="Ai 질문" onclick="question()" style="
+    idth: 70px;
+    height: 35px;
+    border: 2px solid black;
+    background-color: skyblue;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+">
+	</div>
+	</div>
   	<table>
-  		<thead>
-  				<tr>
-  					<th class="roomcode_width">번호</th>
-  					<th class="title_width">제목</th>
-					<th class="id_width">아이디</th>
-					<th class="date_width">작성일</th>
-  				</tr>
-  		
-  		</thead>
-  		
-  		
-  		
-        <c:forEach items="${list}" var="list">
-            <tr>
-                <td>${list.questioncode}</td>
-                <td><a onclick="questionDetail(${list.questioncode})">${list.questiontitle}</a></td>
-                <td>${list.questionmember}</td>
-                <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.questiondate}"/></td>
-                
-            </tr>
-        </c:forEach>
-        
-  		
+  	<tr>
+  	<th width="100">no.</th><th width="300" class="notFirst">제목</th><th width="200" class="notFirst">아이디</th><th width="300" class="notFirst">작성일</th>
+  	</tr>
+  	<c:forEach items="${list}" var="list" varStatus="status">
+  	<tr>
+  	<td>${list.questioncode}</td><td><a class="questiontitle" onclick="questionDetail(${list.questioncode})">${list.questiontitle}</a></td><td>${list.questionmember}</td><td> <fmt:formatDate value="${list.questiondate}" pattern="yyyy년 MM월 dd일" ></fmt:formatDate> </td>
+  	</tr>
+  	
+  	</c:forEach>
   	</table>
-  	
-  	 <input type="button" value="글 작성" onclick="QuestionWriteMovo()" >
-  	
-  	
-	</form>
+  	</form>	
+	
 	<div style="display: block; text-align: center; margin-top:20px" class="pagemove">	
 		<input type="hidden" class="startPage" name="startPage" value="${paging.startPage}">
 		<input type="hidden" class="endPage" name="endPage" value="${paging.endPage}">
@@ -84,10 +88,10 @@ function question()
 		</c:if>
 	</div> 
 </div>
+	<section id="dynamicContent">
 
-
-	<div class="clear" style="float:left;"></div>
-    <div th:include="${'defaultJSP'} :: content"></div>	
+		<div class="clear" style="float:left;"></div>
+    	<div th:include="${'defaultJSP'} :: content"></div>	
     </section>
     
     

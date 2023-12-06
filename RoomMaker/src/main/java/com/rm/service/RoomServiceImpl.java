@@ -155,6 +155,13 @@ public class RoomServiceImpl implements RoomService{
 		
 		return mapper.questionCount(roomcode);
 	}
+	
+	//question 수정
+	@Override
+	public void updateQuestion(QuestionVO question, int questioncode) {
+			
+		mapper.updateQuestion(question, questioncode);
+	}
 
 	
 	//fileList 갯수 가져오기
@@ -299,4 +306,7 @@ public class RoomServiceImpl implements RoomService{
   		return mapper.getAnswerList(roomcode, questioncode);
   	}
   	
+
+
+	
 }
