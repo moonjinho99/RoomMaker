@@ -9,6 +9,7 @@ public class NoticeVO {
 	private String content;
 	private Date writedate;
 	private String writemember;
+	
 	public int getRoomcode() {
 		return roomcode;
 	}

@@ -394,6 +394,8 @@ public class RoomController{
             	  jspToInclude = "/room/fileUpload";
               } else if ("방수정".equals(buttonValue)) {
             	  jspToInclude = "/room/roomUpdate";
+              }else if ("캘린더".equals(buttonValue)) {
+            	  jspToInclude = "/room/roomSchedule";
               }
 
            return jspToInclude; 
@@ -672,7 +674,7 @@ public class RoomController{
 		//공지
 		/* 공지 등록 */
 	      @PostMapping("/roomNoticeEnroll")
-	      public String roomNoticeEnrollPOST(@RequestParam int roomcode,String title,String content,String writemember) {
+	      public String roomNoticeEnrollPOST(@RequestParam int roomcode,String title,String content,String writemember,Model model) {
 	          
 	         
 	         System.out.println(roomcode+","+title+","+content+","+writemember);
@@ -687,7 +689,8 @@ public class RoomController{
 	         
 	         roomService.noticeEnroll(notice);
 	            
-	          return "redirect:/room/noticeList";
+	         	String buttonValue= "공지보기";
+				return determineJSP(buttonValue, roomcode,model);
 	      }
 	      
 	      
@@ -709,15 +712,20 @@ public class RoomController{
 	      
 	      /* 페이지 수정 */
 	      @PostMapping("/noticeModify")
-	      public String noticeModifyPOST(NoticeVO notice, RedirectAttributes rttr) {
-	          
-	          roomService.noticeModify(notice);
-	          
-	          rttr.addFlashAttribute("result", "modify success");
-	          
-	          return "redirect:/room/noticeList";
-	          
-	      }
+			public String noticeModify(@RequestParam int roomcode,@RequestParam int noticecode,@RequestParam String title,@RequestParam String content, Model model) {
+				
+				log.info("modifynotice.........");
+				NoticeVO notice = new NoticeVO();
+				notice.setTitle(title);
+				notice.setContent(content);
+				notice.setRoomcode(roomcode);
+				notice.setNoticecode(noticecode);
+				System.out.println("수정 : "+ notice);
+				roomService.noticeModify(notice);
+				
+				String buttonValue= "공지보기";
+				return determineJSP(buttonValue, roomcode, model);
+			}
 	      
 	      public void noticeListAction(PagingVO vo, Model model, int roomcode,
 	              @RequestParam(value="nowPage", required=false)String nowPage,

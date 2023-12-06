@@ -115,5 +115,5 @@ public interface RoomMapper {
     public NoticeVO getNoticePage(int noticecode);
     
     /*공지 수정*/
-    public int noticeModify(NoticeVO notice);
+    public void noticeModify(NoticeVO notice);
 }

@@ -223,8 +223,7 @@ public class RoomServiceImpl implements RoomService{
     
     /* 공지 수정 */
     @Override
-    public int noticeModify(NoticeVO notice) {
-        
-        return mapper.noticeModify(notice);
+    public void noticeModify(NoticeVO notice) {
+    	mapper.noticeModify(notice);
     }
 }

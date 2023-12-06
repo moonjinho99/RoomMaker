@@ -240,9 +240,9 @@
     </select>
     
     <!-- 공지 수정 -->
-<update id="noticeModify">
+	<update id="noticeModify">
         <!-- MySQL -->
-        update notice set title = #{title}, content = #{content}
+        update notice set title = #{title}, content = #{content} where noticecode = #{noticecode} and roomcode=#{roomcode}
     </update> 
     
 	<!-- 방의 정보 수정 -->

@@ -60,11 +60,30 @@
   	text-align: center;
   	margin-top: 6px;
   }
+  
+  .noticeTitle img{
+	width: 50px;
+    height: 50px;
+    float: left;
+}
+.noticeTitle span{
+	margin: 0;
+    margin-left: 70px;
+    width: 650px;
+    height: 50px;
+    font-size: 2em;
+    line-height: 50px;
+    font-weight: bold;
+    display: block;
+}
   </style>
 </head>
 <body>
 <div class="notice_main">
-<h1>공지 목록페이지입니다.</h1>
+<div class="noticeTitle">
+<img src="../resources/images/notice.jpg">
+<span>공지!!</span>
+</div>
 <c:if test="${roomDetail.id == member.id}">
 <div class="noticeEnrollGo_div" style="margin-left: 800px;">
 <a onclick="gonoticeEnroll()" data-value="공지등록" id="noticeEnrollGo" class="noticeEnrollGo" style="border: 2px solid black;">공지 등록</a>	

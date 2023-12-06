@@ -87,7 +87,7 @@ public interface RoomService {
     public NoticeVO getNoticePage(int noticecode);
     
     /*공지 수정*/
-    public int noticeModify(NoticeVO notice);
+    public void noticeModify(NoticeVO notice);
 
 	//회원의 이름 가져오기
 	public String selectName(String id);

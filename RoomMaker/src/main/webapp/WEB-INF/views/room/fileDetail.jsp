@@ -19,6 +19,7 @@ section {
 <body>
 	<section>
 		<div id="fileDetailWrap">
+		
 			<input type="hidden" class="loginId" value="${member.id }"> <input
 				type="hidden" class="roomId" value="${roomDetail.id}"> <input
 				type="hidden" class="uploadId" value="${file.filemember }">
