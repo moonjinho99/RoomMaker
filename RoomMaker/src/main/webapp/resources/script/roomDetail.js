@@ -1,6 +1,7 @@
 
 var roomcode = document.getElementsByName("roomcode")[0].value;
-var sock = new SockJS("http://localhost:8000/chatting");
+var sock = new SockJS("http://192.168.0.41:8000/chatting");
+
 
 $(document).ready(function () {
 	
@@ -40,7 +41,7 @@ $(document).ready(function () {
 
 
         
-        function fileUploadAction(){
+function fileUploadAction(){
         	
             var roomcode = $('.roomcode').val();
             var filetitle = $('.filetitle').val();
@@ -207,12 +208,11 @@ function fileDownload(filecode){
   	
     }
         
-    function goFileModify(filecode){
+function goFileModify(filecode){
    		var loginId = $('.loginId').val();  //로그인 되어 있는 유저 Id
    		var roomId=$('.roomId').val();		//방장 Id
    		var uploadId= $('.uploadId').val();		//파일을 업로드한 유저 Id
    
-    
     	if(loginId===uploadId||loginId===roomId){
     		console.log("일치");
     		$.ajax({

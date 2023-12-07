@@ -28,8 +28,8 @@ section {
 					<fmt:formatDate value="${file.fileuploaddate}"
 						pattern="yyyy년 MM월 dd일"></fmt:formatDate>
 				</div>
-				<div class="fileModify_fileName">${file.fileName } <input type="button" class="filedownload" onclick="fileDownload(${file.filecode})" value="다운로드"></div>
-				<div class="fileModify_content"><textarea class="modifycontent">${file.content }</textarea></div>
+<%-- 				<div class="fileModify_fileName">${file.fileName } <input type="button" class="filedownload" onclick="fileDownload(${file.filecode})" value="다운로드"></div>
+ --%>				<div class="fileModify_content"><textarea class="modifycontent">${file.content }</textarea></div>
 				<div class="buttons">
 					<input type="button" id="resetbutton" onclick="resetActionFromFileMod(${file.filecode})" value="취소">
 		 <input type="button" id="modifybutton" onclick="modifyAction(${file.filecode})" value="수정">

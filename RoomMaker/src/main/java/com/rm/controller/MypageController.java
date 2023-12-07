@@ -1,17 +1,21 @@
 package com.rm.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rm.model.MemberVO;
+import com.rm.service.AdminService;
 import com.rm.service.MemberService;
 
 @Controller
@@ -21,17 +25,20 @@ public class MypageController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private AdminService adminService;
+	
 	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 
 	@GetMapping(value="/main")
 	public void mypageGet(HttpServletRequest request) {
-		log.info("마이 페이지 진입");
+		log.info("留덉씠 �럹�씠吏� 吏꾩엯");
 		
 	}
 	
 	@GetMapping(value="/modify")
 	public String mypageModifyGet() {
-		log.info("마이페이지 수정 진입");
+		log.info("留덉씠�럹�씠吏� �닔�젙 吏꾩엯");
 		return "/mypage/modify";
 	}
 	
@@ -53,11 +60,18 @@ public class MypageController {
 	
 	@GetMapping(value="/leave")
 	public String leaveMemberPOST(String id, String pw, HttpServletRequest request) {
-		log.info("leave 진입");
+		log.info("leave 吏꾩엯");
 		
 		MemberVO member = new MemberVO();
 		member.setId(id);
 		member.setPw(pw);
+		
+		List<Integer> memberRoomcode = memberService.getDeleteMemberRoomcode(id);
+		
+		for(int i=0; i<memberRoomcode.size(); i++)
+		{
+			adminService.DownMemberCnt(memberRoomcode.get(i));
+		}
 		
 		memberService.deleteMember(member);
 		
@@ -69,10 +83,10 @@ public class MypageController {
 		return "redirect:/member/login";
 	}
 	
-	 //마이페이지 이동 전 비밀번호 체크
+	 //留덉씠�럹�씠吏� �씠�룞 �쟾 鍮꾨�踰덊샇 泥댄겕
     @GetMapping(value="/memberPwCheck")
     public void goMemberPwCheckBeforeMypage() {
-    	log.info("마이페이지 비번 체크 진입");
+    	log.info("留덉씠�럹�씠吏� 鍮꾨쾲 泥댄겕 吏꾩엯");
     }
 
 

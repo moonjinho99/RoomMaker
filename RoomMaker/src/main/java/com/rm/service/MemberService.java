@@ -1,5 +1,7 @@
 package com.rm.service;
 
+import java.util.List;
+
 import com.rm.model.MemberVO;
 
 public interface MemberService {
@@ -16,5 +18,8 @@ public interface MemberService {
 
 	// 회원탈퇴
 	public void deleteMember(MemberVO member);
+	
+	//회원 탈퇴시 인원감소
+	public List<Integer> getDeleteMemberRoomcode(String id);
 
 }

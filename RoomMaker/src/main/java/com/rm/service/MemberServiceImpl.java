@@ -1,5 +1,7 @@
 package com.rm.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -38,5 +40,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void deleteMember(MemberVO member) {
 		membermapper.deleteMember(member);
+	}
+
+	@Override
+	public List<Integer> getDeleteMemberRoomcode(String id) {
+		
+		return membermapper.getDeleteMemberRoomcode(id);
 	}
 }

@@ -49,7 +49,7 @@
             <c:forEach items="${roomList}" var="roomList" varStatus="status">
                
                 <div class="many_room" style="background: #f5f5dc;">
-               <a href="#" onclick="inRoomDetail('${roomList.roomcode}')">
+               		<a href="#" onclick="inRoomDetail('${roomList.roomcode}')">
                     <div class="room_info">
                     
                         <div class="room_icon">
@@ -184,22 +184,24 @@
                     
        });
        
-       var join_member_cnt = document.getElementsByName("join_member_cnt")[0].value;
-       var member_cnt = document.getElementsByName("member_cnt")[0].value;
+      
        
        
        function inRoomDetail(roomcode)
-       {
-          if(parseInt(join_member_cnt) < parseInt(member_cnt))
-            {
+       {  	          	   
+          var join_member_cnt = document.getElementsByName("join_member_cnt")[0].value;
+          var member_cnt = document.getElementsByName("member_cnt")[0].value;
+                                 
+    	   if(parseInt(join_member_cnt) < parseInt(member_cnt))
+           {
+       	  
              var url = '/room/roomPwCheck?roomcode='+roomcode;
-              window.open(url,"_blank_1","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=450,height=300");
-            }
-          else{
-        	 alert(join_member_cnt);
-        	 alert(member_cnt);
-             alert("방 인원이 전부 찼습니다.");
-          }
+             window.open(url,"_blank_1","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=450,height=300");
+           }
+        	 else{
+            alert("방 인원이 전부 찼습니다.");
+         } 
+         
        }
        
        

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="../resources/css/mypage/header.css" />
-    
+<link rel="stylesheet" href="../resources/css/footer.css?v=1" />
+   
 <body id="main_backround" style="background-image:url('../resources/images/sky2.jpeg'); background-size: cover;">
 <header style="display: flex;">
         <div class="make_room" style="width: 60%;">

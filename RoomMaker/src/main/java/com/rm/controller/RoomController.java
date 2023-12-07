@@ -276,14 +276,17 @@ public class RoomController{
 	      session.setAttribute("roomDetail", roomService.getRoomDetail(roomcode));	      
 	   }
 	   
-	   //방 입장
-	   @GetMapping("/roomMemberIn")
-	   public String roomMemberIn(String id, int roomcode, Model model)
+	   
+	   
+	   //멤버 체크
+	   @GetMapping("/roomMemberCheck")
+	   public String roomMemberCheck(int roomcode,String id)
 	   {
-		   System.out.println("방 입장");
+		   System.out.println("방 입장2");
 		   
 		   RoomMemberVO roommembervo = new RoomMemberVO();
 		   
+		   System.out.println(roomcode+" / "+ id);
 		  
 		   //방장의 아이디
 		   String masterId = roomService.getRoomDetail(roomcode).getId();
@@ -291,6 +294,9 @@ public class RoomController{
 		   //방안의 참여자 아이디
 		   List<RoomMemberVO> roomMemberList = roomService.selectRoomMember();
 		   
+		   System.out.println(roomMemberList);
+		   
+		   String check = "";
 		   		   
 		   //방안의 참여자 인지 구분
 		   boolean room_in_member = false;
@@ -299,37 +305,66 @@ public class RoomController{
 		   {
 			   if(id.equals(roomMemberList.get(i).getId()) && roomcode == roomMemberList.get(i).getRoomcode())
 			   {
-				   room_in_member = true;
+				   
+				   check="success";
 			   }
 		   }
 		   
-		   
-		   //입장한 참여자가 방장일때 1 
-		   if(masterId.equals(id) && !room_in_member)
-		   {	
-			   roommembervo.setId(id);
-			   roommembervo.setRoomcode(roomcode);
-			   roommembervo.setRoomlevel(1);
-			   
-			   roomService.insertRoomMember(roommembervo);
-			   roomService.updateMemberCnt(roomcode);
-		   }
-		   //일반 참여자는 0
-		   else if(!room_in_member){
-			   
-			   roommembervo.setId(id);
-			   roommembervo.setRoomcode(roomcode);
-			   roommembervo.setRoomlevel(0);
-			   
-			   roomService.insertRoomMember(roommembervo);
-			   roomService.updateMemberCnt(roomcode);
-		   }
+		   return check;
+	   }
+	   
+	   
+	   //방 입장
+	   @GetMapping("/roomMemberIn")
+	   public String roomMemberIn(String id, int roomcode, Model model)
+	   {
+		   System.out.println("방 입장");
+	         
+	         RoomMemberVO roommembervo = new RoomMemberVO();
+	         
+	        
+	         //방장의 아이디
+	         String masterId = roomService.getRoomDetail(roomcode).getId();
+	         
+	         //방안의 참여자 아이디
+	         List<RoomMemberVO> roomMemberList = roomService.selectRoomMember();
+	         
+	                  
+	         //방안의 참여자 인지 구분
+	         boolean room_in_member = false;
+	         
+	         for(int i=0; i<roomMemberList.size(); i++)
+	         {
+	            if(id.equals(roomMemberList.get(i).getId()) && roomcode == roomMemberList.get(i).getRoomcode())
+	            {
+	               room_in_member = true;
+	            }
+	         }
+	                  
+	         //입장한 참여자가 방장일때 1 
+	         if(masterId.equals(id) && !room_in_member)
+	         {   
+	            roommembervo.setId(id);
+	            roommembervo.setRoomcode(roomcode);
+	            roommembervo.setRoomlevel(1);
+	            
+	            roomService.insertRoomMember(roommembervo);
+	            roomService.updateMemberCnt(roomcode);
+	         }
+	         //일반 참여자는 0
+	         else if(!room_in_member){
+	            
+	            roommembervo.setId(id);
+	            roommembervo.setRoomcode(roomcode);
+	            roommembervo.setRoomlevel(0);
+	            
+	            roomService.insertRoomMember(roommembervo);
+	            roomService.updateMemberCnt(roomcode);
+	         }
+
 		   
 		   return "redirect:/room/roomDetail?roomcode="+roomcode;
-	      
-	      
-	     
-	      
+	      	      
 	   }
 	   
 	   
@@ -348,6 +383,7 @@ public class RoomController{
 		   log.info("방 암호 체크");
 		   
 		   model.addAttribute("roomDetail",roomService.getRoomDetail(roomcode));
+		   model.addAttribute("roomMemberList",adminService.getRoomMemberList(roomcode));
 	   }
 	   
 	   @GetMapping("/loadDynamicJSP")

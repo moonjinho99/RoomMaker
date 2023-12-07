@@ -23,4 +23,10 @@
   		delete from member where id = #{id} and pw = #{pw}
   	</delete>
 	
+	
+	<!-- 회원 탈퇴 시 인원 감소 -->
+	<select id="getDeleteMemberRoomcode" resultType="int">
+		select r1.roomcode from roommember r1 join roomdetail r2 on r1.roomcode = r2.roomcode where r1.id=#{id}; 
+	</select>
+	
   </mapper>

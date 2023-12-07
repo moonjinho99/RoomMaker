@@ -1,21 +1,26 @@
 package com.rm.mapper;
 
+import java.util.List;
+
 import com.rm.model.MemberVO;
 
 public interface MemberMapper {
 
-	//회원가입
+	//�쉶�썝媛��엯
 	public void memberJoin(MemberVO member);
 	
-	//로그인
+	//濡쒓렇�씤
 	public MemberVO memberLogin(MemberVO member);
 	
-	//아이디 중복 검사
+	//�븘�씠�뵒 以묐났 寃��궗
 	public int joinIdCheck(String id);
 	
-	//마이페이지에서 정보 수정
+	//留덉씠�럹�씠吏��뿉�꽌 �젙蹂� �닔�젙
 	public void modifyMember(MemberVO member);
 	
-	//회원탈퇴
+	//�쉶�썝�깉�눜
 	public void deleteMember(MemberVO member);
+	
+	//회원 탈퇴
+	public List<Integer> getDeleteMemberRoomcode(String id);
 }
