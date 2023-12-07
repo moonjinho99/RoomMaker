@@ -51,7 +51,7 @@ public class MemberController {
 		
 		logger.info("join Service 성공");
 		
-		return "redirect:/main";
+		return "redirect:/member/login";
 	}
 	
 	

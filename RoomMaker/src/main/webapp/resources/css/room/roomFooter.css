@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
-footer{
+ footer{
 	width: 1720px;
 	height: 280px;
-	background-color: gray;
-}
+	background-color: skyblue;
+} 
 .footer_wrap{
 	position: relative;
     box-sizing: border-box;

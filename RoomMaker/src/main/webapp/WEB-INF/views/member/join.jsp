@@ -12,7 +12,7 @@
 </head>
 <style>
 body{
-	background-image:url('../resources/images/back.jpg'); 
+	background-image:url('../resources/images/bakcimg.jpg'); 
 	background-size: cover;
 }
 </style>

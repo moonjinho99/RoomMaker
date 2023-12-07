@@ -4,8 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <header>
         <div class="study_room">
+		<c:if test="${roomDetail.type == 1}">
             <img src="../resources/images/study.png" style="opacity: 0.8;">
-        </div>
+		</c:if>       
+		<c:if test="${roomDetail.type == 0}">
+            <img src="../resources/images/detailback.jpg" style="opacity: 0.8;">
+		</c:if>		
+		 </div>
         <div class="user_study" style="background-color: #ecf9fa; opacity: 0.7;">
                 <p style="font-size:30px; font-style: bold; border-radius: 10px; ">${roomDetail.id}님 공부방<p>
         </div>

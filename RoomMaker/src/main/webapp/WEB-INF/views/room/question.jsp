@@ -31,8 +31,8 @@ function question()
 <div>
 	<form id="questionList_form">
 	<div class="questionUploadTitle">
-<!-- 		<img class=""> -->
-		<span>자료 리스트</span>
+ 		 <img class="QAIcon" src="../resources/images/qaimage.png" style="width: 50px; height: 50px; float: left; margin-right: 25px;">
+		<span>질문 게시판</span>
 	</div>
 	<div style="display:flex">
 	<div class="questionUploadGo_div" style="

@@ -262,7 +262,7 @@
 	</select>
 	
 	<insert id="updateQuestion">
-		update question set questiontitle = #{param1.questiontitle},content= #{param1.content} where questioncode = #{param2};
+		update question set questiontitle = #{param1.questiontitle},content= #{param1.content} where questioncode = #{param2}
 	</insert>
 					
 	<select id="getNoticeList" resultType="com.rm.model.NoticeVO">

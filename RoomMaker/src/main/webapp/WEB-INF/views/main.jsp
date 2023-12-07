@@ -205,4 +205,4 @@
        
     </script>
 
-<%@ include file="footer.jsp" %>
+<%@ include file="room/roomFooter.jsp" %>

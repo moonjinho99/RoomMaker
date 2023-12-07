@@ -58,7 +58,6 @@ section {
 
 <%@ include file="../room/roomFooter.jsp" %>
 
-
 	
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script type="text/javascript" src="../resources/script/roomDetail.js"></script>

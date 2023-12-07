@@ -143,7 +143,9 @@
 		
 	<div class="btn_wrap6">
 		<a class="btn" id="list_btn" onclick="resetNoticeAction()">목록 페이지</a> 
+		<c:if test="${member.id == pageInfo.writemember}">
 		<a class="btn" id="modify_btn" onclick="goNoticeModify(${pageInfo.noticecode})">수정 하기</a>
+		</c:if>
 	</div>
 	<form id="infoForm" action="/room/noticeModify" method="get">
 		<input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.noticecode}"/>'>

@@ -19,7 +19,7 @@
 
 body {
 	position: relative;
-	background-image:url('../resources/images/back.jpg'); 
+	background-image:url('../resources/images/bakcimg.jpg'); 
 	background-size: cover;
 	
 }
