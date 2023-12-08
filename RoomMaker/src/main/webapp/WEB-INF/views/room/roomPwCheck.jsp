@@ -35,8 +35,7 @@ function checkPw()
 	var roompw = document.getElementsByName("roompw")[0].value;
 	var inputpw = document.getElementsByName("inputpw")[0].value;
 	var id = document.getElementsByName("id")[0].value;
-	var join_member_cnt = document.getElementsByName("join_member_cnt")[0].value;
-    var member_cnt = document.getElementsByName("member_cnt")[0].value;
+	
 
     	if(roompw == inputpw)
     	{

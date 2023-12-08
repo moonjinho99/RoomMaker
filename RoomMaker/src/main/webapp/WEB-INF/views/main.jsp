@@ -35,7 +35,7 @@
 </script>
 
 </head>
-
+	
    <%@ include file="header.jsp" %>
     <section>
         <div id="main_room" style="background: #f7fdfe">
@@ -49,7 +49,7 @@
             <c:forEach items="${roomList}" var="roomList" varStatus="status">
                
                 <div class="many_room" style="background: #f5f5dc;">
-               		<a href="#" onclick="inRoomDetail('${roomList.roomcode}')">
+               		<a href="#" onclick="inRoomDetail('${roomList.roomcode}','${roomList.join_member_cnt}','${roomList.member_cnt}')">
                     <div class="room_info">
                     
                         <div class="room_icon">
@@ -96,7 +96,7 @@
                 </c:forEach>
             </div>
         </div>
-              
+         <input type="hidden" name="id" value="${member.id}">     
          <input type="hidden" name="keyword" value="${paging.keyword }">  
        <div style="display: block; text-align: center; margin-top:20px" class="pagemove">      
        <c:choose>
@@ -187,21 +187,36 @@
       
        
        
-       function inRoomDetail(roomcode)
+       function inRoomDetail(roomcode,join_member_cnt,member_cnt)
        {  	          	   
-          var join_member_cnt = document.getElementsByName("join_member_cnt")[0].value;
-          var member_cnt = document.getElementsByName("member_cnt")[0].value;
-                                 
-    	   if(parseInt(join_member_cnt) < parseInt(member_cnt))
-           {
-       	  
-             var url = '/room/roomPwCheck?roomcode='+roomcode;
-             window.open(url,"_blank_1","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=450,height=300");
-           }
-        	 else{
-            alert("방 인원이 전부 찼습니다.");
-         } 
-         
+    	   var id = document.getElementsByName("id")[0].value;
+    	  	   
+    	   var senddata = "id="+id+"&roomcode="+roomcode;
+                                   
+   		    $.ajax({
+   		        url:'/room/roomMemberCheck'
+   		        , method : 'GET'
+   		        , data : senddata
+   		        , success :  function(result){
+   		        		if(result == 's')
+   		        		{
+   		        		 	var url = '/room/roomPwCheck?roomcode='+roomcode;
+   		              		window.open(url,"_blank_1","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=450,height=300");
+   		        			
+   		        		}else{
+   		        			if(parseInt(join_member_cnt) < parseInt(member_cnt))
+		        			{
+   		        				var url = '/room/roomPwCheck?roomcode='+roomcode;
+   		                     	window.open(url,"_blank_1","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=450,height=300");
+ 		        			}
+   		        			else{
+   		        				alert("방 인원이 전부 찼습니다.");
+   		        			}
+   		        			
+   		        		}
+   		        }
+   		    });
+   	          
        }
        
        

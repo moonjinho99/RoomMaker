@@ -279,8 +279,9 @@ public class RoomController{
 	   
 	   
 	   //멤버 체크
+	   @ResponseBody
 	   @GetMapping("/roomMemberCheck")
-	   public String roomMemberCheck(int roomcode,String id)
+	   public String roomMemberCheck(String id,int roomcode)
 	   {
 		   System.out.println("방 입장2");
 		   
@@ -293,8 +294,7 @@ public class RoomController{
 		   
 		   //방안의 참여자 아이디
 		   List<RoomMemberVO> roomMemberList = roomService.selectRoomMember();
-		   
-		   System.out.println(roomMemberList);
+		  
 		   
 		   String check = "";
 		   		   
@@ -305,8 +305,12 @@ public class RoomController{
 		   {
 			   if(id.equals(roomMemberList.get(i).getId()) && roomcode == roomMemberList.get(i).getRoomcode())
 			   {
-				   
-				   check="success";
+				   System.out.println("방안의 회원");
+				   check="s";
+				   return check;
+			   }
+			   else {
+				   check="n";
 			   }
 		   }
 		   
