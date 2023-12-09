@@ -20,7 +20,7 @@ section {
 <body>
 
 	<section id ="dynamicContent">
-		<form action="/room/questionDetail" method="get">
+		<form action="/room/questionDetail" method="post">
 		 <div id="questionDetailWrap">
 		 	<input type="hidden" class="loginId" value="${member.id}">
 		 	<input type="hidden" class="roomId" value="${roomDetail.id}">
@@ -52,7 +52,12 @@ section {
 							<div class="answer_answer">${answer.answer }</div>
 						</div>
 						</div>
-						<input type="button" class="answer_delete" value="삭제">
+						<c:if test="${member.id == answer.answermember}">
+						<input type="button" class="answer_delete" value="삭제" onclick="deleteAnswer('${answer.answer}','${answer.questioncode}','${answer.roomcode}')">
+						</c:if>
+						<c:if test="${member.id == roomDetail.id}">
+						<input type="button" class="answer_delete" value="삭제" onclick="deleteAnswer('${answer.answer}','${answer.questioncode}','${answer.roomcode}')">
+						</c:if>
 						<c:if test="${!status.last }">
 						<hr class="hr">
 						</c:if>
@@ -80,6 +85,28 @@ section {
 		<div class="clear"></div>
 	</section>
 
+
+<script>
+
+function deleteAnswer(answer,questioncode,roomcode)
+{
+   	 $.ajax({
+   		type: 'POST',
+   		url: '/room/deleteAnswer',
+           data: {questioncode: questioncode, roomcode:roomcode, answer:answer},
+           success: function (data) {
+        	   alert("답변 삭제 완료");
+        	   questionDetail(questioncode); 
+           },
+           error: function (xhr, status, error) {
+               console.error("에러 발생:", error);
+               alert("답변 삭제 완료");
+        	   questionDetail(questioncode); 
+           }
+   	});  
+   
+}
+</script>
 
 
 </body>

@@ -96,7 +96,7 @@
 			<tr>
 				<th class="bno_width">번호</th>
 				<th class="title_width">제목</th>
-				<th class="writer_width">내용</th>
+				<th class="writer_width">작성자</th>
 				<th class="regdate_width">작성일</th>
 			</tr>
 		</thead>
@@ -104,7 +104,7 @@
             <tr>
                 <td><c:out value="${list.noticecode}"/></td>
                 <td><a onclick="goNoticeDetail(${list.noticecode})">${list.title}</a></td>
-                <td><c:out value="${list.content}"/></td>
+                <td><c:out value="${list.writemember}"/></td>
                 <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.writedate}"/></td>
             </tr>
         </c:forEach>

@@ -305,6 +305,14 @@ public class RoomServiceImpl implements RoomService{
     public List<QuestionVO> getAnswerList(int roomcode,int questioncode){
   		return mapper.getAnswerList(roomcode, questioncode);
   	}
+
+
+  	//답변 삭제하기
+	@Override
+	public void deleteAnswer(int roomcode, int questioncode, String answer) {
+		
+		mapper.deleteAnswer(roomcode, questioncode, answer);
+	}
   	
 
 

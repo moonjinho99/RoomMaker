@@ -143,4 +143,6 @@ public interface RoomMapper {
     //question 답변 가져오기
     public List<QuestionVO> getAnswerList(int roomcode,int questioncode);
     
+    //답변 삭제하기
+    public void deleteAnswer(int roomcode, int questioncode, String answer);
 }

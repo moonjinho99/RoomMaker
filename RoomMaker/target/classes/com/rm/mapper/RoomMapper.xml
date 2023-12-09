@@ -300,4 +300,8 @@
 		select * from answer where roomcode = #{param1} and questioncode = #{param2}
 	</select>
 
+
+	<delete id="deleteAnswer">
+		delete from answer where roomcode=#{param1} and questioncode=#{param2} and answer=#{param3}
+	</delete>
 </mapper>

@@ -1005,10 +1005,13 @@ public class RoomController{
 		   
 	   }
 	   
-	   
-	   
-	   
-	   
-	   	  
+	 @PostMapping(value="/deleteAnswer")
+	 public void deleteAnswer(int questioncode, int roomcode, String answer)
+	 {
+		log.info("답변 삭제...");
+		
+		roomService.deleteAnswer(roomcode, questioncode, answer);
+	 }
+	   	   	  
 }
 
