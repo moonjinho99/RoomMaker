@@ -91,6 +91,7 @@ public class RoomController{
    @PostMapping("/makeRoom")
    public String makerRoomPOST(RoomVO room)
    {
+	  System.out.print("깃허브");
       log.info("RoomVO : "+room);
       roomService.makeRoom(room);
       room.setRoomcode(roomService.findRoomCode());
