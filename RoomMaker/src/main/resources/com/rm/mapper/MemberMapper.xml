@@ -22,7 +22,36 @@
   	<delete id="deleteMember">
   		delete from member where id = #{id} and pw = #{pw}
   	</delete>
+  	
+  	<!-- 이메일로 아이디찾기 -->
+  	<select id="findIdByEmail" resultType="String">
+  		select id from member where name = #{name} and email = #{email}  
+  	</select>
+  	
+  	<!-- 전화번호로 아이디찾기 -->
+  	<select id="findIdByPhonenum" resultType="String">
+  		select id from member where name = #{name} and phonenum = #{phonenum}  
+  	</select>
+  	
+  	<!-- 이메일로 비밀번호 재설정 -->
+  	<update id="updatePwByEmail">
+  		update member set pw = #{pw} where name = #{name} and email = #{email}
+  	</update>
+  	
+  	<!-- 전화번호로 비밀번호 재설정 -->
+  	<update id="updatePwByPhoneNum">
+  		update member set pw = #{pw} where name = #{name} and phonenum = #{phonenum}
+  	</update>
+  	
+  	<!-- 재설정 전 이메일로 비밀번호 찾기 -->
+	<select id="findPwByEmail" resultType="String">
+		select pw from member where name = #{name} and email = #{email}
+	</select>
 	
+	<!-- 재설정 전 전화번호로 비밀번호 찾기 -->
+	<select id="findPwByPhoneNum" resultType="String">
+		select pw from member where name = #{name} and phonenum = #{phonenum}
+	</select>
 	
 	<!-- 회원 탈퇴 시 인원 감소 -->
 	<select id="getDeleteMemberRoomcode" resultType="int">

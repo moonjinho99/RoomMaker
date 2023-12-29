@@ -47,4 +47,35 @@ public class MemberServiceImpl implements MemberService{
 		
 		return membermapper.getDeleteMemberRoomcode(id);
 	}
+	
+	@Override
+	public String findIdByEmail(MemberVO member) {
+		return membermapper.findIdByEmail(member);
+	}
+	
+	@Override
+	public String findIdByPhonenum(MemberVO member) {
+		return membermapper.findIdByPhonenum(member);
+	}
+	
+	@Override
+	public void updatePwByEmail(MemberVO member) {
+		membermapper.updatePwByEmail(member);
+	}
+	
+	@Override
+	public void updatePwByPhoneNum(MemberVO member) {
+		membermapper.updatePwByPhoneNum(member);
+	}
+	
+	@Override
+	public String findPwByEmail(MemberVO member) {
+		return membermapper.findPwByEmail(member);
+	}
+	
+	@Override
+	public String findPwByPhoneNum(MemberVO member) {
+		return membermapper.findIdByPhonenum(member);
+	}
+	
 }

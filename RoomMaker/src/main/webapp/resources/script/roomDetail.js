@@ -49,11 +49,17 @@ function fileUploadAction(){
             var content = $('.content').val();
             var uploadPath = $('.uploadPath').val();
             let formData = new FormData($("#fileUpload_form")[0]);
+            var uploadFile = $('.uploadFile').val();
+            console.log("uploadFile="+uploadFile);
             
             if(filetitle===""){
             alert("게시물의 제목을 입력해주세요");
             return false;
             }
+           	if(uploadFile===""){
+           	alert("공유할 자료를 선택해주세요");
+            return false;
+           	}
             
 
             $.ajax({
@@ -277,4 +283,22 @@ function resetActionFromFileMod(filecode){
 
 }
 
+function deleteAnswer(answer,questioncode,roomcode)
+{
+   	 $.ajax({
+   		type: 'POST',
+   		url: '/room/deleteAnswer',
+           data: {questioncode: questioncode, roomcode:roomcode, answer:answer},
+           success: function (data) {
+        	   alert("답변 삭제 완료");
+        	   questionDetail(questioncode); 
+           },
+           error: function (xhr, status, error) {
+               console.error("에러 발생:", error);
+               //alert("답변 삭제 완료");
+        	   //questionDetail(questioncode); 
+           }
+   	});  
+   
+}
        

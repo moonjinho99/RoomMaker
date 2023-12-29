@@ -163,7 +163,6 @@ section {
        }
        
        function questionDetail(questioncode) {
-    	   var buttonValue = '조회하기';
     	       	   
     	   console.log(questioncode);
     	   

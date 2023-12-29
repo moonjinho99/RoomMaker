@@ -633,9 +633,9 @@ public class RoomController{
 			  }
 		   
 		// 업로드할 파일 경로 설정
-	        String downloadPath = "C:\\Users\\PC\\Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다.
+	        //String downloadPath = "C:\\Users\\PC\\Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다.
 
-	        //String downloadPath = "/Users/hangayeon/Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다
+	        String downloadPath = "/Users/hangayeon/Downloads";  // 실제 다운로드 폴더 경로로 변경해야 합니다
 	        // 다운로드 폴더에 파일 복사
 	        try {
 	            Path targetPath = new File(downloadPath, storeToFileName).toPath();
@@ -1005,7 +1005,9 @@ public class RoomController{
 		   
 	   }
 	   
+	   
 	 @PostMapping(value="/deleteAnswer")
+	 @ResponseBody
 	 public void deleteAnswer(int questioncode, int roomcode, String answer)
 	 {
 		log.info("답변 삭제...");

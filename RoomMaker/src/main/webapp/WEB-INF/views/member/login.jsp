@@ -119,8 +119,8 @@ a{
 				</div>
 					<input class="login_button" type="button" value="LOGIN">
 				<div class="a_div">
-					<a >아이디 찾기</a>
-					<a href="#">비밀번호 찾기</a>
+					<a onclick="findIdWindow()">아이디 찾기</a>
+					<a onclick="findPwWindow()">비밀번호 찾기</a>
 					<a href="/member/join">회원가입</a>
 				</div>
 				<c:if test = "${result == 0 }">
@@ -149,6 +149,15 @@ a{
 			$("#login_form").submit();
 		});
 		
+		function findIdWindow(){
+			 var url = '/member/findIdWindow';
+		       window.open(url,"_blank_1","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=450,height=300");
+		}
+		
+		function findPwWindow(){
+			 var url = '/member/findPwWindow';
+		       window.open(url,"_blank_1","toolbar=no , menubar=no, scrollbars=yes,resizeble=no, width=450,height=300");
+		}
 	
 	</script>
 </body>

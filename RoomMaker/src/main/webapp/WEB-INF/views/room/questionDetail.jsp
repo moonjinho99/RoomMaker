@@ -85,29 +85,5 @@ section {
 		<div class="clear"></div>
 	</section>
 
-
-<script>
-
-function deleteAnswer(answer,questioncode,roomcode)
-{
-   	 $.ajax({
-   		type: 'POST',
-   		url: '/room/deleteAnswer',
-           data: {questioncode: questioncode, roomcode:roomcode, answer:answer},
-           success: function (data) {
-        	   alert("답변 삭제 완료");
-        	   questionDetail(questioncode); 
-           },
-           error: function (xhr, status, error) {
-               console.error("에러 발생:", error);
-               alert("답변 삭제 완료");
-        	   questionDetail(questioncode); 
-           }
-   	});  
-   
-}
-</script>
-
-
 </body>
 </html>
