@@ -75,8 +75,15 @@
 
 | 등록 | 다운로드 |
 |-------------|-------------|
-|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/27056375-5787-49e3-acf봇|
+|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/cbe424da-f060-4f4d-903c-9a229e62a5aa" width="400" height="250"> | <img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/cd2f6e26-0d63-4a1b-9feb-c37dbdd27904" width="400" height="250"> |
 
+
+<br/><br/>
+<hr>
+
+➡ 채팅
+
+<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/8efd41f3-7d16-4452-8ae8-65ab5e197cb6" width="600" height="350">
 <br/><br/>
 <hr>
 
