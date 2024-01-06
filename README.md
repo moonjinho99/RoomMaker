@@ -81,7 +81,8 @@
 
 ## 🔍 ERD
 
-![image](https://github.com/moonjinho99/RootFinder/assets/117807455/7f44560a-b61a-4617-be4d-eb7c3ebf833e)
+![image](https://github.com/moonjinho99/RoomMaker/assets/117807455/387d48c0-0bd5-4cb0-be7d-e99c7ab180a9)
+
 
 <hr>
 
