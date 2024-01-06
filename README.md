@@ -1,13 +1,13 @@
 # RoomMaker
 교육기관 및 프로젝트의 학습 공간을 제공해주는 웹 사이트
-
+<br/><br/>
 <hr>
 
 ## 📺 개발환경
 - <img src="https://img.shields.io/badge/IDE-%23121011?style=for-the-badge"> <img src="https://img.shields.io/badge/spring tool suite-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white" /><img src="https://img.shields.io/badge/3.9.17-515151?style=for-the-badge"> ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 - <img src="https://img.shields.io/badge/Language-%23121011?style=for-the-badge"> <img src="https://img.shields.io/badge/java-%23ED8B00?style=for-the-badge&logo=openjdk&logoColor=white"><img src="https://img.shields.io/badge/18-515151?style=for-the-badge">  ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)  ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) 
 - <img src="https://img.shields.io/badge/Database-%23121011?style=for-the-badge">![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
-
+<br/><br/>
 <hr>
 
 
@@ -18,7 +18,7 @@
 ➡ 카카오톡으로 팀원들과 프로젝트를 진행할때 파일 전송이 제한적임 
 
 ➡ 수업 시간외에 질문 사항이 생기면 해결하는데 어려움이 있음
-
+<br/><br/>
 <hr>
 
 ## 🌈 RoomMaker 사용시 기대효과
@@ -29,8 +29,8 @@
 
 ➡ 수업시간 외에 질문 사항이 생길 시에 질문 게시판을 통해 해결가능
 
-➡ AI선생님 기능을 통해 질문 게시판보다 빠른 답변을 받을 수 있음
-
+➡ AI 챗봇 기능을 통해 질문 게시판보다 빠른 답변을 받을 수 있음
+<br/><br/>
 <hr>
 
 ## 💻 역할
@@ -38,7 +38,7 @@
 ➡ DB 설계
 
 ➡ 메인 페이지 구성, 방 생성 , 채팅, AI 챗봇, 관리자 페이지 기능 구현
-
+<br/><br/>
 <hr>
 
 ## ⭐ 주요기능
@@ -46,7 +46,7 @@
 ➡ 메인화면 - 검색, 내가 만든 방, 참여중인 방 확인 가능
 
 <img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/f24a8eaa-9170-4f54-af00-563558746909" width="600" height="350">
-
+<br/><br/>
 <hr>
 
 ➡ 방만들기 / 방입장
@@ -54,7 +54,7 @@
 <img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/40e7140e-b778-4f71-8f85-1103d774d973" width="400" height="250">
 
 <img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/493a50f2-b5ec-4f65-bdaf-2e5fbe69a71e" width="400" height="250">
-
+<br/><br/>
 <hr>
 
 ➡ 방 상세 페이지 - 참여자와 방장의 화면이 다름
@@ -68,28 +68,17 @@
 
 - 방장 : 참여자의 모든 기능 가능, 방 수정 , 공지 등록 가능
 
-
+<br/><br/>
 <hr>
 
 ➡ 자료 공유 게시판 등록, 다운로드
 
 | 등록 | 다운로드 |
 |-------------|-------------|
-|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/27056375-5787-49e3-acfd-b8fb39c2d0c2" width="400" height="250">|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/0e0d9ee4-5bb3-4fba-9932-ec89f6d7232c" width="400" height="250">|
-
-
-<hr>
-
-➡ 채팅 
-
-<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/dbb92d45-5f7c-48ed-8dbe-b12fd27b6791" width="400" height="250">
-
-<hr>
-
-➡ 질문 게시판 - AI 질문 선생님
+|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/27056375-5787-49e3-acf봇
 
 <img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/5f310e27-3017-4cf4-933b-d268c1152daf" width="600" height="350">
-
+<br/><br/>
 <hr>
 
 ➡ 관리자 페이지 - 회원, 방 수정/삭제
@@ -114,7 +103,7 @@
 
 ![image](https://github.com/moonjinho99/RoomMaker/assets/117807455/387d48c0-0bd5-4cb0-be7d-e99c7ab180a9)
 
-
+<br/><br/>
 <hr>
 
 ## 💡 이번 프로젝트를 통해 배운점
@@ -126,3 +115,4 @@
 ➡ 팀원들과 Git을 통해 코드를 공유하고 관리함으로써 Git 명령어 사용에 익숙해짐
 
 ➡ Web Socket을 통해 채팅 기능을 구현하면서 소켓 통신의 개념 확립
+<br/><br/>
