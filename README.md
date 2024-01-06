@@ -83,13 +83,26 @@
 
 ➡ 채팅
 
-<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/8efd41f3-7d16-4452-8ae8-65ab5e197cb6" width="600" height="350">
+<br/>
+
+<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/8efd41f3-7d16-4452-8ae8-65ab5e197cb6" width="600" height="350">  
+
+<br/>
+
+- Web Socket을 이용하여 구현
+
 <br/><br/>
 <hr>
 
 ➡ 질문 게시판 - AI 챗봇
 
-<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/5f310e27-3017-4cf4-933b-d268c1152daf" width="600" height="350">
+<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/5f310e27-3017-4cf4-933b-d268c1152daf" width="600" height="350">  
+
+<br/>
+
+- Open AI API를 통해 Chat GPT 키를 발급받아 구현
+
+
 <br/><br/>
 <hr>
 
