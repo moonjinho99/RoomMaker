@@ -56,7 +56,7 @@
 |-------------|-------------|
 |<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/b1cb66c1-e738-4905-9913-1e23fb2951a3" width="400" height="250">|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/7462d21b-9b1c-4afa-b430-bb3597098e4a" width="400" height="250">|
 
-- 참여자 : 파일,질문 게시판 등록/수정 가능 , 채팅, AI 질문서비스 가능
+- 참여자 : 자료 공유,질문 게시판 등록/수정 가능 , 채팅, AI 질문서비스 가능
 
 - 방장 : 참여자의 모든 기능 가능, 방 수정 , 공지 등록 가능
 
@@ -64,9 +64,12 @@
 
 <hr>
 
-➡ 지도로 코스 확인하기
+➡ 자료 공유 게시판 등록, 다운로드
 
-<img src="https://github.com/moonjinho99/RootFinder/assets/117807455/f21bbf96-730f-4135-988b-5cebd2f41962" width="500" height="350">
+| 등록 | 다운로드 |
+|-------------|-------------|
+|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/27056375-5787-49e3-acfd-b8fb39c2d0c2" width="400" height="250">|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/0e0d9ee4-5bb3-4fba-9932-ec89f6d7232c" width="400" height="250">|
+
 
 <hr>
 
