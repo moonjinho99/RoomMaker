@@ -85,7 +85,7 @@
 <hr>
 
 ➡ 관리자 페이지 - 회원, 방 수정/삭제
-<br/>
+
 - 관리자 페이지
 
 <img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/99ec85b2-33a4-4745-934a-aefd3dc58212" width="600" height="350">  
@@ -96,8 +96,9 @@
 | 기능 | 회원 | 방 |
 |-------------|-------------|-------------|
 | 상세화면 |<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/ac76fc44-3693-4042-89c3-f76be800fcde" width="400" height="250">|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/2833141a-5e15-4d29-99ba-0845ad775896" width="400" height="250">|
+| 기능 | 회원 탈퇴 | 참여 회원 탈퇴 , 공지, 자료공유, 질문 게시판 , 답변, 방 전체 삭제 |
 
-
+<br/><br/>
 <hr>
 
 
