@@ -75,7 +75,12 @@
 
 | 등록 | 다운로드 |
 |-------------|-------------|
-|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/27056375-5787-49e3-acf봇
+|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/27056375-5787-49e3-acf봇|
+
+<br/><br/>
+<hr>
+
+➡ 질문 게시판 - AI 챗봇
 
 <img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/5f310e27-3017-4cf4-933b-d268c1152daf" width="600" height="350">
 <br/><br/>
