@@ -61,7 +61,6 @@
 - 방장 : 참여자의 모든 기능 가능, 방 수정 , 공지 등록 가능
 
 
-
 <hr>
 
 ➡ 자료 공유 게시판 등록, 다운로드
@@ -73,17 +72,34 @@
 
 <hr>
 
-➡ 관리자 페이지 - 회원, 코스, 댓글 삭제/수정
+➡ 채팅 
 
-<img src="https://github.com/moonjinho99/RootFinder/assets/117807455/3590dee6-5058-4f0b-9b1f-c8483372c942" width="400" height="250">
-
-<img src="https://github.com/moonjinho99/RootFinder/assets/117807455/aa8efe87-b55e-450c-b448-cc284eba2a56" width="400" height="250">
-
-<img src="https://github.com/moonjinho99/RootFinder/assets/117807455/0e3520bd-16a1-4b10-9f5c-dccc75b37e94" width="400" height="250">
-
-<img src="https://github.com/moonjinho99/RootFinder/assets/117807455/5db0a78d-18f4-4392-8533-3cbe93153e55" width="400" height="250">
+<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/dbb92d45-5f7c-48ed-8dbe-b12fd27b6791" width="400" height="250">
 
 <hr>
+
+➡ 질문 게시판 - AI 질문 선생님
+
+<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/5f310e27-3017-4cf4-933b-d268c1152daf" width="600" height="350">
+
+<hr>
+
+➡ 관리자 페이지 - 회원, 방 수정/삭제
+<br/>
+- 관리자 페이지
+
+<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/99ec85b2-33a4-4745-934a-aefd3dc58212" width="600" height="350">  
+
+
+<br/><br/>
+
+| 기능 | 회원 | 방 |
+|-------------|-------------|-------------|
+| 상세화면 |<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/ac76fc44-3693-4042-89c3-f76be800fcde" width="400" height="250">|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/2833141a-5e15-4d29-99ba-0845ad775896" width="400" height="250">|
+
+
+<hr>
+
 
 ## 🔍 ERD
 
