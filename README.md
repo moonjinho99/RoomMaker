@@ -35,29 +35,32 @@
 
 ## ⭐ 주요기능
 
-➡ 나이, 성별, MBTI별 코스 확인
+➡ 메인화면 - 검색, 내가 만든 방, 참여중인 방 확인 가능
 
-<img src="https://github.com/moonjinho99/RootFinder/assets/117807455/91a0237b-a71b-44cb-9ac0-ec58c9db996d" width="600" height="350">
-
-<hr>
-
-➡ 여행 코스 등록
-
-<img src="https://github.com/moonjinho99/RootFinder/assets/117807455/ceb29df8-4347-427d-bf26-e44a26b4f3fa" width="400" height="250">
-
-<img src="https://github.com/moonjinho99/RootFinder/assets/117807455/8e6b098b-569e-443d-8b97-2c7051d51602" width="400" height="250">
-
-<img src="https://github.com/moonjinho99/RootFinder/assets/117807455/6a7ca7e8-8c17-4f09-aca7-cdc226fbdc02" width="400" height="250">
+<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/f24a8eaa-9170-4f54-af00-563558746909" width="600" height="350">
 
 <hr>
 
-➡ 코스 상세 보기
+➡ 방만들기 / 방입장
 
-<img src="https://github.com/moonjinho99/RootFinder/assets/117807455/62480bde-e3f2-4107-ba69-dd3b2d151d26" width="400" height="250">
+<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/40e7140e-b778-4f71-8f85-1103d774d973" width="400" height="250">
 
-<img src="https://github.com/moonjinho99/RootFinder/assets/117807455/eed2095b-98e6-4ee5-a60a-2f3893b06832" width="400" height="250">
+<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/493a50f2-b5ec-4f65-bdaf-2e5fbe69a71e" width="400" height="250">
 
-<img src="https://github.com/moonjinho99/RootFinder/assets/117807455/e664ae64-1873-4734-853a-0e1256941daa" width="400" height="250">
+<hr>
+
+➡ 방 상세 페이지 - 참여자와 방장의 화면이 다름
+
+
+| 참여자 | 방장 |
+|-------------|-------------|
+|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/b1cb66c1-e738-4905-9913-1e23fb2951a3" width="400" height="250">|<img src="https://github.com/moonjinho99/RoomMaker/assets/117807455/7462d21b-9b1c-4afa-b430-bb3597098e4a" width="400" height="250">|
+
+- 참여자 : 파일,질문 게시판 등록/수정 가능 , 채팅, AI 질문서비스 가능
+
+- 방장 : 참여자의 모든 기능 가능, 방 수정 , 공지 등록 가능
+
+
 
 <hr>
 
